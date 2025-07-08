@@ -19,6 +19,7 @@ $allowed = ['home',
             'cart',
             'logout',
             'product',
+            'productdetails',
             'search']; 
 
 if (!in_array($requested, $allowed)) {
