@@ -5,10 +5,11 @@ Contiene:
 	•	sidebar (menu)
 	•	footer
 	•	e una zona vuota dove il sistema inietta i contenuti (quelli delle pagine specifiche, come login, dashboard, ecc.)
-    cosa fa <[body]> 
+    cosa fa il tag body
     è la tag del template engine (quella del professore) che serve a sostituire dinamicamente il
     contenuto del corpo della pagina con il file specifico (login.html, dashboard.html, ecc.)
     -->
+    
 <!-- HEADER START ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-->
 
 <!doctype html>
@@ -55,7 +56,7 @@ Contiene:
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
     <!-- Modernizer js -->
-    <script src="dhml/hator/assets/js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="dtml/hator/assets/js/vendor/modernizr-3.5.0.min.js"></script>
    
 </head>
 
@@ -125,10 +126,10 @@ Contiene:
                                         <!-- Dropdown Start -->
                                         <ul class="ht-dropdown">
                                              <li>
-                                                <a href="dhml/hator/account.html">my account</a>
+                                                <a href="index.php?page=account">my account</a>
                                             </li>
                                             <li>
-                                                <a href="dhml/hator/wishlist.html">my wishlist</a>
+                                                <a href="index.php?page=wishlist">my wishlist</a>
                                             </li>
                                             
                                       <!--     <?php endif; ?> -->
@@ -152,8 +153,8 @@ Contiene:
                             <!-- Logo Start -->
                             <div class="col-xl-3 col-lg-2 col-6">
                                 <div class="logo" style="display: flex; justify-content: flex-start; align-items: center;">
-                                    <a href="home.html">
-                                        <img src="dhml/hator/assets/img/logo/logo-h.jpg" alt="logo-image" style="max-width: 100%; height: auto;">
+                                    <a href="index.php?page=home">
+                                        <img src="dtml/hator/assets/img/logo/logo-h.jpg" alt="logo-image" style="max-width: 100%; height: auto;">
                                     </a>
                                 </div>
                             </div>
@@ -163,24 +164,24 @@ Contiene:
                                 <nav>
                                     <ul class="header-bottom-list d-flex justify-content-start">
                                         <li class="active position-static">
-<!-- HOME LINK-->                     <a  href="home.html">home</a>                                    
+<!-- HOME LINK-->                     <a  href="index.php?page=home">home</a>                                    
                                         </li>
                                         <li>
-<!--ABOUT US LINK-->                      <a href="about.html">about us</a>
+<!--ABOUT US LINK-->                      <a href="index.php?page=about">about us</a>
                                         </li>
                                         <li>
-<!--CONTACT US LINK-->                        <a class="link" href="contact.html">Contact Us</a>                                         
+<!--CONTACT US LINK-->                        <a class="link" href="index.php?page=contact">Contact Us</a>                                         
                                         </li>
                                         <li>
-<!--SHOP LINK-->                         <a href="shop.html">shop</a>
+<!--SHOP LINK-->                         <a href="index.php?page=shop">shop</a>
                                         </li>
 
                                      <!--  <?php if(!isset($_SESSION['user_id'])): ?> --> 
                                         <li>
-<!--LOG IN LINK-->                            <a href="login.html">Log In</a>
+<!--LOG IN LINK-->                            <a href="index.php?page=login">Log In</a>
                                         </li>
                                         <li>
-<!--REGISTER LINK-->                          <a href="register.html">Register</a>
+<!--REGISTER LINK-->                          <a href="index.php?page=register">Register</a>
                                         </li>
                                      <!--   <?php else: ?> -->
                                             
@@ -193,7 +194,7 @@ Contiene:
                                             die;   MINUTO 230 
                                         } -->
                                         <li>
-<!--LOG OUT LINK-->                          <a href="logout.html">Log Out</a>
+<!--LOG OUT LINK-->                          <a href="index.php?page=logout">Log Out</a>
                                         </li>
                                    <!--     <?php endif; ?> -->
 
@@ -238,7 +239,7 @@ Contiene:
                                                         </div>
                                                         <div class="cart-content">
                                                             <h6>
-                                                                <a href="cart.html">Modern Eye Brush </a>
+                                                                <a href="index.php?page=cart">Modern Eye Brush </a>
                                                             </h6>
                                                             <span class="cart-price">27.45</span>
                                                             <span>Size: S</span>
@@ -259,7 +260,7 @@ Contiene:
                                                         </div>
                                                         <div class="cart-content">
                                                             <h6>
-                                                                <a href="cart.html">Flat Velvet Lipstick</a>
+                                                                <a href="index.php?page=cart">Flat Velvet Lipstick</a>
                                                             </h6>
                                                             <span class="cart-price">45.00</span>
                                                             <span>Size: XL</span>
@@ -287,7 +288,7 @@ Contiene:
                                                             </li>
                                                         </ul>
                                                         <div class="cart-actions text-center">
-                                                            <a class="cart-checkout" href="<?=ROOT?>checkout">Checkout</a>
+                                                            <a class="cart-checkout" href="index.php?page=checkout">Checkout</a>
                                                         </div>
                                                     </div>
                                                     <!-- Cart Footer Inner End -->
