@@ -5,7 +5,7 @@
 
     
 
-        $query = "SELECT username, name, surname, email FROM user WHERE username = '" . $_POST['username'] . "' AND password = '" . cifratura($_POST['password'], $_POST['username']) . "'";  
+        $query = "SELECT email, first_name, last_name, titolo FROM users WHERE email = '" . $_POST['email'] . "' AND password = '" . cifratura($_POST['password'], $_POST['email']) . "'";  
 
         $result = $conn->query($query);
 
@@ -15,7 +15,7 @@
         } else {
             if ($result->num_rows == 0)     {
                 /* Se non ci sono risultati, l'utente non esiste */
-                die("Error: User not found.");
+                die("Error: Email not found.");
 
             } else {
 

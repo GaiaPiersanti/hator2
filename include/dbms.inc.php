@@ -5,10 +5,10 @@
     $password = ""; // Modifica questa riga con la tua password
     $database = "hator_db";
 
-    function cifratura($password, $username) {
+    function cifratura($password, $email) {
         /* cifratura goes here */
 
-        return md5($password.md5($username)); // esempio di cifratura semplice
+        return md5($password.md5($email)); // esempio di cifratura semplice
     }
 
 

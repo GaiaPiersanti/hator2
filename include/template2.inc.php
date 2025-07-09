@@ -25,6 +25,7 @@
 DEFINE("SQUARE", 1);
 DEFINE("CURL", 2);
 DEFINE('DEBUG', "DEBUG");
+DEFINE('NONE', "0");
 
 Class Template {
 	var
@@ -1126,7 +1127,9 @@ Class Cache{
 		return $token[1];
    }
 }
-
+//	•	Scansiona la classe figlia per capire quali tag supporta.
+//	•	Offre un unico punto (apply) per dispatchare ogni singolo tag al metodo corretto.
+//	•	Consente al template engine di validare e invocare in modo dinamico i metodi delle librerie di tag.
 Class TagLibrary {
 	    
 	var $selectors;

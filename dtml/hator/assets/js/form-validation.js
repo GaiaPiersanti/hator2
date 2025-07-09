@@ -19,3 +19,21 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+
+// dopo il caricamento del DOM
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.show-btn').forEach(button => {
+    const input = document.getElementById(button.getAttribute('data-target'));
+    if (!input) return;
+    button.addEventListener('click', () => {
+      if (input.type === 'password') {
+        input.type = 'text';
+        button.textContent = 'Hide';
+      } else {
+        input.type = 'password';
+        button.textContent = 'Show';
+      }
+    });
+  });
+});

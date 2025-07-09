@@ -1,5 +1,5 @@
 <?php
-
+    
     require "include/template2.inc.php";
     require "include/dbms.inc.php"; /* include il database */
     require "include/auth.inc.php"; /* include il file di autenticazione */

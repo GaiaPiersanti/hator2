@@ -1,43 +1,56 @@
 <?php
-
-
+session_start();
+require "include/dbms.inc.php";
 require "include/template2.inc.php";
-//define('ROOT', '/hator2/');  // se il progetto è in .../htdocs/hator2
 
+// 1) Prendo e sanifico la pagina richiesta
+$requested = $_GET['page'] ?? 'home';
+$requested = basename($requested);
 
-$requested = $_GET['page'] ?? 'home';               // es: about
-$requested = basename($requested);                 // sanifica /, .. , ecc.
-
-// pagine consentite
-$allowed = ['home',
-            'about',
-            'contact',
-            'shop',
-            'login',
-            'register',
-            'checkout',
-            'cart',
-            'logout',
-            'product',
-            'productdetails',
-            'search']; 
-
-if (!in_array($requested, $allowed)) {
-    $requested = 'home';
+// 2) Intercetto il controller “home.php”
+if ($requested === 'home') {
+    require __DIR__ . '/home.php';
+    exit;
 }
 
-$path = "dtml/hator/$requested.html";
-if (!file_exists($path)) {              // fallback se manca il file
-    $requested = 'home';
+// Intercept the login page
+if ($requested === 'login') {
+    require __DIR__ . '/login.php';
+    exit;
 }
 
+// 3) (in futuro) qui potrai intercettare anche “login”, “register” ecc.
+//    es.: if ($requested==='login') { require __DIR__.'/login.php'; exit; }
+
+// 4) Lista delle pagine “statiche” consentite
+$allowed = [
+    'about','contact','shop',
+    'login','register','checkout','cart',
+    'logout','product','productdetails','search'
+];
+// home l’abbiamo già gestita sopra
+
+if (!in_array($requested, $allowed, true)) {
+    // Se non è né home né una pagina consentita, fallback a home.php
+    require __DIR__ . '/home.php';
+    exit;
+}
+
+// 5) Percorso al template statico
+$path = "dtml/hator/{$requested}.html";
+
+// 6) Se manca il file, fallback a home.php
+if (! file_exists($path)) {
+    require __DIR__ . '/home.php';
+    exit;
+}
+
+// 7) Render delle pagine statiche
 $main = new Template("dtml/hator/frame");
-$body = new Template("dtml/hator/$requested");
-if (!file_exists("dtml/hator/$requested.html")) {
-    die("File non trovato: dtml/hator/$requested.html");
-}
+$body = new Template("dtml/hator/{$requested}");
 $main->setContent("body", $body->get());
 $main->close();
+
 
 
 
