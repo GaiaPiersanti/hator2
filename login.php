@@ -1,46 +1,43 @@
 <?php
-// Start session if not already
-if (session_status() !== PHP_SESSION_ACTIVE) {
+//  ini_set('display_errors', 1);
+//  ini_set('display_startup_errors', 1);
+//  error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+    
     session_start();
+
+    require "include/template2.inc.php";
+    require "include/dbms.inc.php"; /* include il database */
+    require "include/auth.inc.php"; /* include il file di autenticazione */
+
+    $main = new Template("dtml/hator/frame"); /* apre la template principale */
+    $body = new Template("dtml/hator/login"); /* apre il body (sotto template) */
+
+
+// Show login error if set
+if (isset($login_error)) {
+    $body->setContent("login_error", "<p class='error-message'>$login_error</p>");
+} else {
+    $body->setContent("login_error", "");
 }
 
-require_once "include/dbms.inc.php";
-require_once "include/template2.inc.php";
-
-$main = new Template("dtml/hator/frame");
-$body = new Template("dtml/hator/login");
-
-// Handle form submission
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Sanitize input
-    $email = $conn->real_escape_string($_POST['email'] ?? '');
-    // Hash password
-    $hash = cifratura($_POST['password'] ?? '', $email);
-
-    // Check credentials
-    $sql = "SELECT first_name, last_name, titolo
-            FROM users
-            WHERE email='$email' AND password='$hash'
-            LIMIT 1";
-    $res = $conn->query($sql);
-
-    if ($res && $res->num_rows === 1) {
-        $row = $res->fetch_assoc();
-        // Set session variables
-        $_SESSION['loggedin']    = true;
-        $_SESSION['first_name']  = $row['first_name'];
-        $_SESSION['last_name']   = $row['last_name'];
-        $_SESSION['title']       = $row['titolo'];
-        // Redirect to home
-        header("Location: index.php?page=home");
-        exit;
-    } else {
-        // Invalid credentials: show error and repopulate email
-        $body->setContent("errorMessage", "Email o password non validi");
-        $body->setContent("email", htmlspecialchars($email));
-    }
+// Only set these if user is logged in
+if (isset($_SESSION['user'])) {
+    $body->setContent("first_name", $_SESSION['user']['first_name']);
+    $body->setContent("last_name", $_SESSION['user']['last_name']);
+} else {
+    $body->setContent("first_name", "");
+    $body->setContent("last_name", "");
 }
 
-// Render login form
 $main->setContent("body", $body->get());
 $main->close();
+
+
+
+    
+
+?>

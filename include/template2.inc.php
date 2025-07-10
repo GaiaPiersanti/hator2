@@ -50,11 +50,13 @@ Class Template {
 
 		global $config;
 
-		if (isset($config['auth'])) {
-			$skin = 'admin';
-		} else {
-			$skin = $config['skin'];
-		}
+		if (isset($config) && is_array($config) && isset($config['auth'])) {
+        $skin = 'admin';
+    	} elseif (isset($config) && is_array($config) && isset($config['skin'])) {
+        $skin = $config['skin'];
+    	} else {
+        $skin = 'default'; // fallback value, change as needed
+    	}
 
 		//$filename = "skins/{$skin}/html/{$filename}.html";
 		$filename = "{$filename}.html";
@@ -481,11 +483,13 @@ Class Template {
 					}
 				}	
 			}
-			for($i=0;$i<count($finalContent[0]);$i++){
-				$currentParsedContentName = $finalContent[0][$i];
-				$currentParsedContentValue = $finalContent[1][$i];
-				$buffer = preg_replace("~{$this->escaped_tags['open']}$currentParsedContentName{$this->escaped_tags['close']}~Us",$currentParsedContentValue,$buffer,1);
-			}
+			if ($result && $finalContent !== NULL && isset($finalContent[0])) {
+    		for($i=0;$i<count($finalContent[0]);$i++){
+       		$currentParsedContentName = $finalContent[0][$i];
+        	$currentParsedContentValue = $finalContent[1][$i];
+			$buffer = preg_replace("~<\[$currentParsedContentName\]>~Us", $currentParsedContentValue ?? '', $buffer, 1);
+    		}
+}
 		} 
 		
 		return $buffer;
@@ -597,7 +601,7 @@ Class Template {
 				
 				
 				$token[1] = $this->string_to_pattern($token[1]);
-				$buffer = preg_replace("~<\[$token[1]\]>~Us","",$buffer,-1);
+				$buffer = preg_replace("~<\[$token[1]\]>~Us",$replacement ?? '',$buffer,-1);
 				$result = preg_match($complex_pattern_param,$buffer,$token);  
 				 
 			} else {// Non ci sono placeholder $name con selettore e parametri
@@ -937,11 +941,11 @@ Class Template {
 
 	function get() {
 		
-		if (isset($_SESSION)) {
-			foreach($_SESSION['user'] as $k => $v) {
-				$this->setContent("user.".$k,$v);
-			}
-		}
+		if (isset($_SESSION['user']) && is_array($_SESSION['user'])) {
+    	foreach($_SESSION['user'] as $k => $v) {
+        $this->setContent("user.".$k,$v);
+    }
+}
 
 		if (!$this->parsed) {
 			$this->parse();
@@ -957,11 +961,11 @@ Class Template {
 
 	function close() {
 
-		if (isset($_SESSION)) {
-			foreach($_SESSION['user'] as $k => $v) {
-				$this->setContent("user.".$k,$v);
-			}
-		}
+		if (isset($_SESSION['user']) && is_array($_SESSION['user'])) {
+    	foreach($_SESSION['user'] as $k => $v) {
+        $this->setContent("user.".$k,$v);
+    }
+}
 
 		$this->setContent("style", $this->getExtension());
 		
@@ -1135,11 +1139,13 @@ Class TagLibrary {
 	var $selectors;
 	
 	function __construct(){
-		$this->selectors = get_class_methods($this);
+		$methods = get_class_methods($this);
+    $this->selectors = array_map('strtolower', $methods);
+		
 	}
 	
 	function apply($name,$data,$pars,$selector){	
-	
+		$selector = strtolower($selector);
 		$result = call_user_func(array($this,$selector),$name,$data,$pars);
 		return $result;
 	}
@@ -1532,13 +1538,13 @@ Class ForeachCode {
 	function setPlaceholderValue($placeholderName,$placeholderValue,$foreachName,$foreachCode){
 		$result = preg_match("~<\[$placeholderName\]>~Us",$foreachCode);
 		if($result){//Se c'? il placeholder lo istanzio
-			$foreachCode = preg_replace("~<\[$placeholderName\]>~Us",$placeholderValue,$foreachCode,-1);
+			$foreachCode = preg_replace("~<\[$placeholderName\]>~Us",$placeholderValue ?? '',$foreachCode,-1);
 		}
 		else{// Se non c'? controllo se si trova nel codice del foreach pulito, nel caso in cui lo appendo 
 			$foreachCode=preg_replace("~<\[(foreach\d+_\d+)\]>.+<\[\/\\1\]>~Us","",$foreachCode,-1);//Elimino i vecchi foreach annidati, sono in una nuova iterazione	
 			$result = preg_match("~<\[$placeholderName\]>~Us",$this->getForeachCode($foreachName));
 			if($result){
-				$foreachCode = $foreachCode.(preg_replace("~<\[$placeholderName\]>~Us",$placeholderValue,$this->getForeachCode($foreachName),-1));	
+				$foreachCode = $foreachCode.(preg_replace("~<\[$placeholderName\]>~Us",$placeholderValue ?? '',$this->getForeachCode($foreachName),-1));	
 			}
 		}
 		return $foreachCode;
@@ -1549,7 +1555,7 @@ Class ForeachCode {
 		$result = preg_match("~<\[$placeholderName\]>~Us",$buffer);
 		
 		if($result){
-			$buffer = preg_replace("~<\[$placeholderName\]>~Us","".$placeholderValue,$buffer,-1);
+			$buffer = preg_replace("~<\[$placeholderName\]>~Us", $placeholderValue ?? '',$buffer,-1);
 		}
 		return $buffer;	
 	}
@@ -1557,7 +1563,7 @@ Class ForeachCode {
 	function setForeachBindedCode($foreachName,$buffer,$code){
 		$result = preg_match("~<\[$foreachName\]>(.+)<\[\/$foreachName\]>~Us",$buffer,$token);
 		if($result){
-			$buffer = preg_replace("~<\[$foreachName\]>.+<\[\/$foreachName\]>~Us",$code,$buffer,1);
+			$buffer = preg_replace("~<\[$foreachName\]>.+<\[\/$foreachName\]>~Us",$code ?? '',$buffer,1);
 		}
 		return $buffer;
 	}

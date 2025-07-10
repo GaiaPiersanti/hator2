@@ -6,7 +6,7 @@
     require "include/dbms.inc.php"; /* include il database */
     require "include/auth.inc.php"; 
 
-    $main = new Template("dtml/webarch/frame"); /* apre la template principale */
+    $main = new Template("dtml/hator/frame"); /* apre la template principale */
 
     /* controllo se il form è stato inviato */
 
@@ -19,7 +19,7 @@
     switch ($_POST['step']) {
         case 0: /* STEP 0 - form */
             
-            $body = new Template("dtml/webarch/add-user"); /* apre il body (sotto template) */
+            $body = new Template("dtml/hator/add-user"); /* apre il body (sotto template) */
             
             
             break;
@@ -27,21 +27,22 @@
 
 
             /* transazione + notifica */
-            $body = new Template("dtml/webarch/add-user"); /* apre il body (sotto template) */
+            $body = new Template("dtml/hator/add-user"); /* apre il body (sotto template) */
 
             $query = "INSERT INTO user VALUES (
-                        '{$_POST['username']}',
-                        '".cifratura($_POST['password'],$_POST['username'])."',
-                        '{$_POST['name']}',
-                        '{$_POST['surname']}',
-                        '{$_POST['email']}')";
+                        '{$_POST['email']}',
+                        '".cifratura($_POST['password'],$_POST['email'])."',
+                        '{$_POST['first_name']}',
+                        '{$_POST['last_name']}',
+                        '{$_POST['title']}')";
 
             if ($conn->query($query)) {
                 echo "OK";
             } else {
                 if ($conn->errno == 1062) {
-                    echo "Error: username already exists.";
-
+                     // Qui catturiamo l’errore di duplicazione chiave nell'ultima insert
+                    echo "Error: email already exists.";
+                    // Ripopoliamo il form con i valori precedenti
                     foreach($_POST as $key => $value) {
                         if ($key != "step") {
                             $body->setContent($key, $value); /* setta i campi del form */
@@ -49,6 +50,7 @@
                     }
 
                 } else {
+                    // Qualunque altro errore di SQL
                     echo "Error: " . $conn->error . " ({$conn->errno}) ";
                 }
                 echo "Error: " . $conn->error . " ({$conn->errno}) ";
