@@ -1,5 +1,5 @@
 <?php
-
+    
     session_start();
     $_SESSION = array(); // svuota la sessione
     session_destroy(); // distrugge la sessione 

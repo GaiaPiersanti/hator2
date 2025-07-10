@@ -729,13 +729,12 @@ Class Template {
 		$this->setContent("base", isset($GLOBALS['config']['base'])?$GLOBALS['config']['base']:"" );
 		
 		if (isset($_SESSION['user'])) {
-		
-			$this->setContent("user.username", $_SESSION['user']['username']);
-			$this->setContent("user.name", $_SESSION['user']['name']);
-			$this->setContent("user.surname", $_SESSION['user']['surname']);
+
+			$this->setContent("user.first_name", $_SESSION['user']['first_name']);
+			$this->setContent("user.last_name", $_SESSION['user']['last_name']);
 			//$this->setContent("user.lastlogin", $_SESSION['user']['lastlogin']);
 		
-			$this->setContent("user.email", $_SESSION['user']['email']);
+			
 		}
 
 		if ($this->cache->caching == TRUE){

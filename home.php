@@ -4,6 +4,7 @@ require_once "include/template2.inc.php";
 
 // 1) Istanzio il frame principale
 $main = new Template("dtml/hator/frame");
+$main->setContent("welcome_message", $welcome);
 
 // 2) Istanzio il sotto‐template per la home
 $body = new Template("dtml/hator/home");

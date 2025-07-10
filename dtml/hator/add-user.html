@@ -18,35 +18,27 @@
                 <div class="row">
                     <div class="offset-xl-1 col-xl-10">
                         <div class="register-form login-form clearfix">
-                            <form method="POST" action="index.php?page=register">
+                            <form method="POST" action="index.php?page=add-user">
                                 <p>Already have an account? <a href="index.php?page=login">Log in instead!</a></p>
                                 <div class="form-group row align-items-center">
-                                    <!--<label class="col-lg-3 col-md-3 col-form-label">Social title
-                                        <span class="required" style="color: red;">*</span>
-                                    </label>
-                                    <div class="col-lg-6 col-md-6">
-                                        <span class="custom-radio">
-                                            <input type="radio" name="user_title" value="Mr."> Mr.
-                                        </span>
-                                        <span class="custom-radio">
-                                            <input type="radio" name="user_title" value="Mrs."> Mrs.
-                                        </span>
-                                        
-                                          <div class="text-danger" style="font-size: 14px;">Select a title</div>
-                                        
-                                    </div> -->
-
-                                    <[step::hidden value="1" library="form"]>
+                                
+                                    <input type="hidden" name="step" value="1">
+                                    
                                     <[key::hidden library="form"]>
                                     <[first_name::text label="First name" placeholder="e.g. Jhon" library="form"]>
+                                    <[first_nameError]>
                                     <[last_name::text label="Last name" placeholder="e.g. Smith" library="form"]>
+                                    <[last_nameError]>
                                     <[email::email label="Email" placeholder="e.g. example@company.com" library="form"]>
+                                    <[emailError]>
                                     <[password::password label="Password" library="form"]>
+                                    <[passwordError]>
                                     <[password2::password label="Confirm Password" library="form"]>
+                                    <[password2Error]>
                                      
                                 
 
-
+                                </div>
                                 <div class="register-box mt-40">
                                     <button type="submit" class="login-btn float-right">Register</button>
                                 </div> 

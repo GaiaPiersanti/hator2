@@ -85,14 +85,9 @@ Contiene:
                                     <li>
                                          <a href="mailto:hatorparfumes@gmail.com"><i class="fa fa-envelope-open-o"></i> hatorparfumes@gmail.com</a>
                                     </li>
-                                    <li> <!-- bentornato-->
-                                     <!--  <?php if (isset($_SESSION['user_id'])): ?>
-                                        <p>
-                                            Bentornat<?= ($_SESSION['titolo'] === 'Mrs.') ? 'a' : 'o' ?>
-                                            <?= $_SESSION['user_first_name'] . " " . $_SESSION['user_last_name'] ?>
-                                        </p>
-                                        <?php endif; ?>    --> 
-                                    </li>
+                                     <!-- bentornato-->
+                                     <li class="welcome-back"><[welcome_message]></li>
+                                    
                                 </ul>
                             </div>
                             <!-- Header Top Left End -->
@@ -181,7 +176,7 @@ Contiene:
 <!--LOG IN LINK-->                            <a href="index.php?page=login">Log In</a>
                                         </li>
                                         <li>
-<!--REGISTER LINK-->                          <a href="index.php?page=register">Register</a>
+<!--REGISTER LINK-->                          <a href="index.php?page=add-user">Register</a>
                                         </li>
                                      <!--   <?php else: ?> -->
                                             

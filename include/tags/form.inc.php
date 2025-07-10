@@ -96,7 +96,7 @@ class form extends TagLibrary
 
 
     public function hidden($name, $data, $pars)
-    {  
+    {  error_log("form::hidden called with name={$name}, data={$data}, pars=" . print_r($pars, true));
 
         // Use provided $data if non-empty, otherwise fall back to $pars['value'] or empty string
         $value = ($data !== "" ? $data : ($pars['value'] ?? ''));
