@@ -3,7 +3,7 @@
 
 if (!isset($_SESSION['loggedin'])) {
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'], $_POST['password'])) {
-        $query = "SELECT email, first_name, last_name, title FROM users WHERE email = '" . $_POST['email'] . "' AND password = '" . cifratura($_POST['password'], $_POST['email']) . "'";  
+        $query = "SELECT email, first_name, last_name FROM users WHERE email = '" . $_POST['email'] . "' AND password = '" . cifratura($_POST['password'], $_POST['email']) . "'";  
 
         $result = $conn->query($query);
 
@@ -12,7 +12,7 @@ if (!isset($_SESSION['loggedin'])) {
         } else {
             if ($result->num_rows == 0) {
                 // Instead of die, set an error variable
-                $login_error = "Email or password incorrect.";
+                $login_error = "Incorrect email or password.";
             } else {
                 $user = $result->fetch_assoc();
                 $_SESSION['loggedin'] = true;

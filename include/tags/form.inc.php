@@ -18,45 +18,88 @@ class form extends TagLibrary
 
         if (isset($pars['disabled'])) {
             preg_match("~({$pars['disabled']})~", basename($_SERVER['SCRIPT_NAME']), $matches);
+            $placeholder  = isset($pars['placeholder'])  ? $pars['placeholder']  : '';
+            $errorClass   = isset($pars['errorClass'])   ? $pars['errorClass']   : '';
+            $errorMessage = isset($pars['errorMessage']) ? $pars['errorMessage'] : '';
+            $label        = isset($pars['label'])        ? $pars['label']        : '';
 
 
             if ($matches[1] == $pars['disabled']) {
-                return "<div class=\"form-group\">
-                                <label class=\"form-label\">{$pars['label']}</label>
-                                <span class=\"help\">{$pars['placeholder']}</span>
-                                <div class=\"controls\">
-                                <input name=\"{$name}\" type=\"text\" value=\"{$data}\" disabled class=\"form-control\">
-                                </div>
-                            </div>";
+                return"<div class=\"form-group row mb-20\">
+                    <label for=\"{$name}\" class=\"col-sm-3 col-form-label\">
+                        {$label}<span class=\"required\" style=\"color:red\">*</span>
+                    </label>
+                    <div class=\"col-sm-7\">
+                        <input
+                        type=\"text\"
+                        id=\"{$name}\"
+                        name=\"{$name}\"
+                        class=\"form-control {$errorClass}\"
+                        placeholder=\"{$placeholder}\"
+                        value=\"{$data}\"
+                        disabled
+                        >
+                        <div class=\"invalid-feedback\">
+                        {$errorMessage}
+                        </div>
+                    </div>
+                    </div>
+                    ";
             } else {
-                return "<div class=\"form-group\">
-                                <label class=\"form-label\">{$pars['label']}</label>
-                                <span class=\"help\">{$pars['placeholder']}</span>
-                                <div class=\"controls\">
-                                <input name=\"{$name}\" type=\"text\" value=\"{$data}\" class=\"form-control\">
-                                </div>
-                            </div>";
+                return "<div class=\"form-group row mb-20\">
+                    <label for=\"{$name}\" class=\"col-sm-3 col-form-label\">
+                        {$label}<span class=\"required\" style=\"color:red\">*</span>
+                    </label>
+                    <div class=\"col-sm-7\">
+                        <input
+                        type=\"text\"
+                        id=\"{$name}\"
+                        name=\"{$name}\"
+                        class=\"form-control {$errorClass}\"
+                        placeholder=\"{$placeholder}\"
+                        value=\"{$data}\"
+                        >
+                        <div class=\"invalid-feedback\">
+                        {$errorMessage}
+                        </div>
+                    </div>
+                    </div>
+                    ";
             }
         } else {
-            return "<div class=\"form-group\">
-                            <label class=\"form-label\">{$pars['label']}</label>
-                            <span class=\"help\">{$pars['placeholder']}</span>
-                            <div class=\"controls\">
-                            <input name=\"{$name}\" type=\"text\" value=\"{$data}\" class=\"form-control\">
-                            </div>
-                        </div>";
-        }
+                $placeholder  = isset($pars['placeholder'])  ? $pars['placeholder']  : '';
+                $errorClass   = isset($pars['errorClass'])   ? $pars['errorClass']   : '';
+                $errorMessage = isset($pars['errorMessage']) ? $pars['errorMessage'] : '';
+                $label        = isset($pars['label'])        ? $pars['label']        : '';
+    return "
+                    <div class=\"form-group row mb-20\">
+                    <label for=\"{$name}\" class=\"col-sm-3 col-form-label\">
+                        {$label}<span class=\"required\" style=\"color:red\">*</span>
+                    </label>
+                    <div class=\"col-sm-7\">
+                        <input
+                        type=\"text\"
+                        id=\"{$name}\"
+                        name=\"{$name}\"
+                        class=\"form-control {$errorClass}\"
+                        placeholder=\"{$placeholder}\"
+                        value=\"{$data}\"
+                        >
+                        <div class=\"invalid-feedback\">
+                        {$errorMessage}
+                        </div>
+                    </div>
+                    </div>
+                    ";
     }
+}
 
 
     public function hidden($name, $data, $pars)
-    {
+    {  
 
-        if ($data != "") {
-            $value = $data;
-        } else {
-            $value = $pars['value'];
-        }
+        // Use provided $data if non-empty, otherwise fall back to $pars['value'] or empty string
+        $value = ($data !== "" ? $data : ($pars['value'] ?? ''));
 
         return "<input name=\"{$name}\" type=\"hidden\" value=\"{$value}\">";
     }
@@ -67,6 +110,7 @@ class form extends TagLibrary
 
         $errorClass   = isset($pars['errorClass'])   ? $pars['errorClass']   : '';
         $errorMessage = isset($pars['errorMessage']) ? $pars['errorMessage'] : '';
+        
 
         return "
             <div class=\"form-group row mb-20\">
@@ -79,7 +123,6 @@ class form extends TagLibrary
                         id=\"{$name}\"
                         name=\"{$name}\"
                         class=\"form-control {$errorClass}\"
-                        placeholder=\"{$pars['placeholder']}\"
                         value=\"{$data}\"
                     >
                     <div class=\"invalid-feedback\">

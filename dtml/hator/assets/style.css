@@ -4540,31 +4540,31 @@ label{
     text-shadow: none
 }
 .form-control::-webkit-placeholder {
-    color: #323232!important;
+    color: #999!important;
     opacity: 1 !important;
 }
 .form-control::-moz-placeholder {
-    color: #323232!important;
+    color: #999!important;
     opacity: 1 !important;
 }
 .form-control::-moz-input-placeholder {
-    color: #323232!important;
+    color: #999!important;
     opacity: 1 !important;
 }
 .form-control::-ms-placeholder {
-    color: #323232!important;
+    color: #999!important;
     opacity: 1 !important;
 }
 .form-control::-webkit-input-placeholder {
-    color: #323232!important;
+    color: #999!important;
     opacity: 1 !important;
 }
 .form-control:-ms-input-placeholder {
-    color: #323232!important;
+    color: #999!important;
     opacity: 1 !important;
 }
 .form-control::placeholder {
-    color: #323232!important;
+    color: #999!important;
     opacity: 1 !important;
 }
 

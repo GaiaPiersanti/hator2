@@ -14,7 +14,7 @@ switch ($page) {
         require "dashboard.php";
         break;
     case 'register':
-        require "register.php";
+        require "add-user.php";
         break;
     // add more cases as needed
     default:

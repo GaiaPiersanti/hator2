@@ -12,7 +12,7 @@
         <!-- Breadcrumb Area End Here -->
         <!-- Register Page Start Here -->
         <div class="register-area ptb-90">
-           
+          
             <div class="container">
                 <h3 class="login-header">Create an account </h3>
                 <div class="row">
@@ -21,7 +21,7 @@
                             <form method="POST" action="index.php?page=register">
                                 <p>Already have an account? <a href="index.php?page=login">Log in instead!</a></p>
                                 <div class="form-group row align-items-center">
-                                    <label class="col-lg-3 col-md-3 col-form-label">Social title
+                                    <!--<label class="col-lg-3 col-md-3 col-form-label">Social title
                                         <span class="required" style="color: red;">*</span>
                                     </label>
                                     <div class="col-lg-6 col-md-6">
@@ -34,76 +34,19 @@
                                         
                                           <div class="text-danger" style="font-size: 14px;">Select a title</div>
                                         
-                                    </div>
-                                </div>
-                                <div class="form-group row mb-20">
-                                    <label for="f-name" class="col-lg-3 col-md-3 col-form-label">First Name
-                                        <span class="required" style="color: red;">*</span>
-                                    </label>
-                                    <div class="col-lg-6 col-md-6">
-                                        <input type="text" class="form-control" name="user_first_name" id="f-name" value="">
-                                        <div class="invalid-feedback">Mandatory field</div>
-                                    </div>
-                                </div>
-                                <div class="form-group row mb-20">
-                                    <label for="l-name" class="col-lg-3 col-md-3 col-form-label">Last Name
-                                        <span class="required" style="color: red;">*</span>
-                                    </label>
-                                    <div class="col-lg-6 col-md-6">
-                                        <input type="text" class="form-control <?= (!empty($_POST) && empty($_POST['user_last_name'])) ? 'is-invalid' : '' ?>" name="user_last_name" id="l-name" value="">
-                                        <div class="invalid-feedback">Mandatory field</div>
-                                    </div>
-                                </div>
-                                <div class="form-group row mb-20">
-                                    <label for="email" class="col-lg-3 col-md-3 col-form-label">Email
-                                        <span class="required" style="color: red;">*</span>
-                                    </label>
-                                    <div class="col-lg-6 col-md-6">
-                                        <input type="text" class="form-control <?= (!empty($_POST) && empty($_POST['email'])) ? 'is-invalid' : '' ?>" name="email" id="email" value="">
-                                    </div>
-                                </div>
-                                <div class="form-group row mb-20">
-                                    <label for="inputPassword" class="col-lg-3 col-md-3 col-form-label">Password
-                                        <span class="required" style="color: red;">*</span>
-                                    </label>
-                                    <div class="position-relative col-lg-6 col-md-6">
-                                        <input type="password" class="form-control <?= (!empty($_POST) && empty($_POST['password'])) ? 'is-invalid' : '' ?>" name="password" id="inputPassword" value="">
-                                        <div class="invalid-feedback">Mandatory field</div>
-                                        <button class="btn show-btn" type="button" data-target="inputPassword">Show</button>
-                                    </div>
-                                </div>
-                                <div class="form-group row mb-20">
-                                    <label for="inputPassword" class="col-lg-3 col-md-3 col-form-label">Confirm Password
-                                        <span class="required" style="color: red;">*</span>
-                                    </label>
-                                    <div class="position-relative col-lg-6 col-md-6">
-                                        <input type="password" class="form-control <?= (!empty($_POST) && empty($_POST['password_confirm'])) ? 'is-invalid' : '' ?>" name="password_confirm" id="confirmPassword" value="">
-                                        <div class="invalid-feedback">Mandatory field</div>
-                                        <button class="btn show-btn" type="button" data-target="confirmPassword">Show</button>
-                                    </div>
-                                </div>
-<!--  rimozione della data di nascita  <div class="form-group row mb-20 align-items-center">
-                                    <label for="birth" class="col-lg-3 col-md-3 col-form-label">Birthdate</label>
-                                    <div class="col-lg-6 col-md-6">
-                                        <input type="text" class="form-control" id="birth" placeholder="MM/DD/YYYY">
-                                    </div>
-                                    <span class="col-sm-3 form-control-comment">optional</span>
-                                </div> 
-                                <div class="form-check row p-0 mt-20">
-                                    <div class="col-md-6 offset-md-3">
-                                        <input class="form-check-input" value="#" id="offer" type="checkbox">
-                                        <label class="form-check-label" for="offer">Receive offers from our
-                                            partners</label>
-                                    </div>
-                                </div>
-                                <div class="form-check row p-0 mt-20">
-                                    <div class="col-md-8 offset-md-3">
-                                        <input class="form-check-input" value="#" id="subscribe" type="checkbox">
-                                        <label class="form-check-label" for="subscribe">Sign up for our
-                                            newsletter<br>Subscribe to our newsletters now and stay up-to-date with new
-                                            collections, the latest lookbooks and exclusive offers..</label>
-                                    </div>
-                                </div> -->
+                                    </div> -->
+
+                                    <[step::hidden value="1" library="form"]>
+                                    <[key::hidden library="form"]>
+                                    <[first_name::text label="First name" placeholder="e.g. Jhon" library="form"]>
+                                    <[last_name::text label="Last name" placeholder="e.g. Smith" library="form"]>
+                                    <[email::email label="Email" placeholder="e.g. example@company.com" library="form"]>
+                                    <[password::password label="Password" library="form"]>
+                                    <[password2::password label="Confirm Password" library="form"]>
+                                     
+                                
+
+
                                 <div class="register-box mt-40">
                                     <button type="submit" class="login-btn float-right">Register</button>
                                 </div> 

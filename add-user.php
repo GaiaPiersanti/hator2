@@ -19,7 +19,7 @@
     switch ($_POST['step']) {
         case 0: /* STEP 0 - form */
             
-            $body = new Template("dtml/hator/add-user"); /* apre il body (sotto template) */
+            $body = new Template("dtml/hator/register"); /* apre il body (sotto template) */
             
             
             break;
@@ -27,14 +27,13 @@
 
 
             /* transazione + notifica */
-            $body = new Template("dtml/hator/add-user"); /* apre il body (sotto template) */
+            $body = new Template("dtml/hator/register"); /* apre il body (sotto template) */
 
             $query = "INSERT INTO user VALUES (
                         '{$_POST['email']}',
                         '".cifratura($_POST['password'],$_POST['email'])."',
                         '{$_POST['first_name']}',
-                        '{$_POST['last_name']}',
-                        '{$_POST['title']}')";
+                        '{$_POST['last_name']}',)";
 
             if ($conn->query($query)) {
                 echo "OK";
