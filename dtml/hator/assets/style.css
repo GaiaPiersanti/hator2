@@ -2,6 +2,7 @@
 Template Name: Makali;
 Description: Multipurpose HTML Template;
 Version: 1.0;
+---------------------------------CERCATE "mycss" per trovare le mie aggiunte :)
 -----------------------------------------------------
 
     CSS INDEX
@@ -76,6 +77,8 @@ Version: 1.0;
 -----------------------------------------------------------------*/
 /* googel font Libre Franklin */
 @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
 
 /*----------------------------------------*/
 /* 1. Theme Default CSS
@@ -199,6 +202,14 @@ label{
 .g-0, .gx-0 {
     --bs-gutter-x: 0;
 }
+/*mycss per il welcome message*/
+.welcome-message{
+    color: #c7b270;
+    font-family:'Libre Franklin', sans-serif;
+    font-size: 13px;
+    font-weight:light;
+}
+
 
 /*----------------------------------------*/
 /* 1.1 Makali's Button Variation
@@ -11955,7 +11966,7 @@ a.shipping-calculator-button:hover {
 .form-message.success {
     color: green;
 }
-
+/*mycss start*/
 .error-message-login {
   color: #c00;
   background-color: #fdd;
@@ -11991,6 +12002,8 @@ a.shipping-calculator-button:hover {
 .error-message-login:empty {
   display: none;
 }
+/*mycss end*/
+
 /*----------------------------------------*/
 /* 24. Forgot Password CSS
 /*----------------------------------------*/
