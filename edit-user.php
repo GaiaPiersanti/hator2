@@ -8,6 +8,7 @@
 
 
     $main = new Template("dtml/webarch/frame"); /* apre la template principale */
+    $main->setContent("page_title", $page_title);
 
     /* controllo se il form è stato inviato */
 

@@ -61,6 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
 
 // Carica il template di login e passagli eventuali dati
 $main = new Template("dtml/hator/frame");
+$main->setContent("page_title", $page_title);
 $main->setContent("welcome_message", $welcome);
 $body = new Template("dtml/hator/login");
 // Se c'è un errore di login, lo passo al template

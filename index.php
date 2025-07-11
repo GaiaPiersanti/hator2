@@ -26,6 +26,34 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
 
 //routing
 $page = $_GET['page'] ?? 'home';
+
+//titoli delle pagine
+// definisci qui i titoli umani per ogni pagina
+$pageTitles = [
+    'home'            => 'Home',
+    'login'           => 'Login',
+    'add-user'        => 'Register',
+    'productdetails'  => 'Product Details',
+    '404'             => 'Page Not Found',
+    'shop'            => 'Shop',
+    'cart'            => 'Cart',
+    'checkout'        => 'Checkout',
+    'logout'          => 'Logout',
+    'about'           => 'About Us',
+    'contact'         => 'Contact Us',
+    'orders'          => 'Your Orders',
+    // puoi aggiungere altri titoli qui
+    
+];
+
+// se non trovi la pagina, metti “Page” di default, cioè metti la lettera maiuscola all'inizio di quello che hai in $page
+$niceTitle = $pageTitles[$page] ?? ucfirst($page);
+
+// il titolo completo
+$page_title = $niceTitle . ' | Hator';
+
+
+
 $publicPages    = ['home','login','shop','about','contact','productdetails','404', 'logout', 'add-user'];
 $protectedPages = ['cart','checkout','orders'];
 

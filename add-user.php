@@ -7,7 +7,8 @@
    // require "include/auth.inc.php"; 
 
     $main = new Template("dtml/hator/frame"); /* apre la template principale */
-    $main->setContent("welcome_message", $welcome);
+    $main->setContent("page_title", $page_title);
+   // $main->setContent("welcome_message", $welcome); se ti stai registrando non c'è un messaggio di benvenuto
     $body = new Template("dtml/hator/add-user");
 
     /* controllo se il form è stato inviato */
