@@ -211,6 +211,7 @@ label{
 }
 
 
+
 /*----------------------------------------*/
 /* 1.1 Makali's Button Variation
 /*----------------------------------------*/
@@ -5029,9 +5030,9 @@ label{
     border-bottom: 1px solid #ededed;
     margin-bottom: 20px;
 }
-
+/*mycss*/
 .price-content {
-    overflow: hidden;
+    /*overflow: hidden;*/
     padding-bottom: 20px;
 }
 
@@ -5064,6 +5065,9 @@ label{
     text-align: center;
     top: 3px;
 }
+
+/*mycss*/
+
 
 /*----------------------------------------*/
 /* 3.02 Header Bottom CSS
@@ -8045,6 +8049,7 @@ label{
     font-size: 14px;
     font-weight: 600;
     padding-right: 5px;
+    padding-left: 5px;
 }
 
 .prev-price {
@@ -12628,3 +12633,11 @@ a.shipping-calculator-button:hover {
     width: auto;
     padding: 0 30px;
 }
+
+/*mycss for debug*/
+/* DEBUG: bordo rosso e overflow visibile 
+.pro-thumb-price p.d-flex,
+.pro-thumb-price p.d-flex > span {
+  outline: 1px solid red !important;
+  overflow: visible !important;
+}*/
