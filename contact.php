@@ -6,8 +6,9 @@ require_once "include/template2.inc.php";
 $main = new Template("dtml/hator/frame");
 $main->setContent("welcome_message", $welcome);
 
-// 2) Istanzio il sotto‐template per la home
-$body = new Template("dtml/hator/home");
+// 2) Istanzio il sotto‐template per la pagina contact
+$body = new Template("dtml/hator/contact");
+
 
 
 // 4) Inietto il body nel frame e chiudo
