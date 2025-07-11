@@ -11956,13 +11956,41 @@ a.shipping-calculator-button:hover {
     color: green;
 }
 
-.error-message{
-    color: red;
-    text-align:center;
-    font-weight: bold;
-    margin-top:20px;
+.error-message-login {
+  color: #c00;
+  background-color: #fdd;
+  border: 1px solid #c00;
+  padding: 0.5em;
+  margin: 0.5em auto;   /* margini top/bottom 0.5em, left/right auto */
+  width: 50%;           /* il box farà il 50% della larghezza del genitore */
+  max-width: 610px;     /* facoltativo: l'ho messo per non superare i px del login */
+  text-align: center;   /* centra il testo dentro il box */
+  margin-top:20px;
+  border-radius: 3px;
+  font-size: 0.9em;
 }
 
+.error-message-register {
+  color: #c00;
+  background-color: #fdd;
+  border: 1px solid #c00;
+  padding: 0.5em;
+  margin: 0.5em auto;   /* margini top/bottom 0.5em, left/right auto */
+  width: 50%;           /* il box farà il 50% della larghezza del genitore */
+  max-width: 690px;     /* facoltativo: l'ho messo per non superare i px del register */
+  text-align: center;   /* centra il testo dentro il box */
+  margin-top:20px;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+.error-message-register:empty {
+  display: none;
+}
+
+.error-message-login:empty {
+  display: none;
+}
 /*----------------------------------------*/
 /* 24. Forgot Password CSS
 /*----------------------------------------*/
