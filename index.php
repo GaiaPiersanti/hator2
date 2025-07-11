@@ -42,6 +42,8 @@ $pageTitles = [
     'about'           => 'About Us',
     'contact'         => 'Contact Us',
     'orders'          => 'Your Orders',
+    'account'         => 'Your Account',
+    'wishlist'        => 'Your Wishlist',
     // puoi aggiungere altri titoli qui
     
 ];
@@ -54,8 +56,8 @@ $page_title = $niceTitle . ' | Hator';
 
 
 
-$publicPages    = ['home','login','shop','about','contact','productdetails','404', 'logout', 'add-user'];
-$protectedPages = ['cart','checkout','orders'];
+$publicPages    = ['home','login','shop','about','contact','productdetails','404', 'logout', 'add-user', 'cart','orders', 'checkout'];
+$protectedPages = ['account', 'wishlist'];
 
 // Se provo ad andare in area protetta senza login, vado al login
 if (in_array($page, $protectedPages, true) && empty($_SESSION['loggedin'])) {
@@ -112,9 +114,17 @@ switch ($page) {
     require 'checkout.php';
     break;
 
+    case 'account':
+    require 'account.php';
+    break;
+
+    case 'wishlist':
+    require 'wishlist.php';
+    break;
+
     case '404':
-        require '404.php';
-        break;
+    require '404.php';
+    break;
 
   default:
         require "home.php"; 
