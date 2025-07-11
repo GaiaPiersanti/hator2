@@ -21,17 +21,30 @@
             $body = new Template("dtml/hator/add-user");
             break;
         case 1:
-            echo "Step 1: Validating form data...<br>";
+            
             $body = new Template("dtml/hator/add-user");
+            // initialize error collection before checks
+            $errors = [];
             //raccolgo i dati del form
             $email       = trim($_POST['email']);
+
+            // 1. Pre-insert uniqueness check for email
+            if (!$stmt = $conn->prepare("SELECT 1 FROM users WHERE email=?")) {
+                die("DB error: " . $conn->error);
+            }
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $stmt->store_result();
+            if ($stmt->num_rows > 0) {
+                $errors['email'] = "Email already exists. Please choose another one.";
+            }
+            $stmt->close();
+
             $password    = $_POST['password'];
             $password2   = $_POST['password2'];
             $first_name  = trim($_POST['first_name']);
             $last_name   = trim($_POST['last_name']);
             
-            //inizializzo un array per gli errori
-            $errors = [];
 
             //controlli sui campi del form
             if ($email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -73,14 +86,9 @@
                 exit;
                 }
                 // 2.6 – Se MySQL risponde 1062, email già esistente
-                if ($conn->errno==1062) {
-                $body = new Template("dtml/hator/add-user");
-                $body->setContent("emailError","Email already exists. Please choose another one.");
-                // ripopolo gli altri campi
-                foreach (['first_name','last_name','title'] as $f) {
-                    $body->setContent($f, htmlspecialchars($$f));
-                }
-                } else {
+                // removed obsolete duplicate-1062 error block
+
+                else {
                 // errore generico
                 die("DB error: ".$conn->error);
                 }
