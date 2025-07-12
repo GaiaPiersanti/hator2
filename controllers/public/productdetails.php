@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/include/init.inc.php';
+
 
 // 1) Istanzio il frame principale
 $main = new Template("dtml/hator/frame");
