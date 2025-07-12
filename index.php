@@ -1,134 +1,25 @@
 <?php
-
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-session_start();
+// carico tutto il bootstrap
+require __DIR__ . '/include/init.inc.php';
 
-
-// prepara il welcome_message se l'utente è loggato
-if (!empty($_SESSION['user']['first_name'])) {
-    $welcome = 'Welcome back '
-             . htmlspecialchars($_SESSION['user']['first_name'], ENT_QUOTES)
-             . ' '
-             . htmlspecialchars($_SESSION['user']['last_name'], ENT_QUOTES)
-             . '!';
-} else {
-    $welcome = '';
-}
-
-
-$page = isset($_GET['page']) ? $_GET['page'] : 'home';
-
-
-
-
-//routing
-$page = $_GET['page'] ?? 'home';
-
-//titoli delle pagine
-// definisci qui i titoli umani per ogni pagina
-$pageTitles = [
-    'home'            => 'Home',
-    'login'           => 'Login',
-    'add-user'        => 'Register',
-    'productdetails'  => 'Product Details',
-    '404'             => 'Page Not Found',
-    'shop'            => 'Shop',
-    'cart'            => 'Cart',
-    'checkout'        => 'Checkout',
-    'logout'          => 'Logout',
-    'about'           => 'About Us',
-    'contact'         => 'Contact Us',
-    'orders'          => 'Your Orders',
-    'account'         => 'Your Account',
-    'wishlist'        => 'Your Wishlist',
-    // puoi aggiungere altri titoli qui
-    
-];
-
-// se non trovi la pagina, metti “Page” di default, cioè metti la lettera maiuscola all'inizio di quello che hai in $page
-$niceTitle = $pageTitles[$page] ?? ucfirst($page);
-
-// il titolo completo
-$page_title = $niceTitle . ' | Hator';
-
-
-
-$publicPages    = ['home','login','shop','about','contact','productdetails','404', 'logout', 'add-user', 'cart','orders', 'checkout'];
-$protectedPages = ['account', 'wishlist'];
-
-// Se provo ad andare in area protetta senza login, vado al login
-if (in_array($page, $protectedPages, true) && empty($_SESSION['loggedin'])) {
-    header('Location: index.php?page=login');
-    exit;
-}
-
-//se provo ad andare in una pagina che non è nè pubblica nè protetta, vado alla 404
-// (es. se provo a scrivere index.php?page=qualcosa)
-if(!in_array($page, $publicPages, true) && !in_array($page, $protectedPages, true)) {
-    header('Location: index.php?page=404');
-    exit;
-}
-
-// Poi includi il controller vero
+// dispaccio al controller giusto
 switch ($page) {
-    case 'home':
-    require 'home.php';
-    break;
-
-    case 'about':
-    require 'about.php';
-    break;
-
-    case 'contact':
-    require 'contact.php';
-    break;
-
-    case 'login':
-    require 'login.php';
-    break;
-
-    case 'add-user':
-    require "add-user.php";
-    break;
-        
-    case 'logout':
-    require "logout.php";
-    break;
-  
-    case 'shop':
-    require 'shop.php';
-    break;
-
-    case 'productdetails':
-    require 'productdetails.php';
-    break;
-
-    case 'cart':
-    require 'cart.php';
-    break;
-
-    case 'checkout':
-    require 'checkout.php';
-    break;
-
-    case 'account':
-    require 'account.php';
-    break;
-
-    case 'wishlist':
-    require 'wishlist.php';
-    break;
-
-    case '404':
-    require '404.php';
-    break;
-
-  default:
-        require "home.php"; 
-        break;
+    case 'home':           require __DIR__ . "/controllers/public/home.php";           break;
+    case 'about':          require __DIR__ . "/controllers/public/about.php";          break;
+    case 'contact':        require __DIR__ . "/controllers/public/contact.php";        break;
+    case 'login':          require __DIR__ . "/controllers/public/login.php";          break;
+    case 'add-user':       require __DIR__ . "/controllers/public/add-user.php";       break;
+    case 'logout':         require __DIR__ . "/controllers/public/logout.php";         break;
+    case 'shop':           require __DIR__ . "/controllers/public/shop.php";           break;
+    case 'productdetails': require __DIR__ . "/controllers/public/productdetails.php"; break;
+    case 'cart':           require __DIR__ . "/controllers/public/cart.php";           break;
+    case 'checkout':       require __DIR__ . "/controllers/public/checkout.php";       break;
+    case 'account':        require __DIR__ . "/controllers/public/account.php";        break;
+    case 'wishlist':       require __DIR__ . "/controllers/public/wishlist.php";       break;
+    case '404':            require __DIR__ . "/controllers/public/404.php";            break;
+    default:               require __DIR__ . "/controllers/public/home.php";           break;
 }
-
-?>

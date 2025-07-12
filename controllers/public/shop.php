@@ -1,14 +1,13 @@
 <?php
-//session_start();
-require_once "include/template2.inc.php";
+
 
 // 1) Istanzio il frame principale
 $main = new Template("dtml/hator/frame");
 $main->setContent("page_title", $page_title);
 $main->setContent("welcome_message", $welcome);
 
-// 2) Istanzio il sotto‐template per la pagina contact
-$body = new Template("dtml/hator/contact");
+// 2) Istanzio il sotto‐template per la pagina about
+$body = new Template("dtml/hator/shop");
 
 
 

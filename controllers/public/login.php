@@ -2,14 +2,7 @@
 //  ini_set('display_errors', 1);
 //  ini_set('display_startup_errors', 1);
 //  error_reporting(E_ALL);
-
-    // NOTA: session_start() è già chiamato in index.php
-    //session_start();
-
-    require "include/template2.inc.php";
-    require "include/dbms.inc.php"; /* include il database */
- //   require "include/auth.inc.php"; /* include il file di autenticazione */
-
+//	__DIR__ è la costante che PHP risolve nella cartella in cui risiede il file corrente.
 
 $login_error = "";
 // Se arrivo in POST, processa il login
