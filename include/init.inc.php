@@ -49,8 +49,8 @@ $niceTitle  = $pageTitles[$page] ?? ucfirst($page);
 $page_title = $niceTitle . ' | Hator';
 
 // 7) definisci quali slug sono pubblici e quali protetti
-$publicPages    = ['home','login','shop','about','contact','productdetails','404','logout','add-user','cart','orders','checkout'];
-$protectedPages = ['account','wishlist'];
+$publicPages    = ['home','login','shop','about','contact','productdetails','404','logout','add-user','cart','orders'];
+$protectedPages = ['account','wishlist', 'checkout'];
 
 /// ** Solo per il front‐end: redirect su login o 404 , cosi non tocca le pagine admin**
 if (!defined('IN_ADMIN')) {
