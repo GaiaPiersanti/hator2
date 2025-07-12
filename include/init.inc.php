@@ -10,6 +10,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 // 2) include delle librerie comuni
 require_once __DIR__ . '/dbms.inc.php';
 require_once __DIR__ . '/template2.inc.php';
+require_once __DIR__ . '/tags/product.inc.php';
 
 // 3) prepara il welcome_message
 if (!empty($_SESSION['user']['first_name'])) {

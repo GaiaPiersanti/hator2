@@ -12641,3 +12641,18 @@ a.shipping-calculator-button:hover {
   outline: 1px solid red !important;
   overflow: visible !important;
 }*/
+
+/*mycss for redemension*/
+.single-makal-product .pro-img {
+  width: 350px;       /* fissi la larghezza */
+  /* non fissare l’altezza, così il contenitore cresce se serve */
+}
+
+.single-makal-product .pro-img img {
+  display: block;     /* elimina eventuali white-space sotto l’immagine */
+  width: 100%;        /* l’immagine riempie la larghezza del contenitore */
+  height: auto;       /* l’altezza si calcola proporzionalmente */
+  max-height: 424px;  /* se vuoi limitare l’altezza, ma lascia in auto */
+  object-fit: contain;/* opzionale: assicura che semai l’immagine  
+                         deve “letterbox” piuttosto che ritagliare */
+}

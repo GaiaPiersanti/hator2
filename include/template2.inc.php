@@ -585,7 +585,7 @@ Class Template {
 
 						$key = array_search(strtolower($selector),$selectors);
 					
-						if (!$key) {
+						if ($key === false) {
 							trigger_error("selector <b>$selector</b> does not exist in library <b>$library</b>",E_USER_ERROR);
 						}
 					
@@ -638,7 +638,7 @@ Class Template {
 						eval("\$library_obj = new \$library();");
 						$selectors = $library_obj->getSelectors();
 						$key = array_search($selector,$selectors);
-						if (!$key) {
+						if ($key === false) {
 							trigger_error("selector <b>$selector</b> does not exist in library <b>$library</b>",E_USER_ERROR);
 						}
 						
