@@ -51,7 +51,13 @@ $page_title = $niceTitle . ' | Hator';
 
 // 7) definisci quali slug sono pubblici e quali protetti
 $publicPages    = ['home','login','shop','about','contact','productdetails','404','logout','add-user','cart','orders'];
-$protectedPages = ['account','wishlist', 'checkout'];
+$protectedPages = [];
+if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+    $res = $conn->query("SELECT name FROM groups_has_services JOIN services ON groups_has_services.service_id = services.ID  WHERE group_id =".$_SESSION['user']['group_id']);
+    while ($next = $res->fetch_assoc())   {
+        $protectedPages[] = $next['name'];
+    }
+}
 
 /// ** Solo per il front‐end: redirect su login o 404 , cosi non tocca le pagine admin**
 if (!defined('IN_ADMIN')) {

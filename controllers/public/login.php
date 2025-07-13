@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
 
     // Cerco l’utente
     $result = $conn->query(
-      "SELECT email, first_name, last_name 
+      "SELECT email, first_name, last_name, group_id
        FROM users 
        WHERE email='$email' 
        AND password='$hash'"
@@ -44,7 +44,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
             'logout.php',
     // …altri controller riservati… in modo che auth.inc.php sappia esattamente quali pagine lasciare vedere a un utente autenticato.
 ];
-        header("Location: index.php?page=home");
+        switch($user['group_id']) {
+            case '1':   header("Location: index.php?page=home"); break;
+            case '2':   header("Location: admin.php?page=prova");break;
+            default:    header("Location: index.php?page=home"); break;
+        }
         exit;
     }
 }
