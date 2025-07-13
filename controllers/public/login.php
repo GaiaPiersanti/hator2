@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
       "SELECT email, first_name, last_name 
        FROM users 
        WHERE email='$email' 
-         AND password='$hash'"
+       AND password='$hash'"
     );
 
     if (!$result) {

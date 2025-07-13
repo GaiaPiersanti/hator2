@@ -1,7 +1,7 @@
 <?php
 
-define('ROOT', dirname(__DIR__)); // se init.inc.php è in hator2/include, dirname(__DIR__) è hator2
-// … resto di init …
+//define('ROOT', dirname(__DIR__)); // se init.inc.php è in hator2/include, dirname(__DIR__) è hator2
+
 // 1) session_start() idempotente
 if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
@@ -68,4 +68,5 @@ if (!defined('IN_ADMIN')) {
     }
 }
 
-// 10) ora $page, $welcome, $page_title sono pronti per l’uso
+ // ||||||||||||||||||||||||AMDMIN header('Location: admin.php?page=prova');
+
