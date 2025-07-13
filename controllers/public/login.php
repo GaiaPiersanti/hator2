@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
 ];
         switch($user['group_id']) {
             case '1':   header("Location: index.php?page=home"); break;
-            case '2':   header("Location: admin.php?page=prova");break;
+            case '2':   header("Location: admin.php?page=home");break;
             default:    header("Location: index.php?page=home"); break;
         }
         exit;

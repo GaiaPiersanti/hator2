@@ -1,9 +1,13 @@
 <?php
 
 // visita http://localhost/hator2/admin.php?page=prova per l'amministratore di prova
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+require __DIR__ . '/include/init.inc.php';
 
 define('IN_ADMIN', true); //mi serve per init.inc.php 
-require __DIR__ . '/include/init.inc.php';
 
 // (opzionale) guard per admin
 // if (empty($_SESSION['user']['is_admin'])) { ...redirect... }
@@ -12,21 +16,17 @@ require __DIR__ . '/include/init.inc.php';
 // $page = $_GET['page'] ?? 'products-list';
 
 // pagina “prova” è consentita
-$allowed = ['prova'];
-if (!in_array($page, $allowed, true)) {
-  $page = 'prova';
-}
 
-// 1) apri il layout admin
-$main = new Template("dtml/admin/frame");
+
+
 
 // 2) includi il controller di quella pagina, che POPOLERÀ $body
 switch ($page) {
-  case 'prova':
-    require __DIR__ . "/controllers/admin/prova.php";
+  case 'home':
+    require __DIR__ . "/controllers/admin/home.php";
+    break;
+  case 'tab-crud':
+   require __DIR__ .  "/controllers/admin/tab-crud.php";  
     break;
 }
 
-// 3) inietta il body e fai il rendering
-$main->setContent("body", $body->get());
-$main->close();
