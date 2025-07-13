@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
 
         // popola $_SESSION['services'] per i guard
         $_SESSION['services'] = [
-            'index.php',      // se usi front-controller
+            'index.php',      
             'logout.php',
     // …altri controller riservati… in modo che auth.inc.php sappia esattamente quali pagine lasciare vedere a un utente autenticato.
 ];

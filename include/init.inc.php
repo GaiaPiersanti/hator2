@@ -68,5 +68,5 @@ if (!defined('IN_ADMIN')) {
     }
 }
 
- // ||||||||||||||||||||||||AMDMIN header('Location: admin.php?page=prova');
+ // ||||||||||||||||||||||||ADMIN header('Location: admin.php?page=prova');
 
