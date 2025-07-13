@@ -15,10 +15,10 @@ require_once __DIR__ . '/tags/product.inc.php';
 // 3) prepara il welcome_message
 if (!empty($_SESSION['user']['first_name'])) {
     $welcome = 'Welcome back '
-             . htmlspecialchars($_SESSION['user']['first_name'], ENT_QUOTES)
-             . ' '
-             . htmlspecialchars($_SESSION['user']['last_name'],   ENT_QUOTES)
-             . '!';
+        . htmlspecialchars($_SESSION['user']['first_name'], ENT_QUOTES)
+        . ' '
+        . htmlspecialchars($_SESSION['user']['last_name'],   ENT_QUOTES)
+        . '!';
 } else {
     $welcome = '';
 }
@@ -52,17 +52,22 @@ $niceTitle  = $pageTitles[$page] ?? ucfirst($page);
 $page_title = $niceTitle . ' | Hator';
 
 // 7) definisci quali slug sono pubblici e quali protetti
-$publicPages    = ['home','login','shop','about','contact','productdetails','404','logout','add-user','cart','orders'];
+$publicPages    = ['home', 'login', 'shop', 'about', 'contact', 'productdetails', '404', 'logout', 'add-user', 'cart', 'orders'];
 $protectedPages = [];
 
-if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-    $res = $conn->query("SELECT name FROM groups_has_services JOIN services ON groups_has_services.service_id = services.ID  WHERE group_id =".$_SESSION['user']['group_id']);
-    while ($next = $res->fetch_assoc())   {
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+    $res = $conn->query("SELECT name FROM groups_has_services JOIN services ON groups_has_services.service_id = services.ID  WHERE group_id =" . $_SESSION['user']['group_id']);
+    while ($next = $res->fetch_assoc()) {
         $protectedPages[] = $next['name'];
     }
 }
 
-
+if ('IN_ADMIN') {
+    if (!in_array($page, $publicPages, true) && !in_array($page, $protectedPages, true)) {
+        header('Location: admin.php?page=404');
+        exit;
+    }
+}
 /// ** Solo per il front‐end: redirect su login o 404 , cosi non tocca le pagine admin**
 if (!defined('IN_ADMIN')) {
     // 8) se pagina protetta e non loggato → login
@@ -76,11 +81,11 @@ if (!defined('IN_ADMIN')) {
         header('Location: index.php?page=404');
         exit;
     }
-}
+} 
+
 
 
 
 
 
  // ||||||||||||||||||||||||ADMIN header('Location: admin.php?page=prova');
-

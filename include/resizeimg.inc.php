@@ -1,7 +1,7 @@
 <?php
 /* questa funzione arrangia l'immagine in modo che prenda quelle dimensioni date
    possiamo modificarlo in modo che prend apiù tipi di file
-   per poterlo utilizzare dobiamo richiamarlo in un file php*/ */
+   per poterlo utilizzare dobiamo richiamarlo in un file php*/ 
 function get_thumbnail($file,$width = 300,$height = 300){
  
 		if(file_exists($file)){
@@ -23,7 +23,7 @@ function get_thumbnail($file,$width = 300,$height = 300){
 					make_new:
 					//create a square thumbnail for display
 				 
-						$this->resize_image_crop($file,$thumb,$width,$height);
+						//$this->resize_image_crop($file,$thumb,$width,$height);
 				 
 					
 					if(file_exists($thumb)){

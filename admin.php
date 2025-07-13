@@ -28,5 +28,8 @@ switch ($page) {
   case 'tab-crud':
    require __DIR__ .  "/controllers/admin/tab-crud.php";  
     break;
+  case '404':
+  require __DIR__ .  "/controllers/admin/404.php";  
+    break;
 }
 
