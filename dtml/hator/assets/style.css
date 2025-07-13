@@ -12644,7 +12644,8 @@ a.shipping-calculator-button:hover {
 
 /*mycss for redemension*/
 .single-makal-product .pro-img {
-  width: 350px;       /* fissi la larghezza */
+  width: 250px;
+     /* fissi la larghezza */
   /* non fissare l’altezza, così il contenitore cresce se serve */
 }
 
@@ -12656,3 +12657,4 @@ a.shipping-calculator-button:hover {
   object-fit: contain;/* opzionale: assicura che semai l’immagine  
                          deve “letterbox” piuttosto che ritagliare */
 }
+

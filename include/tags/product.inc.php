@@ -42,9 +42,7 @@ public function card($name, $data, $pars) {
     $sticker = "";
     if ($newArrival) {
         $sticker = '<span class="sticker-new">new</span>';
-    } elseif ($bestSeller) {
-        $sticker = '<span class="sticker-seller">bestseller</span>';
-    }
+    } 
 
     // Formatta il prezzo
     $priceFormatted = number_format($priceVal, 2, '.', ',');
@@ -62,36 +60,37 @@ public function card($name, $data, $pars) {
     $html .= '
       <!-- Single Product Start Here -->
       <div class="single-makal-product">
-        <div class="pro-img">
-          <a href="'.$urlDetails.'">
-            <img src="'.$imgUrl.'" alt="'.$title.'">
-          </a>
-          '.$sticker.'
-          <div class="quick-view-pro">
-            <a data-bs-toggle="modal" data-bs-target="#product-window" 
-               class="quick-view" href="#"></a>
-          </div>
-        </div>
-        <div class="pro-content">
-          <h4 class="pro-title">
-            <a href="'.$urlDetails.'">'.$title.'</a>
-          </h4>
-          <p><span class="price">€'.$priceFormatted.'</span></p>
-          <div class="pro-actions">
-            <div class="actions-primary">
-              <a href="index.php?page=cart&action=add&variant_id='.$variantId.'" 
-                 class="add-to-cart" data-toggle="tooltip" title="Add to Cart">
-                Add To Cart
+          <div class="pro-img">
+              <a href="' . $urlDetails . '">
+                <img src="' . $imgUrl . '" alt="' . $title . '">
               </a>
-            </div>
+              ' . $sticker . '
+              <div class="quick-view-pro">
+                  <a data-bs-toggle="modal" data-bs-target="#product-window" 
+                      class="quick-view" href="#">
+                  </a>
+              </div>
           </div>
-        </div>
+          <div class="pro-content">
+              <h4 class="pro-title">
+                <a href="' . $urlDetails . '">' . $title . '</a>
+              </h4>
+              <p><span class="price">€' . $priceFormatted . '</span></p>
+              <div class="pro-actions">
+                    <div class="actions-primary">
+                        <a href="index.php?page=cart&action=add&variant_id=' . $variantId . '" 
+                        class="add-to-cart" data-toggle="tooltip" title="Add to Cart">
+                        Add To Cart
+                        </a>
+                    </div>
+              </div>
+          </div>
       </div>
       <!-- Single Product End Here -->
     ';
     $html .= '</div>';
 
     return $html;
-}
+  }
 
 }

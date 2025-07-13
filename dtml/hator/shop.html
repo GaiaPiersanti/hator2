@@ -145,7 +145,8 @@
                         <ul class="nav tabs-area d-flex align-items-center">
                             <li><a class="active" data-bs-toggle="tab" href="#grid-view"><i class="fa fa-th"></i></a>
                             </li>
-                            <li><a data-bs-toggle="tab" href="#list-view"><i class="fa fa-list-ul"></i></a></li>
+                            <li><a data-bs-toggle="tab" href="#list-view"><i class="fa fa-list"></i></a>
+                            </li>
                         </ul>
                         <span class="show-items">There are 8 products.</span>
                     </div>
@@ -172,19 +173,19 @@
 
                     <!--product card start -|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-->
                     <div class="tab-content">
-                        <div id="grid-view" class="tab-pane fade show active">
+                        <div id="grid-view" class="tab-pane fade active show" role="tabpanel">
                             <div class="row border-hover-effect ">
-                                <div class="row border-hover-effect">
+                                
                                     <[product_cards]>
-                                </div>
+                                
                             </div>
                         </div>
                         <!-- #grid view End -->
                         <div id="list-view" class="tab-pane fade fix">
-                            <div class="row border-hover-effect ">
-                                <div class="row border-hover-effect">
+                            <div class="col border-hover-effect "> 
+                                
                                     <[product_cards]>
-                                </div>
+                                
                             </div>
 
                         </div>
@@ -214,8 +215,6 @@
                     </div>
                 </div>
                 <!-- Shop Breadcrumb Area End -->
-
-
             </div>
             <!-- product Categorie List End -->
         </div>
