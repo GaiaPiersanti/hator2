@@ -43,13 +43,15 @@ foreach ($products2 as $prod2) {
     // il primo argomento 'card' è il nome del tag, il secondo i dati, il terzo i parametri (vuoti)
     $cards2Html .= $prodLib->card2('card', $prod2, []);
 }
-
+// 3) Calcolo il numero di prodotti
+$productCount = count($products);
 // 4) Istanzio il sotto‐template per la pagina shop
 $body = new Template("dtml/hator/shop");
 
-// ** non passo più l’array, ma l’HTML già pronto **
+// ** passo contenuti **
 $body->setContent("product_cards", $cardsHtml);
 $body->setContent("product_cards2", $cards2Html);
+$body->setContent("product_count", $productCount);
 
 // 5) Inietto il body nel frame e chiudo
 $main->setContent("body", $body->get());
