@@ -12644,7 +12644,7 @@ a.shipping-calculator-button:hover {
 
 /*mycss for redemension*/
 .single-makal-product .pro-img {
-  width: 250px;
+  width: 210px;
      /* fissi la larghezza */
   /* non fissare l’altezza, così il contenitore cresce se serve */
 }
@@ -12653,7 +12653,51 @@ a.shipping-calculator-button:hover {
   display: block;     /* elimina eventuali white-space sotto l’immagine */
   width: 100%;        /* l’immagine riempie la larghezza del contenitore */
   height: auto;       /* l’altezza si calcola proporzionalmente */
-  max-height: 424px;  /* se vuoi limitare l’altezza, ma lascia in auto */
+  max-height: 254px;  /* se vuoi limitare l’altezza, ma lascia in auto */
+  object-fit: contain;/* opzionale: assicura che semai l’immagine  
+                         deve “letterbox” piuttosto che ritagliare */
+}
+
+#list-view .single-makal-product .pro-img2 {
+    -ms-flex-preferred-size: 25%;
+    flex-basis: 25%;
+    padding-right: 15px;
+}
+
+.tripple-pro .pro-img2 {
+    -ms-flex-preferred-size: 25%;
+    flex-basis: 25%;
+    margin-right: 15px;
+}
+
+/*mycss pro-img2*/
+.pro-img2 {
+    position: relative;
+}
+
+.pro-img2 img {
+    width: 100%;
+}
+
+.popular-categories_slider-2 .single-makal-product .pro-img2 img{
+    transition: all 0.5s ease-in-out;
+}
+.popular-categories_slider-2 .single-makal-product:hover .pro-img2 img{
+    transform: rotateY(180deg);
+}
+
+.single-makal-product .pro-img2 {
+  width: 30px;
+     /* fissi la larghezza */
+  /* non fissare l’altezza, così il contenitore cresce se serve */
+}
+
+.single-makal-product .pro-img2 img {
+  display: block;     /* elimina eventuali white-space sotto l’immagine */
+  width: 100%;        /* l’immagine riempie la larghezza del contenitore */
+  height: auto;       /* l’altezza si calcola proporzionalmente */
+  max-height: 200px;  /* se vuoi limitare l’altezza, ma lascia in auto */
+  width: 100px;
   object-fit: contain;/* opzionale: assicura che semai l’immagine  
                          deve “letterbox” piuttosto che ritagliare */
 }

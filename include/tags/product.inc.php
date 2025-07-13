@@ -15,6 +15,9 @@ class product extends tagLibrary {
     return $this->selectors;
 }
 
+  //card è una versione per i prodotti nella grid-view
+  //usata nella pagina shop.php
+
 public function card($name, $data, $pars) {
     // if (is_array($data)) {
     // echo '<pre>';
@@ -93,4 +96,84 @@ public function card($name, $data, $pars) {
     return $html;
   }
 
+  //card2 è una versione per i prodotti nella list-view
+  //usata nella pagina shop.php
+  public function card2($name, $data, $pars) {
+    // if (is_array($data)) {
+    // echo '<pre>';
+    // print_r($data);
+    // echo '</pre>'; }
+
+    // Se non abbiamo un array di dati valido, esci silenziosamente
+    if (!is_array($data)) {
+        return "";
+    }
+
+    // 1) Preleva con null‐coalesce i valori chiave
+    $slug       = $data['slug']        ?? '';
+    $imgUrl     = $data['img1_url']    ?? '';
+    $nameVal    = $data['name']        ?? '';
+    $priceVal   = $data['price']       ?? 0.00;
+    $newArrival = !empty($data['new_arrival']);
+    $bestSeller = !empty($data['best_seller']);
+    $variantId  = $data['variant_id']  ?? '';
+    $shortDesc  = $data['short_description'] ?? '';
+
+    // Link alla pagina di dettaglio
+    $urlDetails = "index.php?page=productdetails&slug=" . urlencode($slug);
+
+    // Quale sticker mostrare?
+    $sticker = "";
+    if ($newArrival) {
+        $sticker = '<span class="sticker-new">new</span>';
+    } 
+
+    // Formatta il prezzo
+    $priceFormatted = number_format($priceVal, 2, '.', ',');
+
+    // Html escaping del titolo
+    $title = htmlspecialchars($nameVal, ENT_QUOTES);
+
+    // Se non c’è immagine, puoi usare un placeholder da inserire
+    if ($imgUrl === "") {
+        $imgUrl = "assets/img/placeholder.png";
+    }
+
+    // Ora costruisco l’HTML
+    // Inizia con stringa vuota (niente wrapper di colonna)
+    $html = '';
+
+    // Blocco principale .single-makal-product
+    $html .= '
+    <!-- Single Product Start Here -->
+    <div class="single-makal-product">
+      <div class="pro-img2">
+        <a href="'.$urlDetails.'">
+          <img src="'.$imgUrl.'" alt="'.$title.'">
+        </a>
+        '.$sticker.'
+        <div class="quick-view-pro">
+          <a data-bs-toggle="modal" data-bs-target="#product-window"
+             class="quick-view" href="#"></a>
+        </div>
+      </div>
+      <div class="pro-content">
+        <h4 class="pro-title">
+          <a href="'.$urlDetails.'">'.$title.'</a>
+        </h4>
+        <br>
+        <p><span class="price rating">€'.$priceFormatted.'</span></p>
+        <p>'.htmlspecialchars($shortDesc, ENT_QUOTES).'</p>
+        <div class="pro-actions">
+          <div class="actions-primary">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Single Product End Here -->
+    ';
+
+    return $html;
+  }
 }
