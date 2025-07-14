@@ -11,6 +11,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 require_once __DIR__ . '/dbms.inc.php';
 require_once __DIR__ . '/template2.inc.php';
 require_once __DIR__ . '/tags/product.inc.php';
+require_once __DIR__ . '/slugify.php'; 
 
 // 3) prepara il welcome_message
 if (!empty($_SESSION['user']['first_name'])) {
