@@ -42,10 +42,16 @@ $pageTitles = [
     'orders'         => 'Your Orders',
     'account'        => 'Your Account',
     'wishlist'       => 'Your Wishlist',
-    // Admin pages
+    // Admin pages -----------------------
     'tab-crud'      => 'Products table',
     'buttons'       => 'Buttons',
-    'buttons-crud'  =>  'CRUD Operations'
+    'buttons-crud'  => 'CRUD Operations',
+    'brands'        => 'Brands',
+    'brands-list'   => 'Brands list',
+    'add-brand'     => 'Add Brand',
+    'edit-brand'    => 'Edit Brand',
+    'delete-brand'  => 'Delete Brand'
+    
     // …altri titoli…
 ];
 

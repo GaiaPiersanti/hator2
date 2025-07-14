@@ -35,6 +35,25 @@ switch ($page) {
   case 'buttons-crud':
     require __DIR__ .  "/controllers/admin/buttons-crud.php";  
     break;
+  case 'brands':
+    require __DIR__ .  "/controllers/admin/brands.php";
+    break;
+  case 'brands-list':
+    require __DIR__ . '/controllers/admin/brands-list.php';
+    break;
+  case 'add-brand':
+    require __DIR__ . '/controllers/admin/add-brand.php';
+    break;
+  case 'edit-brand':
+    require __DIR__ . '/controllers/admin/edit-brand.php';
+    break;
+  case 'delete-brand':
+    require __DIR__ . '/controllers/admin/delete-brand.php';
+    break;
+  case 'form-brand':
+    require __DIR__ . '/controllers/admin/delete-brand.php';
+    break;  
+    
   case '404':
   require __DIR__ .  "/controllers/admin/404.php";  
     break;
