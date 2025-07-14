@@ -3,6 +3,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+$websiteName = 'Hator';
 // carico tutto il bootstrap
 require __DIR__ . '/include/init.inc.php';
 

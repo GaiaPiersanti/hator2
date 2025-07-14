@@ -43,13 +43,16 @@ $pageTitles = [
     'account'        => 'Your Account',
     'wishlist'       => 'Your Wishlist',
     // Admin pages
-    'tab-crud'      => 'CRUD Operations',
+    'tab-crud'      => 'Products table',
+    'buttons'       => 'Buttons',
+    'buttons-crud'  =>  'CRUD Operations'
     // …altri titoli…
 ];
 
+
 // 6) costruisci il titolo completo
 $niceTitle  = $pageTitles[$page] ?? ucfirst($page);
-$page_title = $niceTitle . ' | Hator';
+$page_title = $niceTitle . ' | ' . $websiteName;
 
 // 7) definisci quali slug sono pubblici e quali protetti
 $publicPages    = ['home', 'login', 'shop', 'about', 'contact', 'productdetails', '404', 'logout', 'add-user', 'cart', 'orders'];

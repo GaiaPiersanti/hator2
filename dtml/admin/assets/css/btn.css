@@ -1,0 +1,6 @@
+.btn-icon-split .icon {
+    width: 2.5rem; /* fissa la larghezza */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
