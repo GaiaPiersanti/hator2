@@ -35,9 +35,9 @@ switch ($page) {
   case 'buttons-crud':
     require __DIR__ .  "/controllers/admin/buttons-crud.php";  
     break;
-  case 'brands':
-    require __DIR__ .  "/controllers/admin/brands.php";
-    break;
+  // case 'brands':
+  //   require __DIR__ .  "/controllers/admin/brands-list.php";
+  //   break;
   case 'brands-list':
     require __DIR__ . '/controllers/admin/brands-list.php';
     break;
