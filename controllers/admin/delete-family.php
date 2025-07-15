@@ -1,4 +1,5 @@
 <?php
+
 // 2) Prendo l’ID da GET (o da POST)
 $id = intval($_GET['id'] ?? 0);
 
@@ -31,6 +32,7 @@ $stmt->close();
 $main = new Template("dtml/admin/frame");
 $body = new Template("dtml/admin/delete-family");
 
+$main->setContent("page_title", $page_title);
 $body->setContent("family_id",   $id);
 $body->setContent("family_name", htmlspecialchars($name, ENT_QUOTES));
 

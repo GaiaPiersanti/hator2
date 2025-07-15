@@ -1,4 +1,5 @@
 <?php
+
 // 1) Prendi i dati dal DB
 $res = $conn->query("SELECT id, name FROM types ORDER BY name");
 $types = $res->fetch_all(MYSQLI_ASSOC);
@@ -33,12 +34,15 @@ foreach ($types as $b) {
 }
 
 // 3) Render
+
 $main = new Template("dtml/admin/frame");
 $body = new Template("dtml/admin/types-list");
 
 // invece di setContent("types", $types),
 // passiamo direttamente l’HTML già pronto:
 $body->setContent("types_rows", $rowsHtml);
+
+$main->setContent("page_title", $page_title);
 
 $main->setContent("body", $body->get());
 $main->close();

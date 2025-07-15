@@ -22,5 +22,6 @@ $main->setContent('page_js',
 
 
 // 4) Inietto il body nel frame e chiudo
+$main->setContent("page_title", $page_title);
 $main->setContent("body", $body->get());
 $main->close();

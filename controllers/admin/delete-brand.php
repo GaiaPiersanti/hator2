@@ -30,6 +30,7 @@ $stmt->close();
 // 5) Render con il tuo template di conferma
 $main = new Template("dtml/admin/frame");
 $body = new Template("dtml/admin/delete-brand");
+$main->setContent("page_title", $page_title);
 
 $body->setContent("brand_id",   $id);
 $body->setContent("brand_name", htmlspecialchars($name, ENT_QUOTES));

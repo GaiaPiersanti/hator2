@@ -35,6 +35,7 @@ foreach ($brands as $b) {
 // 3) Render
 $main = new Template("dtml/admin/frame");
 $body = new Template("dtml/admin/brands-list");
+$main->setContent("page_title", $page_title);
 
 // invece di setContent("brands", $brands),
 // passiamo direttamente l’HTML già pronto:

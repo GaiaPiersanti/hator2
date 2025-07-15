@@ -58,5 +58,6 @@ switch ($_POST['step']) {
 }
 
 // Render finale
+$main->setContent("page_title", $page_title);
 $main->setContent("body", $body->get());
 $main->close();

@@ -48,6 +48,7 @@ if (!isset($name)) {
 // 4) Renderizzo con il template
 $main = new Template("dtml/admin/frame");
 $body = new Template("dtml/admin/edit-category");
+$main->setContent("page_title", $page_title);
 
 $body->setContent("form_title", "Edit category");
 $body->setContent("action",      "edit-category&id={$id}");

@@ -1,4 +1,5 @@
 <?php
+
 // 1) Prendi i dati dal DB
 $res = $conn->query("SELECT id, name FROM families ORDER BY name");
 $families = $res->fetch_all(MYSQLI_ASSOC);
@@ -33,13 +34,14 @@ foreach ($families as $b) {
 }
 
 // 3) Render
+
 $main = new Template("dtml/admin/frame");
 $body = new Template("dtml/admin/families-list");
 
 // invece di setContent("familes", $familes),
 // passiamo direttamente l’HTML già pronto:
 $body->setContent("families_rows", $rowsHtml);
-
+$main->setContent("page_title", $page_title);
 $main->setContent("body", $body->get());
 $main->close();
 

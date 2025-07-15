@@ -35,6 +35,7 @@ foreach ($categories as $b) {
 // 3) Render
 $main = new Template("dtml/admin/frame");
 $body = new Template("dtml/admin/categories-list");
+$main->setContent("page_title", $page_title);
 
 // invece di setContent("categories", $categories),
 // passiamo direttamente l’HTML già pronto:

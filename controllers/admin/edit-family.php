@@ -48,6 +48,7 @@ if (!isset($name)) {
 // 4) Renderizzo con il template
 $main = new Template("dtml/admin/frame");
 $body = new Template("dtml/admin/edit-family");
+$main->setContent("page_title", $page_title);
 
 $body->setContent("form_title", "Edit family");
 $body->setContent("action",      "edit-family&id={$id}");

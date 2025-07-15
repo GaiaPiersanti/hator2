@@ -1,4 +1,5 @@
 <?php
+
 // 2) Prendo l’ID da GET (o da POST)
 $id = intval($_GET['id'] ?? 0);
 
@@ -30,6 +31,7 @@ $stmt->close();
 // 5) Render con il tuo template di conferma
 $main = new Template("dtml/admin/frame");
 $body = new Template("dtml/admin/delete-type");
+$main->setContent("page_title", $page_title);
 
 $body->setContent("type_id",   $id);
 $body->setContent("type_name", htmlspecialchars($name, ENT_QUOTES));
