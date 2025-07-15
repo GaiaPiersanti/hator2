@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <h1 class="h3 mb-4 text-gray-800"><[form_title]></h1>
+
+  <form method="post" action="admin.php?page=<[action]>">
+    <div class="form-group">
+      <label for="name">Brand Name</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        class="form-control <[nameErrorClass]>"
+        placeholder="Enter brand name"
+        value="<[name]>"
+      >
+      <div class="invalid-feedback">
+        <[nameError]>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a href="admin.php?page=brands-list" class="btn btn-secondary">Cancel</a>
+  </form>
+</div>
+
+
