@@ -1,53 +1,62 @@
 <?php
 
+
 $main = new Template("dtml/admin/frame");
 $body = new Template("dtml/admin/add-brand");
 
-// inizializza valori di default (così in STEP 0 mostri un campo vuoto)
-$body->setContent("name", "");
-$body->setContent("nameErrorClass", "");
-$body->setContent("nameError", "");
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // raccolgo e pulisco input
-    $name = trim($_POST['name'] ?? "");
-    
-    $errors = [];
-
-    // validazione
-    if ($name === "") {
-        $errors['name'] = "Please enter a brand name.";
-    }
-
-    if (empty($errors)) {
-        // slugify solo se non ci sono errori
-        $slug = slugify($name);
-        // provo l’INSERT
-        $stmt = $conn->prepare("INSERT INTO brands (name, slug) VALUES (?, ?)");
-        $stmt->bind_param("ss", $name, $slug);
-        if ($stmt->execute()) {
-            // successo → torno alla lista
-            header("Location: admin.php?page=brands-list");
-            exit;
-        }
-        // se errore di duplicato
-        if ($conn->errno === 1062) {
-            $errors['name'] = "This brand already exists.";
-        } else {
-            die("DB error: " . $conn->error);
-        }
-    }
-
-    // se arriviamo qui, ci sono errori: ripopolo il form
-    $body->setContent("name", htmlspecialchars($name, ENT_QUOTES));
-    $body->setContent("nameErrorClass", isset($errors['name']) ? "is-invalid" : "");
-    $body->setContent("nameError", $errors['name'] ?? "");
+// STEP di default
+if (!isset($_POST['step'])) {
+    $_POST['step'] = 0;
 }
 
+switch ($_POST['step']) {
+
+  case 0:
+    // solo visualizzo il form vuoto
+    break;
+
+  case 1:
+    // 1) Raccolgo il dato
+    $name = trim($_POST['name']);
+    $errors = [];
+
+    // 2) Validazione base
+    if ($name === '') {
+      $errors['name'] = "Please enter a brand name.";
+    } else {
+      // 3) Pre‐insert uniqueness check sullo slug
+      $slug = slugify($name);
+      $stmt = $conn->prepare("SELECT 1 FROM brands WHERE slug=?");
+      $stmt->bind_param("s", $slug);
+      $stmt->execute();
+      $stmt->store_result();
+      if ($stmt->num_rows > 0) {
+        $errors['name'] = "This brand already exists.";
+      }
+      $stmt->close();
+    }
+
+    // 4) Se ci sono errori, ripopolo form + messaggi
+    if (!empty($errors)) {
+      $body->setContent("name", htmlspecialchars($name, ENT_QUOTES));
+      $body->setContent("nameError", $errors['name']);
+      $body->setContent("nameErrorClass", "is-invalid");
+      // il form rimane visibile, non faccio INSERT né redirect
+    } else {
+      // 5) Nessun errore: inserisco e redirect
+      $stmt = $conn->prepare("INSERT INTO brands (name,slug) VALUES (?,?)");
+      $stmt->bind_param("ss", $name, $slug);
+      $stmt->execute();
+      header("Location: admin.php?page=brands-list");
+      exit;
+    }
+    break;
+
+  default:
+    // passo non riconosciuto, torno al form
+    break;
+}
+
+// Render finale
 $main->setContent("body", $body->get());
 $main->close();
-
-	// 1.	Inizializziamo $body con campi vuoti.
-	// 2.	Se il form arriva in POST, puliamo e validiamo.
-	// 3.	Se non ci sono errori, inseriamo in DB e redirigiamo su brands-list.
-	// 4.	Se ci sono errori (campo mancante o duplicato), li memorizziamo in $errors e li passiamo alla vista.

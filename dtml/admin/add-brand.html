@@ -1,25 +1,20 @@
-      <!-- dtml/admin/add-brand.html -->
+
 
 <div class="container-fluid">
   <h1 class="h3 mb-4 text-gray-800">Create New Brand</h1>
 
   <form method="post" action="admin.php?page=add-brand">
+    <input type="hidden" name="step" value="1">
     <div class="form-group">
       <label for="name">Brand Name</label>
-      <input
-        type="text"
-        id="name"
-        name="name"
-        class="form-control <[nameErrorClass]>"
-        placeholder="Enter brand name"
-        value="<[name]>"
-      >
+      <input type="text" id="name" name="name" class="form-control <[nameErrorClass]>" placeholder="Enter brand name"
+        value="<[name]>">
       <div class="invalid-feedback">
         <[nameError]>
       </div>
     </div>
 
     <button type="submit" class="btn btn-primary">Create</button>
-    <a href="admin.php?page=brands-list" class="btn btn-secondary">Cancel</a>
+    <a href="admin.php?page=brands" class="btn btn-secondary">Cancel</a>
   </form>
 </div>
