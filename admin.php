@@ -61,6 +61,32 @@ switch ($page) {
   case 'delete-type':
     require __DIR__ . '/controllers/admin/delete-type.php';
     break;
+  //categories crud
+  case 'categories-list':
+    require __DIR__ . '/controllers/admin/categories-list.php';
+    break;
+  case 'add-category':
+    require __DIR__ . '/controllers/admin/add-category.php';
+    break;
+  case 'edit-category':
+    require __DIR__ . '/controllers/admin/edit-category.php';
+    break;
+  case 'delete-category':
+    require __DIR__ . '/controllers/admin/delete-category.php';
+    break;
+  //families crud
+  case 'families-list':
+    require __DIR__ . '/controllers/admin/families-list.php';
+    break;
+  case 'add-family':
+    require __DIR__ . '/controllers/admin/add-family.php';
+    break;
+  case 'edit-family':
+    require __DIR__ . '/controllers/admin/edit-family.php';
+    break;
+  case 'delete-family':
+    require __DIR__ . '/controllers/admin/delete-family.php';
+    break;
   
     
   case '404':

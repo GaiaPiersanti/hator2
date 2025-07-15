@@ -1,0 +1,14 @@
+ <div class="container-fluid">
+ <h1 class="h3 mb-4 text-gray-800">Delete Category</h1>
+  <p>Are you sure you want to delete the category  
+     <strong><[category_name]></strong>?</p>
+
+  <form method="post" action="admin.php?page=delete-category&id=<[category_id]>">
+    <button type="submit" class="btn btn-danger">
+      <i class="fas fa-trash"></i> Yes, delete
+    </button>
+    <a href="admin.php?page=categories-list" class="btn btn-secondary">
+      Cancel
+    </a>
+  </form>
+</div>

@@ -47,11 +47,26 @@ $pageTitles = [
     'tab-crud'      => 'Products table',
     'buttons'       => 'Buttons',
     'buttons-crud'  => 'CRUD Operations',
-    'brands'        => 'Brands',
+    //brands
     'brands-list'   => 'Brands list',
     'add-brand'     => 'Add Brand',
     'edit-brand'    => 'Edit Brand',
-    'delete-brand'  => 'Delete Brand'
+    'delete-brand'  => 'Delete Brand',
+    //types
+    'types-list'   => 'Types list',
+    'add-type'     => 'Add Type',
+    'edit-type'    => 'Edit Type',
+    'delete-type'  => 'Delete Type',
+    //categories
+    'categories-list'   => 'Categories list',
+    'add-category'     => 'Add Category',
+    'edit-category'    => 'Edit Category',
+    'delete-category'  => 'Delete Category',
+    //families
+    'families-list'   => 'Families list',
+    'add-family'     => 'Add Family',
+    'edit-family'    => 'Edit Family',
+    'delete-family'  => 'Delete Family',
     
     // …altri titoli…
 ];
