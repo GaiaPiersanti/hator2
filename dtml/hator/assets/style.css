@@ -12702,3 +12702,12 @@ a.shipping-calculator-button:hover {
                          deve “letterbox” piuttosto che ritagliare */
 }
 
+/* di default nascondi tutti gli invalid-feedback */
+.invalid-feedback {
+  display: none;
+}
+
+/* se l’input ha .is-invalid, il fratello .invalid-feedback viene mostrato */
+.form-control.is-invalid + .invalid-feedback {
+  display: block;
+}
