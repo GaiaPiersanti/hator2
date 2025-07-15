@@ -43,6 +43,7 @@ $pageTitles = [
     'orders'         => 'Your Orders',
     'account'        => 'Your Account',
     'wishlist'       => 'Your Wishlist',
+    'forgot-password' => 'Forgot Password',
     // Admin pages -----------------------
     'tab-crud'      => 'Products table',
     'buttons'       => 'Buttons',
@@ -77,8 +78,10 @@ $niceTitle  = $pageTitles[$page] ?? ucfirst($page);
 $page_title = $niceTitle . ' | ' . $websiteName;
 
 // 7) definisci quali slug sono pubblici e quali protetti
-$publicPages    = ['home', 'login', 'shop', 'about', 'contact', 'productdetails', '404', 'logout', 'add-user', 'cart', 'orders'];
+
+$publicPages    = ['home', 'login', 'shop', 'about', 'contact', 'productdetails', '404', 'logout', 'add-user', 'cart', 'orders', 'forgot-password'];
 $protectedPages = ['checkout'];
+
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     $res = $conn->query("SELECT name FROM groups_has_services JOIN services ON groups_has_services.service_id = services.ID  WHERE group_id =" . $_SESSION['user']['group_id']);
