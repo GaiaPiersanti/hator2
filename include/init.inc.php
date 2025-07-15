@@ -109,13 +109,13 @@ if (!defined('IN_ADMIN')) {
 } 
 
 // 10) definisco i bottoni per il menu
-$buttons_loged = '<li>
+$buttons_not_loged = '<li>
 <!--LOG IN LINK-->                            <a href="index.php?page=login">Log In</a>
                                         </li>
                                         <li>
 <!--REGISTER LINK-->                          <a href="index.php?page=add-user">Register</a>
                                         </li>';
-$buttons_not_loged =  '                                           
+$buttons_loged =  '                                           
                                         <!--aggiungi qui tutto ciò che vuoi mostrare 
                                         SOLO agli utenti loggati e aggiungi nelle
                                         funzioni a cui puoi accedere solo se sei loggato
@@ -127,7 +127,24 @@ $buttons_not_loged =  '
                                         <li>
 <!--LOG OUT LINK-->                          <a href="index.php?page=logout">Log Out</a>
                                         </li>';
+$settings = '<li>
+                                        <a href="#">Settings
+                                            <i class="fa fa-angle-down"></i>
+                                        </a>
+                                        <!-- Dropdown Start -->
+                                        <ul class="ht-dropdown">
+                                             <li>
+                                                <a href="index.php?page=account">my account</a>
+                                            </li>
+                                            <li>
+                                                <a href="index.php?page=wishlist">my wishlist</a>
+                                            </li>
+                                            
+                                     
 
+                                        </ul>
+                                        <!-- Dropdown End -->
+                                    </li>';
 
 
  // ||||||||||||||||||||||||ADMIN header('Location: admin.php?page=prova');

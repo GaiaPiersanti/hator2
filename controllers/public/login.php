@@ -60,7 +60,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
 $main = new Template("dtml/hator/frame");
 $main->setContent("page_title", $page_title);
 $main->setContent("welcome_message", $welcome);
-$main->setContent("buttons", isset($_SESSION['loggedin']) ? $buttons_not_loged : $buttons_loged);
+$main->setContent("buttons", isset($_SESSION['loggedin']) ? $buttons_loged : $buttons_not_loged);
+$main->setContent("settings", isset($_SESSION['loggedin']) ? $settings : "");
 $body = new Template("dtml/hator/login");
 // Se c'è un errore di login, lo passo al template
 $body->setContent("login_error", $login_error);
