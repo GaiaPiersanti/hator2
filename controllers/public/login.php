@@ -5,6 +5,10 @@
 //	__DIR__ è la costante che PHP risolve nella cartella in cui risiede il file corrente.
 
 $login_error = "";
+if (isset($_SESSION['ForgottenP'])) {
+    $login_error = $_SESSION['ForgottenP'];
+    unset($_SESSION['ForgottenP']);
+}
 // Se arrivo in POST, processa il login
 if ($_SERVER['REQUEST_METHOD'] === 'POST' 
     && isset($_POST['email'], $_POST['password'])) {
