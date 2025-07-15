@@ -4,6 +4,8 @@
 
     $main = new Template("dtml/webarch/frame"); /* apre la template principale */
     $main->setContent("page_title", $page_title);
+    $main->setContent("buttons", isset($_SESSION['loggedin']) ? $buttons_not_loged : $buttons_loged);
+
 
     /* controllo se il form è stato inviato */
 

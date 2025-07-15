@@ -4,6 +4,7 @@
 $main = new Template("dtml/hator/frame");
 $main->setContent("page_title", $page_title);
 $main->setContent("welcome_message", $welcome);
+$main->setContent("buttons", isset($_SESSION['loggedin']) ? $buttons_not_loged : $buttons_loged);
 
 
 // 2) Istanzio il sotto‐template per la pagina account

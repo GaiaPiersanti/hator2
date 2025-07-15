@@ -6,6 +6,8 @@
 
     $main = new Template("dtml/hator/frame"); /* apre la template principale */
     $main->setContent("page_title", $page_title);
+    $main->setContent("buttons", isset($_SESSION['loggedin']) ? $buttons_not_loged : $buttons_loged);
+
    // $main->setContent("welcome_message", $welcome); se ti stai registrando non c'è un messaggio di benvenuto
     $body = new Template("dtml/hator/add-user");
 
