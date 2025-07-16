@@ -176,4 +176,73 @@ public function card($name, $data, $pars) {
 
     return $html;
   }
+
+
+  public function carted($name, $data, $pars){
+    // if (is_array($data)) {
+    // echo '<pre>';
+    // print_r($data);
+    // echo '</pre>'; }
+    
+    // Se non abbiamo un array di dati valido, esci silenziosamente
+    if (!is_array($data)) {
+        return "";
+    }
+
+    // 1) Preleva con null‐coalesce i valori chiave
+    $slug       = $data['slug']        ?? '';
+    $imgUrl     = $data['img1_url']    ?? '';
+    $nameVal    = $data['name']        ?? '';
+    $priceVal   = $data['price']       ?? 0.00;
+    $sizeMl     = $data['size_ml']     ?? '';
+    $variantId  = $data['variant_id']  ?? '';
+
+    // preparo la variabile $num rispetto a se è loggato omeno
+    if(!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
+        // Se l'utente non è loggato, prendo il carrello di sessione
+        $num = $_SESSION['cart'][$variantId] ?? 1; // Default a 1 se non presente
+    } else {
+        // Se l'utente è loggato, prendo il numero dal database
+        $num = $data['quantity'] ?? 1; // Default a 1 se non presente
+    }
+    // Link alla pagina di dettaglio
+    $urlDetails = "index.php?page=productdetails&slug=" . urlencode($slug);
+
+    // Formatta il prezzo
+    $priceFormatted = number_format($priceVal, 2, '.', ',');
+    
+    // calcolo il totale
+    $total = $num * $priceVal;
+
+    // formatto il totale
+    $totalFormatted = number_format($total, 2, '.', ',');
+
+    // Html escaping del titolo
+    $title = htmlspecialchars($nameVal, ENT_QUOTES);
+
+    // Se non c’è immagine, puoi usare un placeholder
+    if ($imgUrl === "") {
+        $imgUrl = "assets/img/placeholder.png";
+    }
+    // Ora costruisci l’HTML
+    $html  = '<tr>
+                  <td class="product-thumbnail">
+                      <a href="#"><img src="' . $imgUrl . '" alt="' . $title . '" /></a>
+                  </td>
+                  <input name= id type="hidden" value="' . $variantId . '">
+                  <td class="product-name"> <a href="' . $urlDetails . '">' . $nameVal . '</a></td>
+                  <td class="product-size">' . $sizeMl . '</td>
+                  <td class="product-price"> <span class="amount">€' . $priceFormatted . '</span></td>
+                  <td class="product-quantity"> <input type="number" value="' . $num . '" min="1" /></td>
+                  <td class="product-subtotal">' . $totalFormatted . '</td>
+                  <td class="product-remove"> <a href="index.php?page=cart&deleted=' . $variantId . '"> <i class="fa fa-times" aria-hidden="true"></i></a></td>
+              </tr>';
+    
+    return $html;
+  }
+  
+  
+  
+  
+  
 }

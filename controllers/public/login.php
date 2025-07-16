@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
 
     // Cerco l’utente
     $result = $conn->query(
-      "SELECT email, first_name, last_name, group_id
+      "SELECT email, first_name, last_name, group_id, id AS user_id
        FROM users 
        WHERE email='$email' 
        AND password='$hash'"
@@ -48,6 +48,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
             'logout.php',
     // …altri controller riservati… in modo che auth.inc.php sappia esattamente quali pagine lasciare vedere a un utente autenticato.
 ];
+    if (isset($_SESSION['cart'])) {
+            // Se l'utente ha un carrello in sessione, lo sposto nel database
+            $userId = $_SESSION['user']['user_id'];
+            foreach ($_SESSION['cart'] as $variantId => $quantity) {
+                $conn->query("INSERT INTO carts (user_id, product_id, quantity) 
+                              VALUES ($userId, $variantId, $quantity)
+                              ON DUPLICATE KEY UPDATE quantity = quantity + $quantity");
+            }
+            // Pulisci il carrello di sessione
+            unset($_SESSION['cart']);
+        }
         switch($user['group_id']) {
             case '1':   header("Location: index.php?page=home"); break;
             case '2':   header("Location: admin.php?page=home");break;
