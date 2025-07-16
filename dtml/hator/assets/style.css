@@ -10250,7 +10250,7 @@ label{
     background-color: #ffffff;
     border: 1px solid #ebebeb;
     color: #7a7a7a;
-    width: 70px;
+    width: 100px;
 }
 
 .quantity {
@@ -12710,4 +12710,142 @@ a.shipping-calculator-button:hover {
 /* se l’input ha .is-invalid, il fratello .invalid-feedback viene mostrato */
 .form-control.is-invalid + .invalid-feedback {
   display: block;
+}
+/*nuova classe per lo sticker new della list view usato in card2*/
+.sticker-new2{
+    background: #323232 none repeat scroll 0 0;
+    border-radius: 0;
+    color: #fff;
+    display:inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    height: 25px;
+    left: 0px;
+    line-height: 25px;
+    min-width: 50px;
+    padding: 0 5px;
+    position:absolute;
+    text-align: center;
+    text-transform: capitalize;
+    top: 10px;
+    z-index: 5;
+}
+
+/*my css pro-img-modal  per modal usato da card (grid-view)*/
+.my-modal-pane .a .pro-img-modal {
+    -ms-flex-preferred-size: 25%;
+    flex-basis: 25%;
+    padding-right: 15px;
+}
+
+.tripple-pro .pro-img-modal {
+    -ms-flex-preferred-size: 25%;
+    flex-basis: 25%;
+    margin-right: 15px;
+}
+
+.pro-img-modal {
+    position: relative;
+}
+
+.pro-img-modal img {
+    width: 50%;
+}
+
+.pro-img-modal{
+    transition: opacity .05s ease-out;
+}
+
+.pro-img-modal {
+  display: block;     /* elimina eventuali white-space sotto l’immagine */
+  width: 100%;        /* l’immagine riempie la larghezza del contenitore */
+  height: auto;       /* l’altezza si calcola proporzionalmente */
+  height: 350px;  /* se vuoi limitare l’altezza, ma lascia in auto */
+  
+  object-fit: contain;/* opzionale: assicura che semai l’immagine  
+                         deve “letterbox” piuttosto che ritagliare */
+}
+
+.my-modal-pane{
+    padding: 1em;
+}
+
+.modal-img {
+  max-width: 350px;
+  max-height: 424px;
+  width: auto;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+
+.pro-img-modal-mini {
+  display: block;     /* elimina eventuali white-space sotto l’immagine */
+  width: 100%;        /* l’immagine riempie la larghezza del contenitore */
+  height: auto;       /* l’altezza si calcola proporzionalmente */
+  height: 50px;  /* se vuoi limitare l’altezza, ma lascia in auto */
+  
+  object-fit: contain;/* opzionale: assicura che semai l’immagine  
+                         deve “letterbox” piuttosto che ritagliare */
+}
+
+/* --- Disabilitiamo la freccia nativa del browser --- */
+.select-wrapper select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: transparent;
+  padding-right: 2.5em; /* spazio per la tua icona */
+}
+
+/* --- Posizioniamo il container in modo che il ::after si allinei bene --- */
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%; /* se vuoi che prenda tutta la larghezza */
+}
+
+/* --- pseudo-elemento con FontAwesome --- */
+.select-wrapper::after {
+  content: "\f107";               /* il codice unicode di fa-angle-down in FA4 */
+  font-family: "FontAwesome";     /* controlla che corrisponda al tuo font-face */
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  pointer-events: none;           /* in modo che il click passi al <select> */
+  font-size: 1em;
+  color: #555;                    /* o il colore che preferisci */
+}
+
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+  
+  
+  width: 110px;        
+  max-width: 100%;     /* per non sfora mai il contenitore */
+  overflow: hidden;
+}
+
+.select-wrapper select {
+  -webkit-appearance: none; 
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  padding: 0.5rem 2.5rem 0.5rem 0.75rem; /* spazio sulla destra per l’icona */
+  box-sizing: border-box;
+}
+
+.select-wrapper::after {
+  content: "\f107";            /* FontAwesome: fa-angle-down */
+  font-family: "FontAwesome";  
+  position: absolute;
+  top: 50%;
+  right: 1rem;                 /* distanza dal bordo destro */
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 1em;
+  color: #555;
 }

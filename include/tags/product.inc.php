@@ -19,82 +19,80 @@ class product extends tagLibrary {
   //usata nella pagina shop.php
 
 public function card($name, $data, $pars) {
-    // if (is_array($data)) {
-    // echo '<pre>';
-    // print_r($data);
-    // echo '</pre>'; }
-    
-    // Se non abbiamo un array di dati valido, esci silenziosamente
-    if (!is_array($data)) {
-        return "";
-    }
+     
+    // dati base
+    $urlDetails = "index.php?page=productdetails&slug=" . urlencode($data['slug']);
+    $title      = htmlspecialchars($data['name'], ENT_QUOTES);
+    $imgUrl     = htmlspecialchars($data['img1_url'], ENT_QUOTES);
 
-    // 1) Preleva con null‐coalesce i valori chiave
-    $slug       = $data['slug']        ?? '';
-    $imgUrl     = $data['img1_url']    ?? '';
-    $nameVal    = $data['name']        ?? '';
-    $priceVal   = $data['price']       ?? 0.00;
-    $newArrival = !empty($data['new_arrival']);
-    $bestSeller = !empty($data['best_seller']);
-    $variantId  = $data['variant_id']  ?? '';
+    // marchio (new/bestseller)
+    $sticker = !empty($data['new_arrival']) 
+               ? '<span class="sticker-new">new</span>' 
+               : '';
 
-    // Link alla pagina di dettaglio
-    $urlDetails = "index.php?page=productdetails&slug=" . urlencode($slug);
+    // serializzo le varianti in un data-attr JSON
+    $variantsJson = htmlspecialchars(json_encode($data['variants']), ENT_QUOTES);
 
-    // Quale sticker mostrare?
-    $sticker = "";
-    if ($newArrival) {
-        $sticker = '<span class="sticker-new">new</span>';
-    } 
+    // Formatta il prezzo in anticipo
+    $priceFormatted = number_format(
+        $data['variants'][0]['price'] ?? 0,
+        2,
+        '.',
+        ','
+    );
 
-    // Formatta il prezzo
-    $priceFormatted = number_format($priceVal, 2, '.', ',');
+    $imagesJson = htmlspecialchars(json_encode([
+      $data['img1_url'],
+      $data['img2_url'],
+      $data['img3_url'],
+      $data['img4_url']
+    ]), ENT_QUOTES);
 
-    // Html escaping del titolo
-    $title = htmlspecialchars($nameVal, ENT_QUOTES);
 
-    // Se non c’è immagine, puoi usare un placeholder
-    if ($imgUrl === "") {
-        $imgUrl = "assets/img/placeholder.png";
-    }
+    $html  = '<div class="col-lg-4 col-md-6 mb-4">';
+    $html .= '<div class="single-makal-product">';
+    $html .= '<div class="pro-img">';
+    $html .=   '<a href="'. $urlDetails .'">';
+    $html .=     '<img src="'. $imgUrl .'" alt="'. $title .'" class="img-fluid">';
+    $html .=   '</a>';
+    $html .=   $sticker;
+    $html .=   '<div class="quick-view-pro">';
 
-    // Ora costruisci l’HTML
-    $html  = '<div class="col-lg-4 col-md-4 col-sm-6 col-6">';
-    $html .= '
-      <!-- Single Product Start Here -->
-      <div class="single-makal-product">
-          <div class="pro-img">
-              <a href="' . $urlDetails . '">
-                <img src="' . $imgUrl . '" alt="' . $title . '">
-              </a>
-              ' . $sticker . '
-              <div class="quick-view-pro">
-                  <a data-bs-toggle="modal" data-bs-target="#product-window" 
-                      class="quick-view" href="#">
-                  </a>
-              </div>
-          </div>
-          <div class="pro-content">
-              <h4 class="pro-title">
-                <a href="' . $urlDetails . '">' . $title . '</a>
-              </h4>
-              <p><span class="price">€' . $priceFormatted . '</span></p>
-              <div class="pro-actions">
-                    <div class="actions-primary">
-                        <a href="index.php?page=cart&action=add&variant_id=' . $variantId . '" 
-                        class="add-to-cart" data-toggle="tooltip" title="Add to Cart">
-                        Add To Cart
-                        </a>
-                    </div>
-              </div>
-          </div>
-      </div>
-      <!-- Single Product End Here -->
-    ';
-    $html .= '</div>';
+    // qui “uscimo” dalla stringa e facciamo lo sprintf
+    $html .= sprintf(
+        '<a 
+            data-bs-toggle="modal"
+            data-bs-target="#product-window"
+            data-title="%s"
+            data-desc="%s"
+            data-variants=\'%s\'
+            data-images=\'%s\'
+            class="quick-view"
+            href="#"
+        ></a>',
+        htmlspecialchars($data['name'],            ENT_QUOTES),
+        htmlspecialchars($data['short_description'], ENT_QUOTES),
+        $variantsJson,
+        $imagesJson
+    );
+
+    // poi richiudiamo il resto dell’HTML
+    $html .=   '</div>';           // chiude .quick-view-pro
+    $html .= '</div>';            // chiude .pro-img
+    $html .= '<div class="pro-content">';
+    $html .=   '<h4 class="pro-title"><a href="'. $urlDetails .'">'. $title .'</a></h4>';
+    $html .=   '<p><span class="price">€'. $priceFormatted .'</span></p>';
+    $html .=   '<div class="pro-actions">';
+    $html .=     '<a href="index.php?page=cart&action=add&variant_id='
+                . $data['variants'][0]['variant_id']
+                .'" class="add-to-cart">Add To Cart</a>';
+    $html .=   '</div>';           // chiude .pro-actions
+    $html .= '</div>';            // chiude .pro-content
+    $html .= '</div>';            // chiude .single-makal-product
+    $html .= '</div>';            // chiude .col-...
 
     return $html;
-  }
+}
 
   //card2 è una versione per i prodotti nella list-view
   //usata nella pagina shop.php
@@ -125,7 +123,7 @@ public function card($name, $data, $pars) {
     // Quale sticker mostrare?
     $sticker = "";
     if ($newArrival) {
-        $sticker = '<span class="sticker-new">new</span>';
+        $sticker = '<span class="sticker-new2">new</span>';
     } 
 
     // Formatta il prezzo
@@ -152,10 +150,6 @@ public function card($name, $data, $pars) {
           <img src="'.$imgUrl.'" alt="'.$title.'">
         </a>
         '.$sticker.'
-        <div class="quick-view-pro">
-          <a data-bs-toggle="modal" data-bs-target="#product-window"
-             class="quick-view" href="#"></a>
-        </div>
       </div>
       <div class="pro-content">
         <h4 class="pro-title">
