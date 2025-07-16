@@ -87,6 +87,19 @@ switch ($page) {
   case 'delete-family':
     require __DIR__ . '/controllers/admin/delete-family.php';
     break;
+    //services crud
+    case 'services-list':
+      require __DIR__ . '/controllers/admin/services-list.php';
+      break;
+      case 'add-service':
+        require __DIR__ . '/controllers/admin/add-service.php';
+        break;
+      case 'edit-service':
+        require __DIR__ . '/controllers/admin/edit-service.php';
+        break;
+      case 'delete-service':
+        require __DIR__ . '/controllers/admin/delete-service.php';
+        break;
   
     
   case '404':

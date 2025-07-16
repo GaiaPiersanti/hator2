@@ -68,6 +68,11 @@ $pageTitles = [
     'add-family'     => 'Add Family',
     'edit-family'    => 'Edit Family',
     'delete-family'  => 'Delete Family',
+    //services
+    'services-list'=> 'Services list',
+    'add-service'     => 'Add Service',
+    'edit-service'    => 'Edit Service',
+    'delete-service'  => 'Delete Service',
     
     // …altri titoli…
 ];
