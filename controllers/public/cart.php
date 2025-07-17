@@ -3,15 +3,13 @@
 // 1) Istanzio il frame principale
 $main = new Template("dtml/hator/frame");
 $main->setContent("page_title", $page_title);
-$main->setContent("welcome_message", $welcome);
-$main->setContent("buttons", isset($_SESSION['loggedin']) ? $buttons_loged : $buttons_not_loged);
-$main->setContent("settings", isset($_SESSION['loggedin']) ? $settings : "");
+
 $cart = "";
 // questa parte è per testare la vvariabile di sessione 'cart'
-unset($_SESSION['cart']);
+/*unset($_SESSION['cart']);
 $_SESSION['cart'][5] = 2; // Prodotto con ID 5, quantità 2
 $_SESSION['cart'][10] = 1; // Prodotto con ID 10, quantità 1
-$_SESSION['cart'][15] = 3; // Prodotto con ID 15, quantità 3
+$_SESSION['cart'][15] = 3; // Prodotto con ID 15, quantità 3*/
 
 if(!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
     // Se l'utente non è loggato, prendo il carrello di sessione

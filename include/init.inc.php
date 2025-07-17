@@ -13,16 +13,7 @@ require_once __DIR__ . '/template2.inc.php';
 require_once __DIR__ . '/tags/product.inc.php';
 require_once __DIR__ . '/slugify.php'; 
 
-// 3) prepara il welcome_message
-if (!empty($_SESSION['user']['first_name'])) {
-    $welcome = 'Welcome back '
-        . htmlspecialchars($_SESSION['user']['first_name'], ENT_QUOTES)
-        . ' '
-        . htmlspecialchars($_SESSION['user']['last_name'],   ENT_QUOTES)
-        . '!';
-} else {
-    $welcome = '';
-}
+
 
 // 4) determina lo slug di pagina
 $page = $_GET['page'] ?? 'home';
@@ -122,43 +113,6 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
         exit;
     }
 }
-// 10) definisco i bottoni per il menu
-$buttons_not_loged = '<li>
-<!--LOG IN LINK-->                            <a href="index.php?page=login">Log In</a>
-                                        </li>
-                                        <li>
-<!--REGISTER LINK-->                          <a href="index.php?page=add-user">Register</a>
-                                        </li>';
-$buttons_loged =  '                                           
-                                        <!--aggiungi qui tutto ciò che vuoi mostrare 
-                                        SOLO agli utenti loggati e aggiungi nelle
-                                        funzioni a cui puoi accedere solo se sei loggato
-                                        $user= $this->loadModel("User");
-                                        if(! $user->check_logged_in()) {
-                                            header("Location: " . ROOT . "login");
-                                            die;   MINUTO 230 
-                                        } -->
-                                        <li>
-<!--LOG OUT LINK-->                          <a href="index.php?page=logout">Log Out</a>
-                                        </li>';
-$settings = '<li>
-                                        <a href="#">Settings
-                                            <i class="fa fa-angle-down"></i>
-                                        </a>
-                                        <!-- Dropdown Start -->
-                                        <ul class="ht-dropdown">
-                                             <li>
-                                                <a href="index.php?page=account">my account</a>
-                                            </li>
-                                            <li>
-                                                <a href="index.php?page=wishlist">my wishlist</a>
-                                            </li>
-                                            
-                                     
-
-                                        </ul>
-                                        <!-- Dropdown End -->
-                                    </li>';
 
 
  // ||||||||||||||||||||||||ADMIN header('Location: admin.php?page=prova');

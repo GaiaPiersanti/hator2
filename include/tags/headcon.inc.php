@@ -239,4 +239,18 @@ class headcon extends TagLibrary{
                                     </li>';
         return isset($_SESSION['user']) ? $settings : "";
     }
+
+
+    public function welcome_message($name = '', $data = '', $pars = []){
+        if (!empty($_SESSION['user']['first_name'])) {
+            $welcome = 'Welcome back '
+                . htmlspecialchars($_SESSION['user']['first_name'], ENT_QUOTES)
+                . ' '
+                . htmlspecialchars($_SESSION['user']['last_name'],   ENT_QUOTES)
+                . '!';
+        } else {
+            $welcome = '';
+        }
+        return $welcome;
+    }
 }
