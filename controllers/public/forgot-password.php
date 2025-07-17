@@ -35,7 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])){
             // Set a 200 (okay) response code.
             http_response_code(200);
             $_SESSION['ForgottenP'] = "è stata inviuata una mail con la tua nuova password.";
-            print("yey");
         } else {
             // Set a 500 (internal server error) response code.
             http_response_code(500);

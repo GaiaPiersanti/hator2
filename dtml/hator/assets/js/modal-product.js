@@ -60,11 +60,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     //
-    // 3) Prezzo, stock e select delle varianti
+    // 3) Prezzo, stock, select delle varianti e input quantità
     //
     const $price     = $modal.find('.pro-thumb-price .price');
     const $inStock   = $modal.find('.in-stock');
     const $sizeSelect= $modal.find('.product-size select').empty();
+    const $quantityInput = $modal.find('.box-quantity').empty();
+   
 
     // funzione di aggiornamento dettagli
     function updateDetails(v) {
@@ -74,6 +76,8 @@ document.addEventListener('DOMContentLoaded', function() {
           ? `<i class="ion-checkmark-round"></i> ${v.stock} in stock`
           : 'Out of stock'
       );
+      const stock = v.stock || 2;
+      $quantityInput.html('<input class="quantity form-control" id="quantity" type="number" min="1" max="'+ stock +'" value="1">');
     }
 
     // riempi il menu size
@@ -100,8 +104,10 @@ document.addEventListener('DOMContentLoaded', function() {
       .off('click')
       .on('click', function() {
         const selectedId = $sizeSelect.val();
+        const $selectedQuant = $modal.find('.box-quantity input');
+        const selectedQuant = $selectedQuant.val();
         window.location.href =
-          `index.php?page=cart&action=add&variant_id=${selectedId}`;
+          `index.php?page=cart&action=add&variant_id=${selectedId}&quantity=${selectedQuant}`;
       });
   });
 });

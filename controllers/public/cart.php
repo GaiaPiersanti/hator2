@@ -11,6 +11,42 @@ $_SESSION['cart'][5] = 2; // Prodotto con ID 5, quantità 2
 $_SESSION['cart'][10] = 1; // Prodotto con ID 10, quantità 1
 $_SESSION['cart'][15] = 3; // Prodotto con ID 15, quantità 3*/
 
+if(isset($_GET)){
+    // ce c'è un aggiornamento
+    if(isset($_GET['action']) && $_GET['action'] === 'update' && isset($_GET['variant_id']) && isset($_GET['quantity'])) {
+        $quantity = intval($_GET['quantity']);
+        $variantId = intval($_GET['variant_id']);
+        if(isset($_SESSION['user'])){
+            $userId = $_SESSION['user']['user_id'];
+            $conn->query("UPDATE carts SET quantity = $quantity WHERE user_id = $userId AND product_id = $variantId");
+        }else{
+            // Se l'utente non è loggato, aggiorno il carrello di sessione
+            if(isset($_SESSION['cart'][$variantId])) {
+                $_SESSION['cart'][$variantId] = $quantity;
+            }
+        }
+        header("Location: index.php?page=cart");
+        exit;
+    }
+    if(isset($_GET['action']) && $_GET['action'] === 'add' && isset($_GET['variant_id']) && isset($_GET['quantity'])) {
+        $quantity = intval($_GET['quantity']);
+        $variantId = intval($_GET['variant_id']);
+        if(isset($_SESSION['user'])){
+            $userId = $_SESSION['user']['user_id'];
+            $conn->query("INSERT INTO carts (user_id, product_id, quantity) 
+                              VALUES ($userId, $variantId, $quantity)
+                              ON DUPLICATE KEY UPDATE quantity = quantity + $quantity");
+        }else{
+           if(isset($_SESSION['cart'])) {
+                $_SESSION['cart'][$variantId] = $quantity;
+            }
+        }
+        header("Location: index.php?page=cart");
+        exit;
+    }
+}
+
+
 if(!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
     // Se l'utente non è loggato, prendo il carrello di sessione
     if (!isset($_SESSION['cart'])) {
@@ -25,7 +61,7 @@ if(!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
     $cart .= "0";
     // Eseguo la query per ottenere i prodotti nel carrello
     $res = $conn->query("
-        SELECT p.slug,p.img1_url,p.name,pv.price,pv.id AS variant_id ,pv.size_ml
+        SELECT p.slug,p.img1_url,p.name,pv.price,pv.id AS variant_id ,pv.size_ml, pv.stock
         FROM products p
         JOIN product_variants pv ON pv.product_id = p.id
         WHERE pv.id IN ($cart)
@@ -35,7 +71,7 @@ if(!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
     // Se l'utente è loggato, prendo il carrello dal database
     $userId = $_SESSION['user']['user_id'];
     $res = $conn->query("
-        SELECT p.slug,p.img1_url,p.name,pv.price,pv.id AS variant_id ,pv.size_ml, c.quantity
+        SELECT p.slug,p.img1_url,p.name,pv.price,pv.id AS variant_id ,pv.size_ml,  pv.stock, c.quantity
         FROM carts c
         JOIN product_variants pv ON c.product_id = pv.id
         JOIN products p ON pv.product_id = p.id

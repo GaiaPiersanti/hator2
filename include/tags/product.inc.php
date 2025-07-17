@@ -190,6 +190,7 @@ public function card($name, $data, $pars) {
     $priceVal   = $data['price']       ?? 0.00;
     $sizeMl     = $data['size_ml']     ?? '';
     $variantId  = $data['variant_id']  ?? '';
+    $stock = $data['stock'] ?? 0; // Disponibilità del prodotto
 
     // preparo la variabile $num rispetto a se è loggato omeno
     if(!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
@@ -219,15 +220,15 @@ public function card($name, $data, $pars) {
         $imgUrl = "assets/img/placeholder.png";
     }
     // Ora costruisci l’HTML
-    $html  = '<tr>
+    $html  = '<tr data-variant-id="'. $variantId .'">
                   <td class="product-thumbnail">
                       <a href="#"><img src="' . $imgUrl . '" alt="' . $title . '" /></a>
                   </td>
-                  <input name= id type="hidden" value="' . $variantId . '">
+                  <input name= "variant_id" type="hidden" value="' . $variantId . '">
                   <td class="product-name"> <a href="' . $urlDetails . '">' . $nameVal . '</a></td>
                   <td class="product-size" style="text-wrap: nowrap;">' . $sizeMl . ' ML' .'</td>
                   <td class="product-price"> <span class="amount">€' . $priceFormatted . '</span></td>
-                  <td class="product-quantity"> <input type="number" value="' . $num . '" min="1" /></td>
+                  <td class="product-quantity"> <input type="number" class="quantity form-control" id = "quantity['. $variantId .']" value="' . $num . '" min="1" max="' . $stock . '" /></td>
                   <td class="product-subtotal">' . $totalFormatted . '</td>
                   <td class="product-remove"> <a href="index.php?page=cart&deleted=' . $variantId . '"> <i class="fa fa-times" aria-hidden="true"></i></a></td>
               </tr>';
