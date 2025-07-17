@@ -3,6 +3,10 @@
 //  ini_set('display_startup_errors', 1);
 //  error_reporting(E_ALL);
 //	__DIR__ è la costante che PHP risolve nella cartella in cui risiede il file corrente.
+if(isset($_SESSION['loggedin']) && isset($_SESSION['user'])&& $_SESSION['user']['group_id'] !== 1) {
+    header("Location: index.php?page=logout");
+    exit;
+}
 
 $login_error = "";
 if (isset($_SESSION['ForgottenP'])) {
