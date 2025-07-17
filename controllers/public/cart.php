@@ -7,6 +7,11 @@ $main->setContent("welcome_message", $welcome);
 $main->setContent("buttons", isset($_SESSION['loggedin']) ? $buttons_loged : $buttons_not_loged);
 $main->setContent("settings", isset($_SESSION['loggedin']) ? $settings : "");
 $cart = "";
+// questa parte è per testare la vvariabile di sessione 'cart'
+unset($_SESSION['cart']);
+$_SESSION['cart'][5] = 2; // Prodotto con ID 5, quantità 2
+$_SESSION['cart'][10] = 1; // Prodotto con ID 10, quantità 1
+$_SESSION['cart'][15] = 3; // Prodotto con ID 15, quantità 3
 
 if(!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
     // Se l'utente non è loggato, prendo il carrello di sessione
@@ -17,7 +22,6 @@ if(!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
     foreach ($_SESSION['cart'] as $variantId => $quantity) {
         // Preparo il carrello per la query
         $cart .= "$variantId,";
-        print("Variant ID: $variantId, Quantity: $quantity<br>");
     }
     //inserisco un numero di defoult che non esiste nel db   
     $cart .= "0";
@@ -55,11 +59,20 @@ require_once __DIR__ . '/../../include/tags/product.inc.php'; // se serve includ
 $prodLib = new product();
 $cartHtml = "";
 $subtotale = 0;
-foreach ($products as $prod) {
-    // il primo argomento 'card' è il nome del tag, il secondo i dati, il terzo i parametri (vuoti)
+if(isset($_SESSION['user'])) {
+    foreach ($products as $prod) {
+    // il primo argomento 'prod' è il nome del tag, il secondo i dati, il terzo i parametri (vuoti)
     $cartHtml .= $prodLib->carted('prod', $prod, []);
     $subtotale += $prod['price'] * ($prod['quantity'] ?? 1); // Calcolo il subtotale    
+    }
+} else {
+   foreach ($products as $prod) {
+    // il primo argomento 'prod' è il nome del tag, il secondo i dati, il terzo i parametri (vuoti)
+    $cartHtml .= $prodLib->carted('prod', $prod, []);
+    $subtotale += $prod['price'] * ($_SESSION['cart'][$prod['variant_id']] ?? 1); // Calcolo il subtotale    
+    }
 }
+
 if(isset($_GET['deleted'])) {
     $elem = $_GET['deleted'];
     // metodo per cancellare un prodotto dal carrello
