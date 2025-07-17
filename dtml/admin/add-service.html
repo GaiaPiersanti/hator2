@@ -9,6 +9,14 @@
       <label for="name">Service Name</label>
       <input type="text" id="name" name="name" class="form-control <[nameErrorClass]>" placeholder="Enter service name"
         value="<[name]>">
+         <!-- INIZIO CHECKBOX -->
+  <div class="form-group">
+    <label>Assign to Groups</label>
+    <div>
+      <[groupsCheckboxes]>
+    </div>
+  </div>
+   <!--FINE CHECKBOX -->
       <div class="invalid-feedback">
         <[nameError]>
       </div>
