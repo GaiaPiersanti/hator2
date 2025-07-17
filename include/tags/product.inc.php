@@ -240,4 +240,98 @@ public function card($name, $data, $pars) {
   
   
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  public function card6($name, $data, $pars) {
+     
+    // dati base
+    $urlDetails = "index.php?page=productdetails&slug=" . urlencode($data['slug']);
+    $title      = htmlspecialchars($data['name'], ENT_QUOTES);
+    $imgUrl     = htmlspecialchars($data['img1_url'], ENT_QUOTES);
+
+    // marchio (new/bestseller)
+    $sticker = !empty($data['new_arrival']) 
+               ? '<span class="sticker-new">new</span>' 
+               : '';
+
+    // serializzo le varianti in un data-attr JSON
+    $variantsJson = htmlspecialchars(json_encode($data['variants']), ENT_QUOTES);
+
+    // Formatta il prezzo in anticipo
+    $priceFormatted = number_format(
+        $data['variants'][0]['price'] ?? 0,
+        2,
+        '.',
+        ','
+    );
+
+    $imagesJson = htmlspecialchars(json_encode([
+      $data['img1_url'],
+      $data['img2_url'],
+      $data['img3_url'],
+      $data['img4_url']
+    ]), ENT_QUOTES);
+
+
+    $html  = '<div class="col-lg-4 col-md-6 mb-4">';
+    $html .= '<div class="single-makal-product">';
+    $html .= '<div class="pro-img">';
+    $html .=   '<a href="'. $urlDetails .'">';
+    $html .=     '<img src="'. $imgUrl .'" alt="'. $title .'" class="img-fluid">';
+    $html .=   '</a>';
+    $html .=   $sticker;
+    $html .=   '<div class="quick-view-pro">';
+
+    // qui “uscimo” dalla stringa e facciamo lo sprintf
+    $html .= sprintf(
+        '<a 
+            data-bs-toggle="modal"
+            data-bs-target="#product-window"
+            data-title="%s"
+            data-desc="%s"
+            data-variants=\'%s\'
+            data-images=\'%s\'
+            class="quick-view"
+            href="#"
+        ></a>',
+        htmlspecialchars($data['name'],            ENT_QUOTES),
+        htmlspecialchars($data['short_description'], ENT_QUOTES),
+        $variantsJson,
+        $imagesJson
+    );
+
+    // poi richiudiamo il resto dell’HTML
+    $html .=   '</div>';           // chiude .quick-view-pro
+    $html .= '</div>';            // chiude .pro-img
+    $html .= '<div class="pro-content">';
+    $html .=   '<h4 class="pro-title"><a href="'. $urlDetails .'">'. $title .'</a></h4>';
+    $html .=   '<p><span class="price">€'. $priceFormatted .'</span></p>';
+    $html .=   '<div class="pro-actions">';
+    $html .=     '<a href="index.php?page=cart&action=add&variant_id='
+                . $data['variants'][0]['variant_id']
+                .'" class="add-to-cart">Add To Cart</a>';
+    $html .=   '</div>';           // chiude .pro-actions
+    $html .= '</div>';            // chiude .pro-content
+    $html .= '</div>';            // chiude .single-makal-product
+    $html .= '</div>';            // chiude .col-...
+
+    return $html;
+}
+
 }
