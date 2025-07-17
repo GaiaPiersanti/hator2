@@ -225,7 +225,7 @@ public function card($name, $data, $pars) {
                   </td>
                   <input name= id type="hidden" value="' . $variantId . '">
                   <td class="product-name"> <a href="' . $urlDetails . '">' . $nameVal . '</a></td>
-                  <td class="product-size">' . $sizeMl . ' ML</td>
+                  <td class="product-size" style="text-wrap: nowrap;">' . $sizeMl . ' ML' .'</td>
                   <td class="product-price"> <span class="amount">€' . $priceFormatted . '</span></td>
                   <td class="product-quantity"> <input type="number" value="' . $num . '" min="1" /></td>
                   <td class="product-subtotal">' . $totalFormatted . '</td>
