@@ -2,7 +2,7 @@
   <h1 class="h3 mb-4 text-gray-800"><[form_title]></h1>
 
   <form method="post" action="admin.php?page=<[action]>">
-    <div class="form-group">
+    <div class="form-group" style="margin-bottom: 3px;">
       <label for="name">Services Name</label>
       <input
         type="text"
@@ -12,6 +12,14 @@
         placeholder="Enter services name"
         value="<[name]>"
       >
+       <!--INIZIO CHECKBOX-->
+    <div class="form-group mt-3 mb-3">
+      <label>Assign to Groups</label>
+      <div>
+        <[groupsCheckboxes]>
+      </div>
+    </div>
+    <!--FINE CHECKBOX-->
       <div class="invalid-feedback">
         <[nameError]>
       </div>
