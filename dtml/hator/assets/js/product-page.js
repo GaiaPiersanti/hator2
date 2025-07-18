@@ -1,4 +1,9 @@
 $(function(){
+  // Disattivo il plugin Nice Select su questa pagina
+if ($.fn.niceSelect) {
+  // “Smontiamo” l’interfaccia custom per usare solo il nostro CSS
+  $('.select-wrapper select').niceSelect('destroy');
+}
   const p = PRODUCT;
 
   // 1) Gallery di immagini
@@ -55,8 +60,8 @@ $(function(){
   $('.product-family').text(p.family_name);
 
   // 4) Prezzo, stock, variant select, quantity e add-to-cart
-  const variants = p.variants;
-  const $sizeSel = $('#variant-select').empty();
+ const variants = p.variants;
+const $sizeSel = $('.product-size select').empty();
   const $qtyWrap = $('.box-quantity').empty();
   variants.forEach(v =>
     $sizeSel.append(
@@ -68,6 +73,12 @@ $(function(){
     )
   );
 
+
+
+  console.log('Variants:', variants);
+console.log('SizeSel jQ:', $sizeSel);
+console.log('Options now in DOM:', $sizeSel.html());
+
   const $priceEl = $('.price');
   const $stockEl = $('.in-stock');
   // const $qtyIn   = $('#quantity'); // removed as per instructions
@@ -75,7 +86,7 @@ $(function(){
 
   function updateDetails(v) {
     // prezzo
-    $priceEl.text('€' + parseFloat(v.price).toFixed(2).replace(',', ','));
+    $priceEl.text('€' + parseFloat(v.price).toFixed(2).replace('.', ','));
     // stock display
     $stockEl.html(
       v.stock > 0

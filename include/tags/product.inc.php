@@ -302,7 +302,7 @@ public function details($name, $data, $pars) {
     $html .= '          <div class="product-size mtb-30 clearfix">';
     $html .= '            <label>Size</label>';
     $html .= '            <div class="select-wrapper">';
-    $html .= '              <select id="variant-select" class="form-control"></select>';
+    $html .= '              <select id="page-variant-select" class="form-control"></select>';
     $html .= '            </div>';
     $html .= '          </div>';
     $html .= '          <div class="quatity-stock">';
