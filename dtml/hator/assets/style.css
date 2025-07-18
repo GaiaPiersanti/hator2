@@ -12923,3 +12923,126 @@ td.product-thumbnail > a img {
   height: auto;
   display: block;
 }
+
+
+
+/* --- Uniform thumbnail size & spacing --- */
+/* Container delle thumbnails (sotto l’immagine principale) */
+.single-prod-thumb .thumb-menu {
+  overflow: visible;        /* fa in modo che nulla venga tagliato */
+}
+
+/* Ogni “slide” di OwlCarousel diventa un box flex */
+.single-prod-thumb .thumb-menu .owl-item {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Rimuove padding/bordi extra dai button delle nav */
+.single-prod-thumb .thumb-menu .owl-item .nav-link {
+  padding: 0;
+  border: none;
+}
+
+/* Miniature uniformi e proporzionate */
+.single-prod-thumb .thumb-menu .owl-item .nav-link img {
+  width: 50px;              /* scegli la dimensione che preferisci */
+  height: 50px;
+  object-fit: contain;      /* mantiene l’aspect-ratio senza ritagli */
+  display: block;
+}
+
+/* Spaziatura costante tra le miniature */
+.single-prod-thumb .thumb-menu .owl-stage {
+  display: flex !important;
+  gap: 8px;                 /* distanza orizzontale */
+}
+
+/* (Opzionale) centra il carosello e nascondi le frecce laterali se non servono */
+.single-prod-thumb .thumb-menu.owl-carousel {
+  justify-content: center;
+}
+
+
+
+/* Box dell’immagine principale */
+/* Box immagine principale: riempi tutta l’altezza della colonna */
+.single-prod-main {
+  width: 100%;           /* occupa tutta la larghezza del col-lg-4 */
+  height: 100%;          /* riempi tutta l’altezza della colonna (grazie a align-items-stretch) */
+  display: flex;
+  align-items: center;   /* centra l’immagine verticalmente */
+  justify-content: center; /* centra l’immagine orizzontalmente */
+  position: relative;    /* per le tab-pane in absolute */
+  background: #fff;      /* oppure trasparente, a seconda del design */
+  overflow: hidden;      /* evita scroll interni */
+}
+
+/* Ogni pannello di tab deve coprire tutto il box */
+.single-prod-main .tab-pane {
+  position: absolute;
+  inset: 0;              /* top:0; right:0; bottom:0; left:0; */
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+/* L’immagine scala dentro quel box senza tagliarsi */
+.single-prod-main .tab-pane img {
+  max-width: 100%;
+  max-height: 80%;
+  width: auto;
+  height: 400px;
+  object-fit: contain;
+  display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

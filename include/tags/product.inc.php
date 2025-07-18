@@ -274,10 +274,10 @@ public function details($name, $data, $pars) {
     // NOTA: $data è l'array $product costruito in productdetails.php
     $html  = '<div class="main-product-thumbnail white-bg ptb-90">';
     $html .= '  <div class="container">';
-    $html .= '    <div class="row">';
+    $html .= '    <div class="row align-items-stretch">';
     $html .= '      <div class="col-lg-4 col-md-6 mb-all-40">';
-    $html .= '        <div class="tab-content" id="myTabContent"></div>';
-    $html .= '        <div class="product-thumbnail">';
+    $html .= '        <div class="tab-content single-prod-main" id="myTabContent"></div>';
+    $html .= '        <div class="product-thumbnail single-prod-thumb">';
     $html .= '          <ul class="thumb-menu owl-carousel nav tabs-area nav nav-tabs" '
            . 'id="myTab" role="tablist"></ul>';
     $html .= '        </div>';
@@ -323,7 +323,7 @@ public function details($name, $data, $pars) {
     $html .= '    </div>';
     $html .= '  </div>';
     $html .= '</div>';
-    $html .= '<div class="thumnail-desc">';
+    $html .= '<div class="thumnail-desc mt-30">';
     $html .= '  <div class="container">';
     $html .= '    <div class="thumb-desc-inner">';
     $html .= '      <div class="row">';
