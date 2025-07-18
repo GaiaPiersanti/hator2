@@ -10,7 +10,7 @@ class product extends tagLibrary {
      *                      ['slug','img1_url','name','price','new_arrival','best_seller','variant_id']
      * @param array  $pars  Parametri extra se servono (qui non li usiamo)
      */
-    public $selectors = ['card'];
+    public $selectors = ['card','card2','carted','details'];
     public function getSelectors() {
     return $this->selectors;
 }
@@ -266,79 +266,81 @@ public function card($name, $data, $pars) {
 
 
 
-  public function card6($name, $data, $pars) {
-     
-    // dati base
-    $urlDetails = "index.php?page=productdetails&slug=" . urlencode($data['slug']);
-    $title      = htmlspecialchars($data['name'], ENT_QUOTES);
-    $imgUrl     = htmlspecialchars($data['img1_url'], ENT_QUOTES);
-
-    // marchio (new/bestseller)
-    $sticker = !empty($data['new_arrival']) 
-               ? '<span class="sticker-new">new</span>' 
-               : '';
-
-    // serializzo le varianti in un data-attr JSON
-    $variantsJson = htmlspecialchars(json_encode($data['variants']), ENT_QUOTES);
-
-    // Formatta il prezzo in anticipo
-    $priceFormatted = number_format(
-        $data['variants'][0]['price'] ?? 0,
-        2,
-        '.',
-        ','
-    );
-
-    $imagesJson = htmlspecialchars(json_encode([
-      $data['img1_url'],
-      $data['img2_url'],
-      $data['img3_url'],
-      $data['img4_url']
-    ]), ENT_QUOTES);
-
-
-    $html  = '<div class="col-lg-4 col-md-6 mb-4">';
-    $html .= '<div class="single-makal-product">';
-    $html .= '<div class="pro-img">';
-    $html .=   '<a href="'. $urlDetails .'">';
-    $html .=     '<img src="'. $imgUrl .'" alt="'. $title .'" class="img-fluid">';
-    $html .=   '</a>';
-    $html .=   $sticker;
-    $html .=   '<div class="quick-view-pro">';
-
-    // qui “uscimo” dalla stringa e facciamo lo sprintf
-    $html .= sprintf(
-        '<a 
-            data-bs-toggle="modal"
-            data-bs-target="#product-window"
-            data-title="%s"
-            data-desc="%s"
-            data-variants=\'%s\'
-            data-images=\'%s\'
-            class="quick-view"
-            href="#"
-        ></a>',
-        htmlspecialchars($data['name'],            ENT_QUOTES),
-        htmlspecialchars($data['short_description'], ENT_QUOTES),
-        $variantsJson,
-        $imagesJson
-    );
-
-    // poi richiudiamo il resto dell’HTML
-    $html .=   '</div>';           // chiude .quick-view-pro
-    $html .= '</div>';            // chiude .pro-img
-    $html .= '<div class="pro-content">';
-    $html .=   '<h4 class="pro-title"><a href="'. $urlDetails .'">'. $title .'</a></h4>';
-    $html .=   '<p><span class="price">€'. $priceFormatted .'</span></p>';
-    $html .=   '<div class="pro-actions">';
-    $html .=     '<a href="index.php?page=cart&action=add&variant_id='
-                . $data['variants'][0]['variant_id']
-                .'" class="add-to-cart">Add To Cart</a>';
-    $html .=   '</div>';           // chiude .pro-actions
-    $html .= '</div>';            // chiude .pro-content
-    $html .= '</div>';            // chiude .single-makal-product
-    $html .= '</div>';            // chiude .col-...
-
+/**
+ * Ritorna il markup della pagina dettagli prodotto con placeholder vuoti.
+ * Viene poi riempito in JavaScript.
+ */
+public function details($name, $data, $pars) {
+    // NOTA: $data è l'array $product costruito in productdetails.php
+    $html  = '<div class="main-product-thumbnail white-bg ptb-90">';
+    $html .= '  <div class="container">';
+    $html .= '    <div class="row">';
+    $html .= '      <div class="col-lg-4 col-md-6 mb-all-40">';
+    $html .= '        <div class="tab-content" id="myTabContent"></div>';
+    $html .= '        <div class="product-thumbnail">';
+    $html .= '          <ul class="thumb-menu owl-carousel nav tabs-area nav nav-tabs" '
+           . 'id="myTab" role="tablist"></ul>';
+    $html .= '        </div>';
+    $html .= '      </div>';
+    $html .= '      <div class="col-lg-8 col-md-6">';
+    $html .= '        <div class="thubnail-desc fix">';
+    $html .= '          <h3 class="product-header"></h3>';
+    $html .= '          <ul class="product-meta list-unstyled mb-8">';
+    $html .= '            <li class="mb-2">'
+           . '<span class="product-type"></span>'
+           . '<span class="product-category ms-2"></span></li>';
+    $html .= '            <li class="mb-2"><strong>Brand:</strong> '
+           . '<span class="product-brand"></span></li>';
+    $html .= '            <li class="mb-8"><strong>Olfactory Family:</strong> '
+           . '<span class="product-family"></span></li>';
+    $html .= '          </ul>';
+    $html .= '          <p class="pro-desc-details"></p>';
+    $html .= '          <div class="pro-thumb-price mt-25">';
+    $html .= '            <p class="d-flex align-items-center">'
+           . '<span class="price fw-bold"></span></p>';
+    $html .= '          </div>';
+    $html .= '          <div class="product-size mtb-30 clearfix">';
+    $html .= '            <label>Size</label>';
+    $html .= '            <div class="select-wrapper">';
+    $html .= '              <select id="variant-select" class="form-control"></select>';
+    $html .= '            </div>';
+    $html .= '          </div>';
+    $html .= '          <div class="quatity-stock">';
+    $html .= '            <label>Quantity</label>';
+    $html .= '            <ul class="d-flex flex-wrap align-items-center">';
+    $html .= '              <li class="box-quantity">'
+           . '<!-- qui JS inietterà <input …> -->';
+    $html .= '              </li>';
+    $html .= '              <li>'
+           . '<button id="add-to-cart-btn" class="pro-cart">'
+           . 'add to cart</button></li>';
+    $html .= '              <li class="pro-ref">'
+           . '<p><span class="in-stock"></span></p></li>';
+    $html .= '            </ul>';
+    $html .= '          </div>';
+    $html .= '        </div>';
+    $html .= '      </div>';
+    $html .= '    </div>';
+    $html .= '  </div>';
+    $html .= '</div>';
+    $html .= '<div class="thumnail-desc">';
+    $html .= '  <div class="container">';
+    $html .= '    <div class="thumb-desc-inner">';
+    $html .= '      <div class="row">';
+    $html .= '        <div class="col-12">';
+    $html .= '          <ul class="main-thumb-desc nav tabs-area" role="tablist">';
+    $html .= '            <li><h6><b>Description</b></h6></li>';
+    $html .= '          </ul>';
+    $html .= '          <div class="tab-content thumb-content">';
+    $html .= '            <div id="dtail" class="tab-pane fade show active">';
+    $html .= '              <p class="long-desc"></p>';
+    $html .= '            </div>';
+    $html .= '          </div>';
+    $html .= '        </div>';
+    $html .= '      </div>';
+    $html .= '    </div>';
+    $html .= '  </div>';
+    $html .= '</div>';
     return $html;
 }
 
