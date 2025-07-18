@@ -1,0 +1,47 @@
+<div class="container-fluid">
+<h2><[form_title]></h2>
+
+<form method="post" action="admin.php?page=edit-user&id=<[userId]>">
+  <!-- First Name -->
+  <div class="form-group">
+    <label for="first_name">First Name</label>
+    <input id="first_name" name="first_name" type="text"
+      class="form-control <[firstNameClass]>" value="<[first_name]>">
+    <div class="invalid-feedback"><[firstNameError]></div>
+  </div>
+
+  <!-- Last Name -->
+  <div class="form-group">
+    <label for="last_name">Last Name</label>
+    <input id="last_name" name="last_name" type="text"
+      class="form-control <[lastNameClass]>" value="<[last_name]>">
+    <div class="invalid-feedback"><[lastNameError]></div>
+  </div>
+
+  <!-- Email -->
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email"
+      class="form-control <[emailClass]>" value="<[email]>">
+    <div class="invalid-feedback"><[emailError]></div>
+  </div>
+
+  <!-- Password (opzionale) -->
+  <div class="form-group">
+    <label for="password">New Password (leave blank to keep current)</label>
+    <input id="password" name="password" type="password"
+      class="form-control <[passwordClass]>" value="">
+    <div class="invalid-feedback"><[passwordError]></div>
+  </div>
+
+  <!-- Group -->
+  <div class="form-group">
+    <label>Group</label><br>
+    <[groupRadios]>
+    <div class="invalid-feedback d-block"><[groupError]></div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Update User</button>
+  <a href="admin.php?page=user-list" class="btn btn-secondary">Cancel</a>
+</form>
+</div>
