@@ -8,27 +8,45 @@ $main->setContent("page_title", $page_title);
 
 
 // 3) Carico prodotti + tutte le loro varianti e raggruppo per prodotto
-$res = $conn->query("
+$sql = "
   SELECT 
     p.id               AS pid,
     p.slug,
     p.name,
     p.short_description,
     p.long_description,
-    p.img1_url, p.img2_url, p.img3_url, p.img4_url,
+    p.img1_url, 
+    p.img2_url, 
+    p.img3_url, 
+    p.img4_url,
     p.new_arrival,
     p.best_seller,
+    -- join per leggere i nomi di type, category, brand, family
+    t.name             AS type_name,
+    c.name             AS category_name,
+    b.name             AS brand_name,
+    f.name             AS family_name,
+    -- campi delle varianti
     pv.id              AS variant_id,
     pv.size_ml,
     pv.price,
     pv.stock
   FROM products p
-  JOIN product_variants pv ON pv.product_id = p.id
+    JOIN types      t  ON t.id = p.type_id
+    JOIN categories c  ON c.id = p.category_id
+    JOIN brands     b  ON b.id = p.brand_id
+    JOIN families   f  ON f.id = p.family_id
+    JOIN product_variants pv 
+      ON pv.product_id = p.id
   ORDER BY p.id, pv.size_ml
-");
+";
+
+$res = $conn->query($sql);
+
 $products = [];
 while ($row = $res->fetch_assoc()) {
     $pid = $row['pid'];
+
     if (!isset($products[$pid])) {
         // inizializzo TUTTI i campi del prodotto
         $products[$pid] = [
@@ -40,11 +58,18 @@ while ($row = $res->fetch_assoc()) {
             'img2_url'           => $row['img2_url'],
             'img3_url'           => $row['img3_url'],
             'img4_url'           => $row['img4_url'],
-            'new_arrival'        => $row['new_arrival'],
-            'best_seller'        => $row['best_seller'],
+            'new_arrival'        => (bool)$row['new_arrival'],
+            'best_seller'        => (bool)$row['best_seller'],
+            // i nuovi campi
+            'type_name'          => $row['type_name'],
+            'category_name'      => $row['category_name'],
+            'brand_name'         => $row['brand_name'],
+            'family_name'        => $row['family_name'],
+            // array per le varianti
             'variants'           => []
         ];
-  }
+    }
+    // aggiungo la variante corrente
   $products[$pid]['variants'][] = [
     'variant_id'=> $row['variant_id'],
     'size_ml'   => $row['size_ml'],

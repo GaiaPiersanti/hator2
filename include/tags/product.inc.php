@@ -67,13 +67,21 @@ public function card($name, $data, $pars) {
             data-desc="%s"
             data-variants=\'%s\'
             data-images=\'%s\'
+            data-type="%s"
+            data-category="%s"
+            data-brand="%s"
+            data-family="%s"
             class="quick-view"
             href="#"
         ></a>',
         htmlspecialchars($data['name'],            ENT_QUOTES),
         htmlspecialchars($data['short_description'], ENT_QUOTES),
         $variantsJson,
-        $imagesJson
+        $imagesJson,
+        htmlspecialchars($data['type_name'],     ENT_QUOTES),
+        htmlspecialchars($data['category_name'], ENT_QUOTES),
+        htmlspecialchars($data['brand_name'],    ENT_QUOTES),
+        htmlspecialchars($data['family_name'],   ENT_QUOTES)
     );
 
     // poi richiudiamo il resto dell’HTML

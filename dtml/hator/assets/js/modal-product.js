@@ -1,23 +1,41 @@
-// modal-product.js
-// — assicurati di includere jQuery, Bootstrap 5, OwlCarousel e Fancybox PRIMA di questo script
-
 document.addEventListener('DOMContentLoaded', function() {
   const modalEl = document.getElementById('product-window');
-  // Quando il modal sta per aprirsi
+
   modalEl.addEventListener('show.bs.modal', function(e) {
-    const trigger  = e.relatedTarget;       // il <a> cliccato
-    const $btn     = $(trigger);
-    const title    = $btn.data('title')     || '';
-    const desc     = $btn.data('desc')      || '';
-    const images   = $btn.data('images')    || [];
-    const variants = $btn.data('variants')  || [];
-    const $modal   = $(this);
+    const trigger   = e.relatedTarget;
+    const $modal    = $(this);
+    const $btn      = $(trigger);
+
+    // leggi raw category
+    const rawCat    = $btn.data('category') || '';
+
+    // applica la regola: se non è “unisex” metti “For ”
+    const displayCat = rawCat.toLowerCase() === 'unisex'
+      ? rawCat
+      : `for ${rawCat}`;
+
+    // leggi gli altri data-…
+    const title     = $btn.data('title')    || '';
+    const desc      = $btn.data('desc')     || '';
+    const type      = $btn.data('type')     || '';
+    const brand     = $btn.data('brand')    || '';
+    const family    = $btn.data('family')   || '';
+    const images    = $btn.data('images')   || [];
+    const variants  = $btn.data('variants') || [];
 
     //
     // 1) Titolo e descrizione
     //
     $modal.find('.product-header').text(title);
     $modal.find('.pro-desc-details').text(desc);
+
+    //
+    // 1bis) Meta‐info
+    //
+    $modal.find('.product-type').text(type);
+    $modal.find('.product-category').text(displayCat);
+    $modal.find('.product-brand').text(brand);
+    $modal.find('.product-family').text(family);
 
     //
     // 2) Costruisci la gallery e la thumb-carousel
