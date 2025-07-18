@@ -1,0 +1,65 @@
+<div class="container-fluid">
+<h2><[form_title]></h2>
+
+<form method="post" action="admin.php?page=<[action]>">
+  <!-- Name -->
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input id="name" name="name" type="text"
+      class="form-control <[nameClass]>" value="<[name]>">
+    <div class="invalid-feedback"><[nameError]></div>
+  </div>
+
+  <!-- Category -->
+  <div class="form-group">
+    <label>Category</label>
+    <div><[categoriesRadios]></div>
+  </div>
+
+  <!-- Type -->
+  <div class="form-group">
+    <label>Type</label>
+    <div><[typesRadios]></div>
+  </div>
+
+  <!-- Family -->
+  <div class="form-group">
+    <label>Family</label>
+    <div><[familiesRadios]></div>
+  </div>
+
+  <!-- Brand -->
+  <div class="form-group">
+    <label>Brand</label>
+    <div><[brandsRadios]></div>
+  </div>
+
+  <!-- Flags -->
+  <div class="form-group">
+    <label>Flags</label>
+    <div>
+      <[bestSellerCheckbox]>
+      <[newArrivalCheckbox]>
+    </div>
+  </div>
+
+  <!-- Short Description -->
+  <div class="form-group">
+    <label for="short_description">Short Description</label>
+    <textarea id="short_description" name="short_description"
+      class="form-control"><[short_description]></textarea>
+  </div>
+
+  <!-- Long Description -->
+  <div class="form-group">
+    <label for="long_description">Long Description</label>
+    <textarea id="long_description" name="long_description"
+      class="form-control"><[long_description]></textarea>
+  </div>
+
+  <hr>
+
+  <button type="submit" class="btn btn-primary">Save Changes</button>
+  <a href="admin.php?page=products-list" class="btn btn-secondary">Cancel</a>
+</form>
+</div>

@@ -1,0 +1,90 @@
+<div class="container-fluid">
+<form method="post">
+  <input type="hidden" name="step" value="1">
+
+  <!-- Name -->
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input id="name" name="name" type="text"
+      class="form-control <[nameClass]>" value="<[name]>">
+    <div class="invalid-feedback"><[nameError]></div>
+  </div>
+
+  <!-- Category -->
+  <div class="form-group">
+    <label>Category</label>
+    <div><[categoriesRadios]></div>
+  </div>
+
+  <!-- Type -->
+  <div class="form-group">
+    <label>Type</label>
+    <div><[typesRadios]></div>
+  </div>
+
+  <!-- Family -->
+  <div class="form-group">
+    <label>Family</label>
+    <div><[familiesRadios]></div>
+  </div>
+
+  <!-- Brand -->
+  <div class="form-group">
+    <label>Brand</label>
+    <div><[brandsRadios]></div>
+  </div>
+
+  <!-- Flags -->
+  <div class="form-group">
+    <label>Flags</label>
+    <div>
+      <[bestSellerCheckbox]>
+      <[newArrivalCheckbox]>
+    </div>
+  </div>
+
+  <!-- Short Description -->
+  <div class="form-group">
+    <label for="short_description">Short Description</label>
+    <textarea id="short_description" name="short_description"
+      class="form-control"><[short_description]></textarea>
+  </div>
+
+  <!-- Long Description -->
+  <div class="form-group">
+    <label for="long_description">Long Description</label>
+    <textarea id="long_description" name="long_description"
+      class="form-control"><[long_description]></textarea>
+  </div>
+
+  <hr>
+
+  <!-- Variants -->
+  <h5>Variants</h5>
+  <div id="variants-container">
+    <[variantsBlocks]>
+  </div>
+  <button type="button" id="add-variant" class="btn btn-sm btn-secondary">
+    + Add Variant
+  </button>
+
+  <hr>
+  <button type="submit" class="btn btn-primary">Create Product</button>
+</form>
+
+<script>
+document.getElementById('add-variant').addEventListener('click', function(){
+  const container = document.getElementById('variants-container');
+  const idx = container.querySelectorAll('.variant-block').length;
+  const proto = container.querySelector('.variant-block').cloneNode(true);
+  proto.setAttribute('data-index', idx);
+  proto.querySelectorAll('input').forEach(inp => {
+    const name = inp.getAttribute('name').replace(/\[\d+\]/, '['+idx+']');
+    inp.setAttribute('name', name);
+    inp.value = '';
+    if (inp.type === 'radio') inp.checked = false;
+  });
+  container.appendChild(proto);
+});
+</script>
+<div>

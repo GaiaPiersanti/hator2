@@ -1,0 +1,16 @@
+<div class="container-fluid">
+<h2>Delete Product</h2>
+
+<p>
+  Are you sure you want to delete the product
+  "<strong><[productName]></strong>"?
+  This action cannot be undone.
+</p>
+
+<form method="post" action="admin.php?page=<[action]>">
+  <!-- Pulsante per confermare l'eliminazione -->
+  <button type="submit" class="btn btn-danger">Delete Product</button>
+  <!-- Annulla e torna alla lista senza popup -->
+  <a href="admin.php?page=products-list" class="btn btn-secondary">Cancel</a>
+</form>
+</div>

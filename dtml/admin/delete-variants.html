@@ -1,0 +1,18 @@
+<div class="container-fluid">
+<h2>Delete Variant</h2>
+
+<p>
+  Are you sure you want to delete the variant
+  "<strong><[sizeMl]> ml</strong>"?
+  This action cannot be undone.
+</p>
+
+<form method="post" action="admin.php?page=<[action]>">
+  <!-- Conferma -->
+  <button type="submit" class="btn btn-danger">Yes, Delete Variant</button>
+  <!-- Annulla -->
+  <a href="admin.php?page=edit-variants&product_id=<[productId]>" class="btn btn-secondary">
+    Cancel
+  </a>
+</form>
+<div>
