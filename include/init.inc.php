@@ -74,6 +74,8 @@ $pageTitles = [
     'add-variants'     => 'Add Variants',
     'modify-variants'    => 'Modify Variants',
     'delete-variants'  => 'Delete Variants',
+    //img
+    'edit-images'  => 'Edit Images',
     
     
     

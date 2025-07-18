@@ -46,6 +46,7 @@ foreach ($rows as $r) {
   $tr .= "  <td class=\"text-end\">\n";
   $tr .= "    <a href=\"admin.php?page=edit-product&id={$r['id']}\" class=\"btn btn-sm btn-primary me-1\">Edit</a>\n";
   $tr .= "    <a href=\"admin.php?page=edit-variants&product_id={$r['id']}\" class=\"btn btn-sm btn-secondary me-1\">Edit Variants</a>\n";
+  $tr .= "    <a href=\"admin.php?page=edit-images&product_id={$r['id']}\" class=\"btn btn-sm btn-secondary me-1\">Edit Images</a>\n";
   $tr .= "    <a href=\"admin.php?page=delete-product&id={$r['id']}\" class=\"btn btn-sm btn-danger\">Delete</a>\n";
   $tr .= "  </td>\n";
   $tr .= "</tr>\n";

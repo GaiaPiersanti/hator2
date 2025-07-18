@@ -1,0 +1,74 @@
+<h2>Manage Product Images</h2>
+
+<!-- Dropdown per selezionare il prodotto -->
+<form method="get" action="admin.php" class="mb-4">
+  <input type="hidden" name="page" value="edit-images">
+  <div class="form-group d-flex align-items-center">
+    <label for="product_id" class="me-2 mb-0">Product:</label>
+    <select id="product_id" name="product_id" class="form-select w-auto"
+            onchange="this.form.submit()">
+      <[productsOptions]>
+    </select>
+  </div>
+</form>
+
+<!-- Slot immagini -->
+<[slotsHtml]>
+
+<script>
+  // Memorizza l'id del prodotto selezionato
+  const selectedProduct = "<[selectedProduct]>";
+
+  document.querySelectorAll('.img-slot').forEach(slot => {
+    // rende dragabble per gli swap interni
+    slot.draggable = true;
+
+    // quando si inizia a trascinare (per swap interno)
+    slot.addEventListener('dragstart', e => {
+      e.dataTransfer.setData('text/plain', slot.dataset.slot);
+    });
+
+    // permette il drop
+    slot.addEventListener('dragover', e => e.preventDefault());
+
+    slot.addEventListener('drop', async e => {
+      e.preventDefault();
+
+      // 1) Se arrivo con un file (drag & drop dal desktop)
+      const files = e.dataTransfer.files;
+      if (files && files.length) {
+        const form = new FormData();
+        form.append('product_id', selectedProduct);
+        form.append('slot', slot.dataset.slot);
+        form.append('action', 'upload');
+        form.append('image_file', files[0]);
+
+        // invia in POST via fetch
+        await fetch('admin.php?page=edit-images', {
+          method: 'POST',
+          body: form
+        });
+        // ricarica per mostrare l'immagine
+        return window.location.reload();
+      }
+
+      // 2) Altrimenti è uno swap interno
+      const from = e.dataTransfer.getData('text/plain');
+      const to   = slot.dataset.slot;
+      if (from && from !== to) {
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = 'admin.php?page=edit-images';
+        form.style.display = 'none';
+        form.innerHTML = `
+          <input type="hidden" name="product_id" value="${selectedProduct}">
+          <input type="hidden" name="action" value="swap">
+          <input type="hidden" name="slot" value="${from}">
+          <input type="hidden" name="slot2" value="${to}">
+        `;
+        document.body.appendChild(form);
+        form.submit();
+      }
+    });
+  });
+</script>

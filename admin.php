@@ -126,6 +126,9 @@ switch ($page) {
          case 'delete-variants':
            require __DIR__ . '/controllers/admin/delete-variants.php';
            break;
+           case 'edit-images':
+            require __DIR__ . '/controllers/admin/edit-images.php';
+            break;
         
     
   case '404':
