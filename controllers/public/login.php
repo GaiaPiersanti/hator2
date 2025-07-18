@@ -54,8 +54,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
 ];
     if (isset($_SESSION['cart'])) {
             // Se l'utente ha un carrello in sessione, lo sposto nel database
-            $userId = $_SESSION['user']['user_id'];
+            $userId = $_SESSION['user']['user_id'];            
             foreach ($_SESSION['cart'] as $variantId => $quantity) {
+                $prod = ($conn->query("SELECT pv.stock, c.quantity FROM product_variants pv JOIN carts c ON pv.id = c.pruduct_id WHERE c.product_id = $variantId AND c.user_id = $userId"))->fetch_assoc();
+                if (($prod['stock'] - $prod['quantity']) < $quantity) {
+                    // Se la quantità richiesta è superiore allo stock, imposta la quantità massima disponibile
+                    $quantity = ($prod['stock'] - $prod['quantity']);
+                }
                 $conn->query("INSERT INTO carts (user_id, product_id, quantity) 
                               VALUES ($userId, $variantId, $quantity)
                               ON DUPLICATE KEY UPDATE quantity = quantity + $quantity");

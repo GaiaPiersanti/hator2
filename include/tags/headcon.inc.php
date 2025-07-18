@@ -51,7 +51,7 @@ class headcon extends TagLibrary{
             while ($row = $res->fetch_assoc()) {
                 $products[] = $row;
             }
-        }
+        }else{die("DB error: " . $conn->error);}
         //conto il numero di prodotti nel carrello
         $count = 0;
         if(isset($_SESSION['user'])){

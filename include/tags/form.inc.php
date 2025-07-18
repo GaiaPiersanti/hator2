@@ -217,4 +217,89 @@ class form extends TagLibrary
             return "Default";
         }
     }
+
+
+    public function checklist($name, $data, $pars)
+    {   //creo una connessione
+        $host = "localhost";
+        $user = "root";
+        $password = ""; // Modifica questa riga con la tua password
+        $database = "hator_db";
+        $conection = new mysqli($host, $user, $password, $database);
+
+        $userId = $_SESSION['user']['user_id'];
+        $res = $conection->query("
+            SELECT p.name, pv.price, pv.size_ml, c.quantity
+            FROM carts c
+            JOIN product_variants pv ON c.product_id = pv.id
+            JOIN products p ON pv.product_id = p.id
+            WHERE c.user_id = $userId
+            ");
+        if (!$res) {
+            die("DB error: " . $conn->error);
+        }
+
+        $html =    '<table>
+                        <thead>
+                            <tr>
+                                <th class="product-name">Product</th>
+                                <th class="product-size">Size</th>
+                                <th class="product-total">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                    ';
+        $subtotale = 0;
+        while ($row = $res->fetch_assoc()) {
+            // calcolo il totale
+            $total = $row['quantity'] * $row['price'];
+
+            // formatto il totale
+            $totalFormatted = number_format($total, 2, '.', ',');
+
+            // Html escaping del titolo
+            $title = htmlspecialchars($row['name'], ENT_QUOTES);
+
+            $html.=        '<tr class="cart_item">
+                                <td class="product-name">
+                                    ' . $title . ' <span class="product-quantity"> × ' . $row['quantity'] . '</span>
+                                </td>
+                                <td class="product-total">
+                                    <span class="size">' . $row['size_ml'] . 'ML</span>
+                                </td>
+                                <td class="product-total">
+                                    <span class="amount">€' . $totalFormatted . '</span>
+                                </td>
+                            </tr>';
+             $subtotale += $total;
+        }
+         if ($subtotale <= 0) {
+            $totale = 0;
+        }else{
+            $totale = $subtotale + 10; // Aggiungo 10 come spese di spedizione fisse
+        }
+        //formatto i totali
+        $subtotale = number_format($subtotale, 2, '.', ',');
+        $totale = number_format($totale, 2, '.', ',');
+        
+        $html.=    ' 
+                        </tbody>
+                    </table>';
+
+        $html.= '<table>
+                    <tfoot>
+                        <tr class="cart-subtotal">
+                            <th>Cart Subtotal</th>
+                            <td><span class="amount">€' . $subtotale . '</span></td>
+                        </tr>
+                        <tr class="order-total">
+                            <th>Order Total</th>
+                            <td><span class=" total amount">€' . $totale . '</span>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>';
+        $conection->close();
+        return $html;
+    }
 }

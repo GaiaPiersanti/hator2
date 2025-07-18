@@ -17,13 +17,12 @@ if(isset($_GET)){
         $quantity = intval($_GET['quantity']);
         $variantId = intval($_GET['variant_id']);
         if(isset($_SESSION['user'])){
+            // se l'utente è loggato, aggiorno il carrello nel database il limite è presente nel html
             $userId = $_SESSION['user']['user_id'];
             $conn->query("UPDATE carts SET quantity = $quantity WHERE user_id = $userId AND product_id = $variantId");
-        }else{
-            // Se l'utente non è loggato, aggiorno il carrello di sessione
-            if(isset($_SESSION['cart'][$variantId])) {
-                $_SESSION['cart'][$variantId] = $quantity;
-            }
+        }else if(isset($_SESSION['cart'][$variantId])) {
+            // Se l'utente non è loggato, aggiorno il carrello di sessione il limite è presente direttamente sul html
+            $_SESSION['cart'][$variantId] = $quantity;
         }
         header("Location: index.php?page=cart");
         exit;
@@ -31,15 +30,24 @@ if(isset($_GET)){
     if(isset($_GET['action']) && $_GET['action'] === 'add' && isset($_GET['variant_id']) && isset($_GET['quantity'])) {
         $quantity = intval($_GET['quantity']);
         $variantId = intval($_GET['variant_id']);
+        // Se l'utente è loggato, aggiungo il prodotto al carrello nel database con limitazione sullo stock
         if(isset($_SESSION['user'])){
             $userId = $_SESSION['user']['user_id'];
+            $prod = ($conn->query("SELECT pv.stock, c.quantity FROM product_variants pv JOIN carts c ON pv.id = c.pruduct_id WHERE c.product_id = $variantId AND c.user_id = $userId"))->fetch_assoc();
+            if (($prod['stock'] - $prod['quantity']) < $quantity) {
+                // Se la quantità richiesta è superiore allo stock, imposta la quantità massima disponibile
+                $quantity = ($prod['stock'] - $prod['quantity']);
+            }
             $conn->query("INSERT INTO carts (user_id, product_id, quantity) 
                               VALUES ($userId, $variantId, $quantity)
                               ON DUPLICATE KEY UPDATE quantity = quantity + $quantity");
-        }else{
-           if(isset($_SESSION['cart'])) {
-                $_SESSION['cart'][$variantId] = $quantity;
+        }else if(isset($_SESSION['cart'])) {
+            $prod = ($conn->query("SELECT stock FROM product_variants pv WHERE id = $variantId "))->fetch_assoc();
+            if(($prod['stock'] - ($_SESSION['cart'][$variantId] ?? 0)) < $quantity) {
+                // Se la quantità richiesta è superiore allo stock, imposta la quantità massima disponibile
+                $quantity = ($prod['stock'] - ($_SESSION['cart'][$variantId] ?? 0));
             }
+            $_SESSION['cart'][$variantId] += $quantity;
         }
         header("Location: index.php?page=cart");
         exit;

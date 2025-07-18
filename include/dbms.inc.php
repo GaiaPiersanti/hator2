@@ -20,5 +20,8 @@
     }
 
     /* connection to mysql succesful
-
+    vengono istanziate classi db anche nelle librerie:
+    form.inc.php -> cheklist,
+    headcon.inc.php -> minicart
+    poiche non siamo riusciti a collegarli a questo file.
 */
