@@ -100,7 +100,33 @@ switch ($page) {
       case 'delete-service':
         require __DIR__ . '/controllers/admin/delete-service.php';
         break;
-  
+        //products crud
+       case 'products-list':
+         require __DIR__ . '/controllers/admin/products-list.php';
+          break;
+          case 'add-product':
+            require __DIR__ . '/controllers/admin/add-product.php';
+            break;
+          case 'edit-product':
+            require __DIR__ . '/controllers/admin/edit-product.php';
+            break;
+          case 'delete-product':
+            require __DIR__ . '/controllers/admin/delete-product.php';
+            break;
+            //variants crud
+       case 'edit-variants'://equivale a list-variants
+        require __DIR__ . '/controllers/admin/edit-variants.php';
+         break;
+         case 'add-variants':
+           require __DIR__ . '/controllers/admin/add-variants.php';
+           break;
+         case 'modify-variants':
+           require __DIR__ . '/controllers/admin/modify-variants.php';//equivale a edit-variants
+           break;
+         case 'delete-variants':
+           require __DIR__ . '/controllers/admin/delete-variants.php';
+           break;
+        
     
   case '404':
   require __DIR__ .  "/controllers/admin/404.php";  

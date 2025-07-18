@@ -64,6 +64,18 @@ $pageTitles = [
     'add-service'     => 'Add Service',
     'edit-service'    => 'Edit Service',
     'delete-service'  => 'Delete Service',
+    //products
+    'products-list'=> 'Products list',
+    'add-product'     => 'Add Product',
+    'edit-product'    => 'Edit Product',
+    'delete-product'  => 'Delete Product',
+    //Variants
+    'edit-variants'=> 'Edit Variants',
+    'add-variants'     => 'Add Variants',
+    'modify-variants'    => 'Modify Variants',
+    'delete-variants'  => 'Delete Variants',
+    
+    
     
     // …altri titoli…
 ];

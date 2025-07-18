@@ -1,0 +1,41 @@
+<div class="container-fluid">
+<h2><[form_title]></h2>
+
+<form method="post" action="admin.php?page=<[action]>">
+  <!-- Size (ml) -->
+  <div class="form-group">
+    <label for="size_ml">Size (ml)</label>
+    <input type="number" id="size_ml" name="size_ml"
+      class="form-control <[size_mlClass]>" value="<[size_ml]>" min="1">
+    <div class="invalid-feedback"><[size_mlError]></div>
+  </div>
+
+  <!-- Price -->
+  <div class="form-group">
+    <label for="price">Price</label>
+    <input type="number" step="0.01" id="price" name="price"
+      class="form-control <[priceClass]>" value="<[price]>">
+    <div class="invalid-feedback"><[priceError]></div>
+  </div>
+
+  <!-- Currency -->
+  <div class="form-group">
+    <label>Currency</label><br>
+    <[currencyOptions]>
+    <div class="invalid-feedback d-block"><[currencyError]></div>
+  </div>
+
+  <!-- Stock -->
+  <div class="form-group">
+    <label for="stock">Stock</label>
+    <input type="number" id="stock" name="stock"
+      class="form-control <[stockClass]>" value="<[stock]>" min="0">
+    <div class="invalid-feedback"><[stockError]></div>
+  </div>
+
+  <!-- Bottoni -->
+  <button type="submit" class="btn btn-primary">Save Changes</button>
+  <a href="admin.php?page=edit-variants&product_id=<[productId]>"
+     class="btn btn-secondary">Cancel</a>
+</form>
+</div>

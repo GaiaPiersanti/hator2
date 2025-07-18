@@ -1,0 +1,23 @@
+<div class="container-fluid">
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Variants for "<[productName]>"</h2>
+    <a href="admin.php?page=add-variant&product_id=<[productId]>" class="btn btn-success">
+      Add Variant
+    </a>
+  </div>
+  
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Size (ml)</th>
+        <th>Price</th>
+        <th>Currency</th>
+        <th>Stock</th>
+        <th class="text-end">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <[variantsRows]>
+    </tbody>
+  </table>
+</div>
