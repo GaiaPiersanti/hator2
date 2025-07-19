@@ -223,10 +223,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$stop)
 
                 
     }
-    if(isset($_SESSION['dati_checkout']['error'])){print_r($_SESSION['dati_checkout']);}
-
-
-
 }
 
 
