@@ -91,8 +91,8 @@ public function card($name, $data, $pars) {
     $html .=   '<h4 class="pro-title"><a href="'. $urlDetails .'">'. $title .'</a></h4>';
     $html .=   '<p><span class="price">€'. $priceFormatted .'</span></p>';
     $html .=   '<div class="pro-actions">';
-    $html .=     '<a href="index.php?page=cart&action=add&variant_id='
-                . $data['variants'][0]['variant_id']
+    $html .=     '<a href="index.php?page=productdetails&slug='
+                . urlencode($data['slug'])
                 .'" class="add-to-cart">Add To Cart</a>';
     $html .=   '</div>';           // chiude .pro-actions
     $html .= '</div>';            // chiude .pro-content
