@@ -17,7 +17,7 @@ if(isset($_GET)){
         $quantity = intval($_GET['quantity']);
         $variantId = intval($_GET['variant_id']);
         if(isset($_SESSION['user'])){
-            // se l'utente è loggato, aggiorno il carrello nel database il limite è presente nel html
+            // se l'utente è loggato, aggiorno il carrello nel database il limite è presente nel
             $userId = $_SESSION['user']['user_id'];
             $conn->query("UPDATE carts SET quantity = $quantity WHERE user_id = $userId AND product_id = $variantId");
         }else if(isset($_SESSION['cart'][$variantId])) {
@@ -33,21 +33,32 @@ if(isset($_GET)){
         // Se l'utente è loggato, aggiungo il prodotto al carrello nel database con limitazione sullo stock
         if(isset($_SESSION['user'])){
             $userId = $_SESSION['user']['user_id'];
-            $prod = ($conn->query("SELECT pv.stock, c.quantity FROM product_variants pv JOIN carts c ON pv.id = c.pruduct_id WHERE c.product_id = $variantId AND c.user_id = $userId"))->fetch_assoc();
-            if (($prod['stock'] - $prod['quantity']) < $quantity) {
-                // Se la quantità richiesta è superiore allo stock, imposta la quantità massima disponibile
-                $quantity = ($prod['stock'] - $prod['quantity']);
+            $prod = ($conn->query("SELECT stock FROM product_variants pv WHERE id = $variantId "))->fetch_assoc();
+            $bin = ($conn->query("SELECT quantity FROM carts c WHERE product_id = $variantId AND user_id = $userId"))->fetch_assoc();
+            if ( $bin->num_rows === 1){
+                $gia = $bin['quantity'];
+            }else{
+                $gia = 0;
             }
-            $conn->query("INSERT INTO carts (user_id, product_id, quantity) 
-                              VALUES ($userId, $variantId, $quantity)
-                              ON DUPLICATE KEY UPDATE quantity = quantity + $quantity");
+            if (($prod['stock'] - $gia ) < $quantity) {
+                // Se la quantità richiesta è superiore allo stock, imposta la quantità massima disponibile
+                $quantity = ($prod['stock'] - $gia);
+            }
+            if($quantity !== 0){
+                $conn->query("INSERT INTO carts (user_id, product_id, quantity) 
+                                VALUES ($userId, $variantId, $quantity)
+                                ON DUPLICATE KEY UPDATE quantity = quantity + $quantity");
+            }            
         }else if(isset($_SESSION['cart'])) {
             $prod = ($conn->query("SELECT stock FROM product_variants pv WHERE id = $variantId "))->fetch_assoc();
             if(($prod['stock'] - ($_SESSION['cart'][$variantId] ?? 0)) < $quantity) {
                 // Se la quantità richiesta è superiore allo stock, imposta la quantità massima disponibile
                 $quantity = ($prod['stock'] - ($_SESSION['cart'][$variantId] ?? 0));
             }
-            $_SESSION['cart'][$variantId] += $quantity;
+            if($quantity !== 0){
+                $_SESSION['cart'][$variantId] += $quantity;
+            }
+            
         }
         header("Location: index.php?page=cart");
         exit;

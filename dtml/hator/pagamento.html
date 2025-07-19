@@ -1,0 +1,236 @@
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+        <title>Pagamento con Carta di Credito / PayPal</title>
+    
+       <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="dtml/hator/assets/img/logo.png">
+    <!-- Fontawesome css -->
+    <link rel="stylesheet" href="dtml/hator/assets/css/font-awesome.min.css">
+    <!-- Animate css -->
+    <link rel="stylesheet" href="dtml/hator/assets/css/animate.css">
+    <!-- 7-stroke fonts css -->
+    <link rel="stylesheet" href="dtml/hator/assets/css/pe-icon-7-stroke.min.css">
+    <!-- Nice select css -->
+    <link rel="stylesheet" href="dtml/hator/assets/css/nice-select.css">
+    <!-- Jquery fancybox css -->
+    <link rel="stylesheet" href="dtml/hator/assets/css/jquery.fancybox.css">
+    <!-- Jquery ui price slider css -->
+    <link rel="stylesheet" href="dtml/hator/assets/css/jquery-ui.min.css">
+    <!-- Meanmenu css -->
+    <link rel="stylesheet" href="dtml/hator/assets/css/meanmenu.min.css">
+    <!-- Owl carousel css -->
+    <link rel="stylesheet" href="dtml/hator/assets/css/owl.carousel.min.css">
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" href="dtml/hator/assets/css/bootstrap.min.css">
+    <!-- Custom css -->
+    <link rel="stylesheet" href="dtml/hator/assets/css/default.css">
+    <!-- Main css -->
+    <link rel="stylesheet" href="dtml/hator/assets/style.css">
+    <!-- Responsive css -->
+    <link rel="stylesheet" href="dtml/hator/assets/css/responsive.css">
+
+    <!-- Select2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    <!-- Modernizer js -->
+    <script src="dtml/hator/assets/js/vendor/modernizr-3.5.0.min.js"></script>
+    
+</head>
+<body>
+    <input name="step" type="hidden" value=<[step]>>
+    <div class="section-title text-center">
+        <div class="register-area white-bg ptb-90">
+            <div class="container">
+                <div class="section-title text-center">
+                    <h2>Payment by Credit Card/PayPal</h2>
+                </div>
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="register-contact  clearfix">
+                            <form class="contact-form" action="index.php?page=pagamento" method="post">
+                                <div class="address-wrapper row">
+                                    <div class="col-md-12">
+                                        <div class="address-fname">
+                                            <label for="name">Name:</label><br>
+                                            <input class="form-control" type="text" name="name" maxlength="50" placeholder="Jhon Doe" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="address-subject">
+                                            <label for="card-number">Card Number:</label><br>
+                                            <input type="text" class="form-control" id="card-number" name="card-number" pattern="\d{16}" maxlength="16" placeholder="XXXX XXXX XXXX XXXX" required><br><br>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="address-fname">
+                                            <label for="expiry-date">Expiration:</label><br>
+                                            <input type="text" class="form-control" id="expiry-date" name="expiry-date" pattern="(0[1-9]|1[0-2])\/\d{2}" maxlength="5" placeholder="MM/YY" required><br><br>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="address-fname">
+                                            <label for="cvv">CVV:</label><br>
+                                            <input type="text" class="form-control" id="cvv" name="cvv" pattern="\d{3,4}" maxlength="4" placeholder="123" required><br><br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer-content mail-content clearfix">
+                                    <div class="send-email float-md-right">
+                                        <button type="submit" class="return-customer-btn">Pay <[tot]></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jquery -->
+    <script src="dtml/hator/assets/js/vendor/jquery-3.6.0.min.js"></script>
+    <!-- jquery migrate -->
+    <script src="dtml/hator/assets/js/vendor/jquery-migrate-3.3.2.min.js"></script>
+    <!-- Countdown js -->
+    <script src="dtml/hator/assets/js/jquery.countdown.min.js"></script>
+    <!-- Mobile menu js -->
+    <script src="dtml/hator/assets/js/jquery.meanmenu.min.js"></script>
+    <!-- ScrollUp js -->
+    <script src="dtml/hator/assets/js/jquery.scrollUp.js"></script>
+    <!-- Fancybox js -->
+    <script src="dtml/hator/assets/js/jquery.fancybox.min.js"></script>
+    <!-- Jquery nice select js -->
+    <script src="dtml/hator/assets/js/jquery.nice-select.min.js"></script>
+    <!-- Jquery ui price slider js -->
+    <script src="dtml/hator/assets/js/jquery-ui.min.js"></script>
+    <!-- Owl carousel -->
+    <script src="dtml/hator/assets/js/owl.carousel.min.js"></script>
+    <!-- Bootstrap popper js -->
+    <script src="dtml/hator/assets/js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="dtml/hator/assets/js/bootstrap.min.js"></script>
+    <!-- Plugin js -->
+    <script src="dtml/hator/assets/js/plugins.js"></script>
+    <!-- Main activaion js -->
+    <script src="dtml/hator/assets/js/main.js"></script>
+
+
+  
+
+
+    
+
+
+    <!-- Fix Select2 visibility -->
+    <style>
+        select.select2-hidden-accessible {
+            display: none !important;
+            visibility: hidden !important;
+            height: 0 !important;
+            width: 0 !important;
+            position: absolute !important;
+        }
+    </style>
+
+<!--modal shop-->
+<!-- Quick View Content Start -->
+<div class="main-product-thumbnail quick-thumb-content">
+  <div class="container">
+    <!-- The Modal -->
+    <div class="modal fade" id="product-window" tabindex="-1" role="dialog" aria-labelledby="product-window-label" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <!-- Modal Body -->
+          <div class="modal-body">
+            <div class="row">
+
+              <!-- Immagini -->
+              <div class="col-lg-5 col-md-6 mb-all-40">
+                <div class="tab-content">
+                  <!-- questi pannelli saranno popolati dinamicamente -->
+                </div>
+                <div class="product-thumbnail">
+                  <div class="thumb-menu owl-carousel nav tabs-area" role="tablist">
+                    <!-- queste voci saranno popolate via JS -->
+                  </div>
+                </div>
+              </div>
+
+              <!-- Dettagli -->
+              <div class="col-lg-7 col-md-6">
+                <div class="thubnail-desc fix">
+                  <h3 class="product-header"></h3>
+
+                  <!-- nuovo blocco info -->
+                <ul class="product-meta list-unstyled mb-8">
+                    <li class="mb-2"><span class="product-type"></span><span class="product-category ms-2"></span></li>
+                    <li class="mb-2"><strong>Brand:</strong> <span class="product-brand"></span></li>
+                    <li class="mb-8"><strong>Olfactory Family:</strong> <span class="product-family"></span></li>
+                </ul>
+
+                <p class="pro-desc-details"></p>
+
+                  <div class="pro-thumb-price mt-25">
+                    <p class="d-flex align-items-center">
+                      <span class="price fw-bold"></span>
+                    </p>
+                  </div>
+                  
+                  <div class="product-size mtb-30 clearfix">
+                    <label>Size</label>
+                    <div class="select-wrapper">
+                    <select id="variant-select" class="form-control"></select>
+                    </div>
+                  </div>
+                  <div class="quatity-stock">
+                    <label>Quantity</label>
+                    <ul class="d-flex flex-wrap align-items-center">
+                      <li class="box-quantity">
+                        <input class="quantity form-control" id="quantity" type="number" min="1" value="1">
+                      </li>
+                      <li>
+                        <button id="add-to-cart-btn" class="pro-cart">add to cart</button>
+                      </li>
+                      <li class="pro-ref">
+                        <p>
+                          <span class="in-stock"></span>
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <!-- fine Modal Body -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Quick View Content End -->
+
+    <!-- Il mio JS che popola il modal (e document-ready) -->
+    <script src="dtml/hator/assets/js/modal-product.js"></script>
+    <script src="dtml/hator/assets/js/carrello.js"></script>
+    <!--js per productdetails-->
+    <script src="dtml/hator/assets/js/product-page.js"></script>
+    <!--js per pagamento-->
+    <script src="dtml/hator/assets/js/pagamento.js"></script>
+
+</body>
+</html>

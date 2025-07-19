@@ -96,10 +96,11 @@
         </div>
         <!-- coupon-area end -->
         <!-- checkout-area start -->
-        <div class="checkout-area white-bg pb-90">
-            <div class="container">
-                <div class="row">
-                    <form method="POST" action="index.php?page=chekout">
+        <form method="POST" action="index.php?page=checkout">
+            <div class="checkout-area white-bg pb-90">
+                <div class="error-message-login"><[check_error]></div>
+                <div class="container">
+                    <div class="row">                    
                         <div class="col-lg-6 col-md-6">
                             <div class="checkbox-form mb-sm-40">
                                 <h3>Billing Details</h3>
@@ -107,7 +108,7 @@
                                     <div class="col-md-12">
                                         <div class="country-select clearfix mb-30">
                                             <label>Country <span class="required">*</span></label>
-                                            <select class="wide" >
+                                            <select class="wide" id="country" name="country">
                                                 <option value="italy">Italy</option>
                                                 <option value="united-states">United States</option>
                                                 <option value="united-kingdom">United Kingdom</option>
@@ -121,60 +122,60 @@
                                     <div class="col-md-6">
                                         <div class="checkout-form-list mb-sm-30">
                                             <label>First Name <span class="required">*</span></label>
-                                            <input type="text" placeholder="" />
+                                            <input type="text" id="first_name" name="first_name" maxlength="50" placeholder="" value=<[first_name]> >
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="checkout-form-list mb-30">
                                             <label>Last Name <span class="required">*</span></label>
-                                            <input type="text" placeholder="" />
+                                            <input type="text" id="last_name" name="last_name" maxlength="50" placeholder="" value=<[last_name]> >
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+                                    <!--<div class="col-md-12">
                                         <div class="checkout-form-list mb-30">
                                             <label>Company Name</label>
-                                            <input type="text" placeholder="" />
+                                            <input type="text" id="company_name" name="company_name" placeholder="" />
                                         </div>
-                                    </div>
+                                    </div>-->
                                     <div class="col-md-12">
                                         <div class="checkout-form-list">
                                             <label>Address <span class="required">*</span></label>
-                                            <input type="text" placeholder="Street address" />
+                                            <input type="text" id="address_street" name="address_street" maxlength="50" placeholder="Street address" value = <[address_street]> >
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="checkout-form-list mtb-30">
-                                            <input type="text" placeholder="Apartment, suite, unit etc. (optional)" />
+                                            <input type="text" id="address_dettail" name="address_dettail" maxlength="25" placeholder="Apartment, suite, unit etc. (optional)" value = <[address_dettail]> >
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="checkout-form-list mb-30">
                                             <label>Town / City <span class="required">*</span></label>
-                                            <input type="text" placeholder="Town / City" />
+                                            <input type="text" id="town" name="town" maxlength="50" placeholder="Town / City" value = <[town]> >
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="checkout-form-list mb-30">
                                             <label>State / County <span class="required">*</span></label>
-                                            <input type="text" placeholder="" />
+                                            <input type="text" id="state" name="state" maxlength="30" placeholder="" value = <[state]> >
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="checkout-form-list mb-30">
                                             <label>Postcode / Zip <span class="required">*</span></label>
-                                            <input type="text" placeholder="Postcode / Zip" />
+                                            <input type="text" id="postcode" name="postcode" maxlength="9" placeholder="Postcode / Zip" value = <[postcode]> >
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="checkout-form-list mb-30">
                                             <label>Email Address <span class="required">*</span></label>
-                                            <input type="email" placeholder="" />
+                                            <input type="email" id="email" name="email" maxlength="70" placeholder="" value=<[email]> >
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="checkout-form-list mb-30">
                                             <label>Phone <span class="required">*</span></label>
-                                            <input type="text" placeholder="Postcode / Zip" />
+                                            <input type="text" id="phone" name="phone" maxlength="11" placeholder="+39" value = <[phone]> >
                                         </div>
                                     </div>
                                     <!--<div class="col-md-12">
@@ -194,7 +195,7 @@
                                     <div class="ship-different-title">
                                         <h3>
                                             <label>Ship to a different address?</label>
-                                            <input id="ship-box" type="checkbox" />
+                                            <input id="ship-box" name="ship-box" type="checkbox" >
                                         </h3>
                                     </div>
                                     <div id="ship-box-info">
@@ -202,162 +203,167 @@
                                             <div class="col-md-12">
                                                 <div class="country-select clearfix mb-30">
                                                     <label>Country <span class="required">*</span></label>
-                                                    <select class="wide">
+                                                    <select class="wide" id="country2" name="country2">
                                                         <option value="italy">Italy</option>
                                                         <option value="united-states">United States</option>
                                                         <option value="united-kingdom">United Kingdom</option>
                                                         <option value="germany">Germany</option>
                                                         <option value="france">France</option>
                                                         <option value="spain">Spain</option>
-                                                    
+                                                        
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="checkout-form-list mb-30">
+                                                <div class="checkout-form-list mb-sm-30">
                                                     <label>First Name <span class="required">*</span></label>
-                                                    <input type="text" placeholder="" />
+                                                    <input type="text" id="first_name2" name="first_name2" maxlength="50" placeholder="" value = <[first_name2]>>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="checkout-form-list mb-30">
                                                     <label>Last Name <span class="required">*</span></label>
-                                                    <input type="text" placeholder="" />
+                                                    <input type="text" id="last_name2" name="last_name2" maxlength="50" placeholder="" value = <[last_name2]>>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
-                                                <div class="checkout-form-list mb-30">
-                                                    <label>Company Name</label>
-                                                    <input type="text" placeholder="" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="checkout-form-list mb-30">
+                                                <div class="checkout-form-list">
                                                     <label>Address <span class="required">*</span></label>
-                                                    <input type="text" placeholder="Street address" />
+                                                    <input type="text" id="address_street2" name="address_street2" maxlength="50" placeholder="Street address" value = <[address_street2]>>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
-                                                <div class="checkout-form-list mb-30">
-                                                    <input type="text" placeholder="Apartment, suite, unit etc. (optional)" />
+                                                <div class="checkout-form-list mtb-30">
+                                                    <input type="text" id="address_dettail2" name="address_dettail2" maxlength="25" placeholder="Apartment, suite, unit etc. (optional)" value = <[address_dettail2]>>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="checkout-form-list mb-30">
                                                     <label>Town / City <span class="required">*</span></label>
-                                                    <input type="text" placeholder="Town / City" />
+                                                    <input type="text" id="town2" name="town2" maxlength="50" placeholder="Town / City" value = <[town2]>>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="checkout-form-list mb-30">
                                                     <label>State / County <span class="required">*</span></label>
-                                                    <input type="text" placeholder="" />
+                                                    <input type="text" id="state2" name="state2" maxlength="30" placeholder="" value = <[state2]>>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="checkout-form-list mb-30">
                                                     <label>Postcode / Zip <span class="required">*</span></label>
-                                                    <input type="text" placeholder="Postcode / Zip" />
+                                                    <input type="text" id="postcode2" name="postcode2" maxlength="9" placeholder="Postcode / Zip" value = <[postcode2]>>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="checkout-form-list mb-30">
                                                     <label>Email Address <span class="required">*</span></label>
-                                                    <input type="email" placeholder="" />
+                                                    <input type="email" id="email2" name="email2" maxlength="70" placeholder="" value = <[email2]>>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="checkout-form-list mb-30">
                                                     <label>Phone <span class="required">*</span></label>
-                                                    <input type="text" placeholder="Postcode / Zip" />
+                                                    <input type="text" id="phone2" name="phone2" maxlength="11" placeholder="+39" value = <[phone2]> >
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="order-notes">
                                             <div class="checkout-form-list">
                                                 <label>Order Notes</label>
-                                                <textarea id="checkout-mess" cols="30" rows="10" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                                                <textarea id="checkout-mess" name="checkout-mess" cols="30" rows="10" placeholder="Notes about your order, e.g. special notes for delivery."><[checkout-mess]></textarea>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </form>
-                    
-                    <div class="col-lg-6 col-md-6">
-                        <div class="your-order">
-                            <h3>Your order</h3>
-                            <div class="your-order-table table-responsive">
+                                        
+                        <div class="col-lg-6 col-md-6">
+                            <div class="your-order">
+                                <h3>Your order</h3>
+                                <div class="your-order-table table-responsive">
+                                    
+                                        <[checklist::checklist library="checker"]>
+                                    
+                                </div>
                                 
-                                    <[checklist::checklist library="form"]>
-                                
-                            </div>
-                            
-                            <div class="payment-method">
-                                <div id="accordion">
-                                    <div class="card">
-                                        <div class="card-header" id="headingone">
-                                            <h5 class="mb-0">
-                                                <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                    Direct Bank Transfer
-                                                </button>
-                                            </h5>
-                                        </div>
+                                <div class="payment-method">
+                                    <div id="accordion">
+                                        <div class="card">
+                                            <div class="card-header" id="headingone">
+                                                <h5 class="mb-0">
+                                                    <button type="button" class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                        Direct Bank Transfer
+                                                    </button>
+                                                </h5>
+                                            </div>
 
-                                        <div id="collapseOne" class="collapse show" aria-labelledby="headingone" data-bs-parent="#accordion">
-                                            <div class="card-body">
-                                                <p>Make your payment directly into our bank account. Please use your
-                                                    Order ID as the payment reference. Your order won’t be shipped until
-                                                    the funds have cleared in our account.</p>
+                                            <div id="collapseOne" class="collapse show" aria-labelledby="headingone" data-bs-parent="#accordion">
+                                                <div class="card-body">
+                                                    <p>Make your payment directly into our bank account. Please use your
+                                                        Order ID as the payment reference. Your order won’t be shipped until
+                                                        the funds have cleared in our account.</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-header" id="headingtwo">
-                                            <h5 class="mb-0">
-                                                <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                    Cheque Payment
-                                                </button>
-                                            </h5>
-                                        </div>
-                                        <div id="collapseTwo" class="collapse" aria-labelledby="headingtwo" data-bs-parent="#accordion">
-                                            <div class="card-body">
-                                                <p>Please send your cheque to Univaq, Via Vetoio, 1, 67100 Coppito AQ, Italy. Please remember to
-                                                    include your Order ID in the notes section of the cheque.</p>
+                                        <div class="card">
+                                            <div class="card-header" id="headingtwo">
+                                                <h5 class="mb-0">
+                                                    <button type="button" class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                        Cheque Payment
+                                                    </button>
+                                                </h5>
+                                            </div>
+                                            <div id="collapseTwo" class="collapse" aria-labelledby="headingtwo" data-bs-parent="#accordion">
+                                                <div class="card-body">
+                                                    <p>Please send your cheque to Univaq, Via Vetoio, 1, 67100 Coppito AQ, Italy. Please remember to
+                                                        include your Order ID in the notes section of the cheque.Your order won’t be shipped until the cheque has been confirmed</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-header" id="headingthree">
-                                            <h5 class="mb-0">
-                                                <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                    PayPal
-                                                </button>
-                                            </h5>
-                                        </div>
-                                        <div id="collapseThree" class="collapse" aria-labelledby="headingthree" data-bs-parent="#accordion">
-                                            <div class="card-body">
-                                                <p>Pay via PayPal; you can pay with your credit card if you don’t have a
-                                                    PayPal account.</p>
+                                        <div class="card">
+                                            <div class="card-header" id="headingthree">
+                                                <h5 class="mb-0">
+                                                    <button type="button" class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                        PayPal
+                                                    </button>
+                                                </h5>
+                                            </div>
+                                            <div id="collapseThree" class="collapse" aria-labelledby="headingthree" data-bs-parent="#accordion">
+                                                <div class="card-body">
+                                                    <p>Pay via PayPal; you can pay with your credit card if you don’t have a
+                                                        PayPal account.</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>                                    
+                                    <div id="tipe-of-payment" class="payment-accordion" style="margin-top: 20px;">
+                                        <div class="payment-accordion-content" style="margin-top: 20px;">
+                                            <h6 class="mb-0">Select Payment Method</h6>
+                                            <input type="radio" id="bank_transfer" name="metodo_pagamento" value="bank_transfer">
+                                            <label for="bank_transfer">Bank Transfer</label><br>
+                                            <input type="radio" id="cheque" name="metodo_pagamento" value="cheque">
+                                            <label for="cheque">Cheque</label><br>
+                                            <input type="radio" id="paypal" name="metodo_pagamento" value="paypal">
+                                            <label for="paypal">PayPal / Card</label>
+                                        </div>                                        
+                                    </div>                                    
                                 </div>
                             </div>
                         </div>
-                    </div>
-                
-            <div  class="login-details text-center mb-25" style=" padding-top:30px;"> 
-            <!-- bottone con dim in pixel checkout quadrato 
-             <button style="float: left; width: 578px;" type="submit" class="login-btn">Checkout</button> -->
-             <button style="float: left; width: 49%;" type="submit" class="login-btn">Checkout</button>
-             <!-- bottone con dim in pixel checkout tondo 
-             <div style="text-align:center; float: left; width: 44%;" type="submit"><button style="width:100%" class="pro-cart">Checkout</button></div>-->
+                    
+                <div  class="login-details text-center mb-25" style=" padding-top:30px;"> 
+                <!-- bottone con dim in pixel checkout quadrato 
+                <button style="float: left; width: 578px;" type="submit" class="login-btn">Checkout</button> -->
+                <button style="float: left; width: 49%;" type="submit" class="login-btn">Checkout</button>
+                <!-- bottone con dim in pixel checkout tondo 
+                <div style="text-align:center; float: left; width: 44%;" type="submit"><button style="width:100%" class="pro-cart">Checkout</button></div>-->
+                </div>
+                </div>
+                </div>
             </div>
-            </div>
-            </div>
-        </div>
+        </form>
        <!-- <div style="text-align:center"><button style="width:200px" class="pro-cart">add to cart</button></div> -->
        
         <!-- checkout-area end -->

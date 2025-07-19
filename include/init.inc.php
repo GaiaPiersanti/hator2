@@ -35,6 +35,8 @@ $pageTitles = [
     'account'        => 'Your Account',
     'wishlist'       => 'Your Wishlist',
     'forgot-password' => 'Forgot Password',
+    'pagamento'      => 'Payment',
+    'riepilogo'      => 'Order Summary',
     // Admin pages -----------------------
     'tab-crud'      => 'Products table',
     'buttons'       => 'Buttons',

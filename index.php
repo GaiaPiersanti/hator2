@@ -22,6 +22,8 @@ switch ($page) {
     case 'account':        require __DIR__ . "/controllers/public/account.php";        break;
     case 'forgot-password':  require __DIR__ . "/controllers/public/forgot-password.php";        break;
     case 'wishlist':       require __DIR__ . "/controllers/public/wishlist.php";       break;
+    case 'pagamento':      require __DIR__ . "/controllers/public/pagamento.php";      break;
+    case 'riepilogo':      require __DIR__ . "/controllers/public/riepilogo.php";      break;
     case '404':            require __DIR__ . "/controllers/public/404.php";            break;
     default:               require __DIR__ . "/controllers/public/home.php";           break;
 
