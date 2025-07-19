@@ -13045,4 +13045,22 @@ td.product-thumbnail > a img {
 
 
 
+.apply-btn{
+    background: #333 none repeat scroll 0 0;
+    border: none;
+    color: #fff;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 300;
+    padding: 10px 18px 8px;
+    text-transform:uppercase;
 
+}
+
+    
+
+
+.apply-btn:hover {
+    background: #c7b270;
+    color: #fff;
+}
