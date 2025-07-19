@@ -25,108 +25,35 @@
                         </form>
                     </div>
                     <!-- Price Filter Options End -->
+
+                    
                     <!-- Sidebar Categorie Start -->
-                    <div class="sidebar-categorie mb-30">
-                        <h3 class="sidebar-title">categories</h3>
-                        <ul class="sidbar-style">
-                            <li class="form-check">
-                                <input class="form-check-input" value="#" id="camera" type="checkbox">
-                                <label class="form-check-label" for="camera">Women</label>
-                            </li>
-                            <li class="form-check">
-                                <input class="form-check-input" value="#" id="GamePad" type="checkbox">
-                                <label class="form-check-label" for="GamePad">Men</label>
-                            </li>
-                            <li class="form-check">
-                                <input class="form-check-input" value="#" id="Digital" type="checkbox">
-                                <label class="form-check-label" for="Digital">Unisex</label>
-                            </li>
-                            <li class="form-check">
-                                <input class="form-check-input" value="#" id="Virtual" type="checkbox">
-                                <label class="form-check-label" for="Virtual">New Arrivals</label>
-                            </li>
-                            <li class="form-check">
-                                <input class="form-check-input" value="#" id="Virtual" type="checkbox">
-                                <label class="form-check-label" for="Virtual">Best Sellers</label>
-                            </li>
-                        </ul>
+                    <div class="sidebar-types mb-30">
+                    <h3 class="sidebar-title">Categories</h3>
+<!--APERTURA FORM--><form method="get" action="index.php?page=shop">
+                        <input type="hidden" name="page" value="shop">
+                            <[categories_filter]>
                     </div>
-                    <!-- Sidebar Categorie Start -->
-                    <!-- Product Size Start -->
-                    <div class="size mb-30">
-                        <h3 class="sidebar-title">size</h3>
-                        <ul class="size-list sidbar-style">
-                            <li class="form-check">
-                                <input class="form-check-input" value="" id="small" type="checkbox">
-                                <label class="form-check-label" for="small">50 mL</label>
-                            </li>
-                            <li class="form-check">
-                                <input class="form-check-input" value="" id="medium" type="checkbox">
-                                <label class="form-check-label" for="medium">100 mL</label>
-                            </li>
-                            <li class="form-check">
-                                <input class="form-check-input" value="" id="large" type="checkbox">
-                                <label class="form-check-label" for="large">200 mL</label>
-                        </ul>
+                    <!-- Sidebar Categorie end -->
+                    
+                    <!-- Product Type Start -->
+                    <div class="sidebar-types mb-30">
+                    <h3 class="sidebar-title">Types</h3>
+                        <input type="hidden" name="page" value="shop">
+                        <[types_filter]>
                     </div>
-                    <!-- Product Size End -->
-                    <!-- Product Color Start -->
-                    <div class="color mb-30">
-                        <h3 class="sidebar-title">Type</h3>
-                        <ul class="color-option sidbar-style">
-                            <li class="form-check">
-                                <input class="form-check-input" value="" id="eau_parfum" type="checkbox">
-                                <label class="form-check-label" for="eau_parfum">Eau De Parfum</label>
-                            </li>
-                            <li class="form-check">
-                                <input class="form-check-input" value="" id="eau_toilette" type="checkbox">
-                                <label class="form-check-label" for="eau_toilette">Eau De Toilette</label>
-                            </li>
-                            <li class="form-check">
-                                <input class="form-check-input" value="" id="eau_cologne" type="checkbox">
-                                <label class="form-check-label" for="eau_cologne">Eau De Cologne</label>
-                            </li>
-                            <li class="form-check">
-                                <input class="form-check-input" value="" id="parfum" type="checkbox">
-                                <label class="form-check-label" for="parfum">Parfum</label>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- Product Color End -->
-                    <!-- Sidebar Categorie Start -->
-                    <div class="sidebar-categorie mb-30">
-                        <h3 class="sidebar-title">Olfactory family</h3>
-                        <ul class="sidbar-style">
-                            <li class="form-check">
-                                <input class="form-check-input" value="#" type="checkbox">
-                                <label class="form-check-label">citrus</label>
-                            </li>
-                            <li class="form-check">
-                                <input class="form-check-input" value="#" type="checkbox">
-                                <label class="form-check-label">floral</label>
-                            </li>
-                            <li class="form-check">
-                                <input class="form-check-input" value="#" type="checkbox">
-                                <label class="form-check-label">woody</label>
-                            </li>
-                            <li class="form-check">
-                                <input class="form-check-input" value="#" type="checkbox">
-                                <label class="form-check-label">amber</label>
-                            </li>
-                            <li class="form-check">
-                                <input class="form-check-input" value="#" type="checkbox">
-                                <label class="form-check-label">leathers</label>
-                            </li>
-                            <li class="form-check">
-                                <input class="form-check-input" value="#" type="checkbox">
-                                <label class="form-check-label">chypre</label>
-                            </li>
-                            <li class="form-check">
-                                <input class="form-check-input" value="#" type="checkbox">
-                                <label class="form-check-label">ferns</label>
-                            </li>
-                        </ul>
-                    </div>
+                    <!-- Product Types End -->
+
+                    <!-- Sidebar Families Start -->
+                    <div class="sidebar-families mb-30">
+                    <h3 class="sidebar-title">Families</h3>
+                    
+                        <input type="hidden" name="page" value="shop">
+                        <[families_filter]>
+ <!--APPLY-->           <button type="submit" class="btn btn-sm apply-btn mt-2">Apply</button>
+<!--CHIUSURA FORM--></form>
+                    </div> <!-- Sidebar Families end-->
+
                     <!-- Sidebar Categorie Start -->
                 </div>
                 <!-- Single Banner Start -->

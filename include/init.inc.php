@@ -76,8 +76,15 @@ $pageTitles = [
     'add-variants'     => 'Add Variants',
     'modify-variants'    => 'Modify Variants',
     'delete-variants'  => 'Delete Variants',
+     //products
+     'users-list'=> 'Users list',
+     'add-user'     => 'Add User',
+     'edit-user'    => 'Edit User',
+     'delete-user'  => 'Delete User',
+    //img
+    'edit-images'  => 'Edit Images',
     
-    
+
     
     // …altri titoli…
 ];
