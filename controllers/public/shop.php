@@ -233,24 +233,25 @@ while ($row = $res->fetch_assoc()) {
     if (!isset($products[$pid])) {
         // inizializzo TUTTI i campi del prodotto
         $products[$pid] = [
-            'pid'                => $pid,
-            'slug'               => $row['slug'],
-            'name'               => $row['name'],
-            'short_description'  => $row['short_description'],
-            'long_description'   => $row['long_description'],
-            'img1_url'           => $row['img1_url'],
-            'img2_url'           => $row['img2_url'],
-            'img3_url'           => $row['img3_url'],
-            'img4_url'           => $row['img4_url'],
-            'new_arrival'        => (bool)$row['new_arrival'],
-            'best_seller'        => (bool)$row['best_seller'],
+            'pid'                 => $pid,
+            'filtered_variant_id' => $row['variant_id'],
+            'slug'                => $row['slug'],
+            'name'                => $row['name'],
+            'short_description'   => $row['short_description'],
+            'long_description'    => $row['long_description'],
+            'img1_url'            => $row['img1_url'],
+            'img2_url'            => $row['img2_url'],
+            'img3_url'            => $row['img3_url'],
+            'img4_url'            => $row['img4_url'],
+            'new_arrival'         => (bool)$row['new_arrival'],
+            'best_seller'         => (bool)$row['best_seller'],
             // i nuovi campi
-            'type_name'          => $row['type_name'],
-            'category_name'      => $row['category_name'],
-            'brand_name'         => $row['brand_name'],
-            'family_name'        => $row['family_name'],
+            'type_name'           => $row['type_name'],
+            'category_name'       => $row['category_name'],
+            'brand_name'          => $row['brand_name'],
+            'family_name'         => $row['family_name'],
             // array per le varianti
-            'variants'           => []
+            'variants'            => []
         ];
     }
     // aggiungo la variante corrente
@@ -263,7 +264,7 @@ while ($row = $res->fetch_assoc()) {
 }
 $products = array_values($products);
 
-// fetch full list of variants for each product for modal
+// fetch full list of variants for each product for the modal
 $allVariants = [];
 $productIds = array_column($products, 'pid');
 if (!empty($productIds)) {
@@ -278,10 +279,16 @@ if (!empty($productIds)) {
         $allVariants[$vr['product_id']][] = $vr;
     }
 }
-// override each product's variants with the full list
+// reorder variants: filtered variant first, then all others
 foreach ($products as &$prod) {
-    $pid = $prod['pid'];
-    $prod['variants'] = $allVariants[$pid] ?? [];
+    $filteredId = $prod['filtered_variant_id'];
+    $variants = $allVariants[$prod['pid']] ?? [];
+    usort($variants, function($a, $b) use ($filteredId) {
+        if ($a['variant_id'] == $filteredId) return -1;
+        if ($b['variant_id'] == $filteredId) return 1;
+        return 0;
+    });
+    $prod['variants'] = $variants;
 }
 unset($prod);
 
