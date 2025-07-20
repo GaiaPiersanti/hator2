@@ -54,6 +54,29 @@ $selectedMax = ($pm !== '' && is_numeric($pm))
                ? floatval($pm)
                : $globalMax;
 
+// 4) Sort logic
+$allowedSort = ['relevance','name_asc','name_desc','price_asc','price_desc'];
+$selectedSort = $_GET['sort'] ?? 'relevance';
+if (!in_array($selectedSort, $allowedSort)) {
+    $selectedSort = 'relevance';
+}
+switch ($selectedSort) {
+    case 'name_asc':
+        $orderBySql = 'p.name ASC';
+        break;
+    case 'name_desc':
+        $orderBySql = 'p.name DESC';
+        break;
+    case 'price_asc':
+        $orderBySql = 'pv.price ASC';
+        break;
+    case 'price_desc':
+        $orderBySql = 'pv.price DESC';
+        break;
+    default:
+        $orderBySql = 'p.id ASC';
+}
+
 // 3) Funzione helper per montare l’HTML della lista dei types
 function buildTypesFilter(array $types, array $selectedTypes): string {
     $html = '<ul class="sidbar-style">';
@@ -196,7 +219,7 @@ $sql = "
           AND price BETWEEN {$selectedMin} AND {$selectedMax}
      )
       WHERE " . implode(' AND ', $where) . "
-  ORDER BY p.id, pv.size_ml
+  ORDER BY {$orderBySql}
 ";
 /////filtri fine
 
@@ -265,7 +288,7 @@ $res = $conn->query("
           AND price BETWEEN {$selectedMin} AND {$selectedMax}
      )
       WHERE {$whereSql}
-      ORDER BY p.id
+      ORDER BY {$orderBySql}
 ");
 while ($row = $res->fetch_assoc()) {
     $products2[] = $row;
@@ -301,6 +324,23 @@ $body->setContent('families_filter', buildFamiliesFilter($families, $selectedFam
 $body->setContent('categories_filter',
     buildCategoriesFilter($categories, $selectedCategories, $selectedNewArrival, $selectedBestSeller)
 );
+// build sort options for the toolbar
+function buildSortOptions(string $selectedSort): string {
+    $options = [
+        'relevance'  => 'Relevance',
+        'name_asc'   => 'Name, A to Z',
+        'name_desc'  => 'Name, Z to A',
+        'price_asc'  => 'Price low to high',
+        'price_desc' => 'Price high to low',
+    ];
+    $html = '';
+    foreach ($options as $value => $label) {
+        $sel = ($selectedSort === $value) ? ' selected' : '';
+        $html .= "<option value=\"{$value}\"{$sel}>{$label}</option>";
+    }
+    return $html;
+}
+$body->setContent('sort_options', buildSortOptions($selectedSort));
 
 $body->setContent("product_cards",  $cardsHtml);
 $body->setContent("product_cards2", $cards2Html);

@@ -53,7 +53,7 @@
                     
                         <[families_filter]>
  <!--APPLY-->           <button type="submit" class="btn btn-sm apply-btn mt-20">Apply</button>
-<!--CHIUSURA FORM--></form>
+<!--CHIUSURA FORM-->                    
                     </div> <!-- Sidebar Families end-->
 
                     <!-- Sidebar Categorie Start -->
@@ -79,20 +79,15 @@
                         </ul>
                         <span class="show-items">There are <[product_count]> products.</span>
                     </div>
-                    <!-- Toolbar Short Area Start -->
                     <div class="main-toolbar-sorter clearfix">
                         <div class="toolbar-sorter d-md-flex align-items-center">
                             <label>Sort By:</label>
-                            <select class="sorter wide">
-                                <option value="Position">Relevance</option>
-                                <option value="Product Name">Name, A to Z</option>
-                                <option value="Product Name">Name, Z to A</option>
-                                <option value="Price">Price low to high</option>
-                                <option value="Price">Price high to low</option>
+                            <select name="sort" id="sorter" class="sorter wide" onchange="this.form.submit()">
+                                <[sort_options]>
                             </select>
                         </div>
                     </div>
-                    <!-- Toolbar Short Area End -->
+                </form>
                 </div>
 
 
@@ -146,5 +141,4 @@
         <!-- Row End -->
     </div>
     <!-- Container End -->
-</div>
 <!-- Shop Page End -->
