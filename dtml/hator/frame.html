@@ -507,6 +507,9 @@ Contiene:
           $("input[name=price_max]").val(ui.values[1]);
         }
       });
+      // se non sposta slider input hidden ha il valore corretto
+        $("input[name=price_min]").val(selMin);
+        $("input[name=price_max]").val(selMax);
 
       // inizializzo la casella di testo
       $("#amount").val("€" + selMin.toFixed(2) + " - €" + selMax.toFixed(2));

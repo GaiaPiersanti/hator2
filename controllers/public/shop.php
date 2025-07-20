@@ -45,8 +45,14 @@ $priceRes = $conn->query("
 $priceRow      = $priceRes->fetch_assoc();
 $globalMin     = (float)$priceRow['min_price'];
 $globalMax     = (float)$priceRow['max_price'];
-$selectedMin   = isset($_GET['price_min'])   ? floatval($_GET['price_min'])   : $globalMin;
-$selectedMax   = isset($_GET['price_max'])   ? floatval($_GET['price_max'])   : $globalMax;
+$pm = $_GET['price_min'] ?? '';
+$selectedMin = ($pm !== '' && is_numeric($pm))
+               ? floatval($pm)
+               : $globalMin;
+$pm = $_GET['price_max'] ?? '';
+$selectedMax = ($pm !== '' && is_numeric($pm))
+               ? floatval($pm)
+               : $globalMax;
 
 // 3) Funzione helper per montare l’HTML della lista dei types
 function buildTypesFilter(array $types, array $selectedTypes): string {
@@ -237,11 +243,29 @@ $products = array_values($products);
 //$products = array_values($products);
 //inizio product 2 (list view)
 $products2 = [];
+// build WHERE clause using existing filters
+$whereSql = implode(' AND ', $where);
 $res = $conn->query("
-    SELECT p.slug,p.img1_url,p.name,pv.price,p.new_arrival,p.best_seller,p.short_description,pv.id AS variant_id
+    SELECT 
+      p.slug,
+      p.img1_url,
+      p.name,
+      pv.price,
+      p.new_arrival,
+      p.best_seller,
+      p.short_description,
+      pv.id AS variant_id
     FROM products p
-    JOIN product_variants pv ON pv.product_id = p.id
-    GROUP BY p.id
+    JOIN product_variants pv 
+      ON pv.product_id = p.id
+     AND pv.price = (
+       SELECT MIN(price)
+         FROM product_variants
+        WHERE product_id = p.id
+          AND price BETWEEN {$selectedMin} AND {$selectedMax}
+     )
+      WHERE {$whereSql}
+      ORDER BY p.id
 ");
 while ($row = $res->fetch_assoc()) {
     $products2[] = $row;
