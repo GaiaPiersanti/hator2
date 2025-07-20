@@ -12718,7 +12718,15 @@ a.shipping-calculator-button:hover {
   object-fit: contain;/* opzionale: assicura che semai l’immagine  
                          deve “letterbox” piuttosto che ritagliare */
 }
-
+.pro-img2 {
+      position: relative;
+  }
+.pro-img2 {
+      position: relative;
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+  }
 /* di default nascondi tutti gli invalid-feedback */
 .invalid-feedback {
   display: none;
