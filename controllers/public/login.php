@@ -46,12 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
 //error_log("DEBUG SESSION after login: " . print_r($_SESSION, true));
 
 
-        // popola $_SESSION['services'] per i guard
-        $_SESSION['services'] = [
-            'index.php',      
-            'logout.php',
-    // …altri controller riservati… in modo che auth.inc.php sappia esattamente quali pagine lasciare vedere a un utente autenticato.
-];
+      
     if (isset($_SESSION['cart'])) {
             // Se l'utente ha un carrello in sessione, lo sposto nel database
             $userId = $_SESSION['user']['user_id'];            

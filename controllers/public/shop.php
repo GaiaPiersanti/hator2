@@ -233,6 +233,7 @@ while ($row = $res->fetch_assoc()) {
     if (!isset($products[$pid])) {
         // inizializzo TUTTI i campi del prodotto
         $products[$pid] = [
+            'pid'                => $pid,
             'slug'               => $row['slug'],
             'name'               => $row['name'],
             'short_description'  => $row['short_description'],
@@ -262,8 +263,28 @@ while ($row = $res->fetch_assoc()) {
 }
 $products = array_values($products);
 
-// Normalizziamo gli indici in un array 0-based:
-//$products = array_values($products);
+// fetch full list of variants for each product for modal
+$allVariants = [];
+$productIds = array_column($products, 'pid');
+if (!empty($productIds)) {
+    $ids = implode(',', array_map('intval', $productIds));
+    $varRes = $conn->query("
+        SELECT id AS variant_id, product_id, size_ml, price, stock
+          FROM product_variants
+         WHERE product_id IN ({$ids})
+         ORDER BY size_ml
+    ");
+    while ($vr = $varRes->fetch_assoc()) {
+        $allVariants[$vr['product_id']][] = $vr;
+    }
+}
+// override each product's variants with the full list
+foreach ($products as &$prod) {
+    $pid = $prod['pid'];
+    $prod['variants'] = $allVariants[$pid] ?? [];
+}
+unset($prod);
+
 //inizio product 2 (list view)
 $products2 = [];
 // build WHERE clause using existing filters
