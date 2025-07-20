@@ -13064,3 +13064,19 @@ td.product-thumbnail > a img {
     background: #c7b270;
     color: #fff;
 }
+
+
+
+/* 1) Assicurati che il container sia relativo */
+/* FIX jQuery UI price slider interactivity */
+  #slider-range.ui-slider {
+    position: relative !important;
+  }
+  #slider-range .ui-slider-handle {
+    pointer-events: auto !important;
+    z-index: 1000 !important;
+    touch-action: none !important;
+  }
+  #slider-range .ui-slider-range {
+    pointer-events: none !important;
+  }

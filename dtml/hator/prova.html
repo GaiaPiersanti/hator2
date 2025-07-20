@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Test Slider jQuery UI</title>
+
+  <!-- jQuery UI core CSS -->
+  <link
+    rel="stylesheet"
+    href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"
+  >
+
+  <style>
+    /* Solo per avere un minimo di impaginazione */
+    body {
+      font-family: sans-serif;
+      padding: 2em;
+    }
+    #slider-range {
+      width: 80%;
+      margin: 1em 0;
+    }
+    #amount {
+      border: 0;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Range Slider Demo</h1>
+
+  <div id="slider-range"></div>
+  <p>
+    Selezionato: <input type="text" id="amount" readonly>
+  </p>
+
+  <!-- jQuery core -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- jQuery UI -->
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+
+  <script>
+    $(function() {
+      // settaggi di prova: min=0, max=100, selezione iniziale [10,90]
+      $("#slider-range").slider({
+        range: true,
+        min: 0,
+        max: 100,
+        values: [10, 90],
+        slide: function(event, ui) {
+          $("#amount").val("€ " + ui.values[0] + " - € " + ui.values[1]);
+        }
+      });
+
+      // inizializza il campo di testo con i valori iniziali
+      $("#amount").val(
+        "€ " +
+        $("#slider-range").slider("values", 0) +
+        " - € " +
+        $("#slider-range").slider("values", 1)
+      );
+    });
+  </script>
+</body>
+</html>

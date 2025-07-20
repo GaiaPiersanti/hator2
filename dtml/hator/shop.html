@@ -16,30 +16,33 @@
             <!-- Sidebar Shopping Option Start -->
             <div class="col-lg-3 order-2 order-lg-1 mt-all-40">
                 <div class="sidebar shop-sidebar">
+    <!--APERTURA FORM--><form method="get" action="index.php?page=shop">
+                        <input type="hidden" name="page" value="shop">
                     <!-- Price Filter Options Start -->
                     <div class="search-filter mb-30">
-                        <h3 class="sidebar-title">filter by price</h3>
-                        <form action="#" class="slider-sidebar">
-                            <div id="slider-range"></div>
-                            <input type="text" id="amount" class="amount-range" readonly>
-                        </form>
+                    <h3 class="sidebar-title">filter by price</h3>
+                    <div id="slider-range"></div>
+                    <input type="text" id="amount" class="amount-range" readonly>
+                    <!-- campi nascosti per GET -->
+                    <input type="hidden" name="price_min" value="<[selected_min]>">
+                    <input type="hidden" name="price_max" value="<[selected_max]>">
                     </div>
-                    <!-- Price Filter Options End -->
+
 
                     
+                    <!-- Price Filter Options End -->
+
+
                     <!-- Sidebar Categorie Start -->
                     <div class="sidebar-types mb-30">
                     <h3 class="sidebar-title">Categories</h3>
-<!--APERTURA FORM--><form method="get" action="index.php?page=shop">
-                        <input type="hidden" name="page" value="shop">
-                            <[categories_filter]>
+                        <[categories_filter]>
                     </div>
                     <!-- Sidebar Categorie end -->
                     
                     <!-- Product Type Start -->
                     <div class="sidebar-types mb-30">
                     <h3 class="sidebar-title">Types</h3>
-                        <input type="hidden" name="page" value="shop">
                         <[types_filter]>
                     </div>
                     <!-- Product Types End -->
@@ -48,7 +51,6 @@
                     <div class="sidebar-families mb-30">
                     <h3 class="sidebar-title">Families</h3>
                     
-                        <input type="hidden" name="page" value="shop">
                         <[families_filter]>
  <!--APPLY-->           <button type="submit" class="btn btn-sm apply-btn mt-2">Apply</button>
 <!--CHIUSURA FORM--></form>
@@ -146,4 +148,3 @@
     <!-- Container End -->
 </div>
 <!-- Shop Page End -->
-

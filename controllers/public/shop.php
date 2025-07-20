@@ -1,5 +1,20 @@
 <?php
 ////////////////////////gestione filtri
+// 0) Calcola prezzo minimo e massimo tra tutte le varianti
+$priceRes = $conn->query(
+  "SELECT 
+     MIN(pv.price) AS min_price, 
+     MAX(pv.price) AS max_price 
+   FROM product_variants pv"
+);
+$priceRow     = $priceRes->fetch_assoc();
+$minPrice     = (float)$priceRow['min_price'];
+$maxPrice     = (float)$priceRow['max_price'];
+
+// 0b) Valori selezionati (GET o di default)
+$selMin = isset($_GET['price_min']) ? (float)$_GET['price_min'] : $minPrice;
+$selMax = isset($_GET['price_max']) ? (float)$_GET['price_max'] : $maxPrice;
+
 // 1) Carico tutti i tipi
 $typeRes = $conn->query("SELECT id, name FROM types ORDER BY name");
 $types   = $typeRes->fetch_all(MYSQLI_ASSOC);
@@ -17,9 +32,21 @@ $selectedTypes = $_GET['types'] ?? [];
 // 2b) families
 $selectedFamilies = $_GET['families'] ?? [];
 // 2c) GET per categories e flags
+
 $selectedCategories    = $_GET['categories']    ?? [];
 $selectedNewArrival    = isset($_GET['new_arrival']);
 $selectedBestSeller    = isset($_GET['best_seller']);
+
+// Price filter: global min/max and selected range
+$priceRes = $conn->query("
+  SELECT MIN(price) AS min_price, MAX(price) AS max_price
+    FROM product_variants
+");
+$priceRow      = $priceRes->fetch_assoc();
+$globalMin     = (float)$priceRow['min_price'];
+$globalMax     = (float)$priceRow['max_price'];
+$selectedMin   = isset($_GET['price_min'])   ? floatval($_GET['price_min'])   : $globalMin;
+$selectedMax   = isset($_GET['price_max'])   ? floatval($_GET['price_max'])   : $globalMax;
 
 // 3) Funzione helper per montare l’HTML della lista dei types
 function buildTypesFilter(array $types, array $selectedTypes): string {
@@ -117,6 +144,7 @@ if (!empty($selectedCategories)) {
     $in = implode(',', array_map('intval', $selectedCategories));
     $where[] = "p.category_id IN ({$in})";
 }
+
 if ($selectedNewArrival) {
     $where[] = "p.new_arrival = 1";
 }
@@ -152,45 +180,20 @@ $sql = "
     JOIN categories c  ON c.id = p.category_id
     JOIN brands     b  ON b.id = p.brand_id
     JOIN families   f  ON f.id = p.family_id
+    -- variante con prezzo minore
     JOIN product_variants pv 
       ON pv.product_id = p.id
+     AND pv.price = (
+       SELECT MIN(price)
+         FROM product_variants
+        WHERE product_id = p.id
+          AND price BETWEEN {$selectedMin} AND {$selectedMax}
+     )
       WHERE " . implode(' AND ', $where) . "
   ORDER BY p.id, pv.size_ml
 ";
 /////filtri fine
-// 3) Carico prodotti + tutte le loro varianti e raggruppo per prodotto
-// $sql = "
-//   SELECT 
-//     p.id               AS pid,
-//     p.slug,
-//     p.name,
-//     p.short_description,
-//     p.long_description,
-//     p.img1_url, 
-//     p.img2_url, 
-//     p.img3_url, 
-//     p.img4_url,
-//     p.new_arrival,
-//     p.best_seller,
-//     -- join per leggere i nomi di type, category, brand, family
-//     t.name             AS type_name,
-//     c.name             AS category_name,
-//     b.name             AS brand_name,
-//     f.name             AS family_name,
-//     -- campi delle varianti
-//     pv.id              AS variant_id,
-//     pv.size_ml,
-//     pv.price,
-//     pv.stock
-//   FROM products p
-//     JOIN types      t  ON t.id = p.type_id
-//     JOIN categories c  ON c.id = p.category_id
-//     JOIN brands     b  ON b.id = p.brand_id
-//     JOIN families   f  ON f.id = p.family_id
-//     JOIN product_variants pv 
-//       ON pv.product_id = p.id
-//   ORDER BY p.id, pv.size_ml
-// ";
+
 
 $res = $conn->query($sql);
 
@@ -259,8 +262,8 @@ foreach ($products2 as $prod2) {
     $cards2Html .= $prodLib->card2('card', $prod2, []);
 }
 
-
-
+//$products array con tutti i dati del prodotto lo passo alla view
+$productJson = json_encode($products, JSON_HEX_TAG|JSON_HEX_APOS|JSON_HEX_QUOT);
 
 // 4) Istanzio il sotto‐template per la pagina shop
 $body = new Template("dtml/hator/shop");
@@ -278,7 +281,18 @@ $body->setContent('categories_filter',
 $body->setContent("product_cards",  $cardsHtml);
 $body->setContent("product_cards2", $cards2Html);
 // 3) Calcolo il numero di prodotti
+// 3) Calcolo il numero di prodotti
 $body->setContent("product_count",  count($products));
+// Pass price slider values to frame template
+$main->setContent("selected_min", number_format($selectedMin, 2, '.', ''));
+$main->setContent("selected_max", number_format($selectedMax, 2, '.', ''));
+$main->setContent("global_min",   number_format($globalMin,   2, '.', ''));
+$main->setContent("global_max",   number_format($globalMax,   2, '.', ''));
+// pass min_price/max_price for slider JS
+$main->setContent("min_price", number_format($globalMin, 2, '.', ''));
+$main->setContent("max_price", number_format($globalMax, 2, '.', ''));
+
+$main->setContent("productJson", $productJson);
 // 6) Inietto e chiudo
 $main->setContent("body", $body->get());
 $main->close();
