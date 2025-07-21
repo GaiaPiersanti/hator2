@@ -1,0 +1,33 @@
+<div class="container-fluid">
+    <h1 class="h3 mb-4 text-gray-800">Create New Group</h1>
+  
+    <form method="post" action="admin.php?page=add-group">
+      <input type="hidden" name="step" value="1">
+      <div class="form-group">
+        <label for="name">Group Name</label>
+        <input type="text"
+               id="name"
+               name="name"
+               class="form-control <[nameErrorClass]>"
+               placeholder="Enter group name"
+               value="<[name]>">
+  
+        <!-- INIZIO CHECKBOX -->
+        <div class="form-group">
+          <label>Assign Services</label>
+          <div>
+            <[servicesCheckboxes]>
+          </div>
+        </div>
+        <!-- FINE CHECKBOX -->
+  
+        <div class="invalid-feedback">
+          <[nameError]>
+        </div>
+      </div>
+  
+      <button type="submit" class="btn btn-primary">Create</button>
+      <a href="admin.php?page=groups-list" class="btn btn-secondary">Cancel</a>
+    </form>
+  </div>
+  

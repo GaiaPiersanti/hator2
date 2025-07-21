@@ -1,0 +1,37 @@
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Groups List</h1>
+    <p class="mb-4">Click on the buttons below to manage the groups. Note that the delete option cannot be undone.</p>
+    
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Groups</h6>
+            <a href="admin.php?page=add-group" class="btn btn-primary btn-icon-split btn-sm float-right">
+                <span class="icon text-white-50">
+                    <i class="fas fa-plus fa-fw"></i>
+                </span>
+                <span class="text">Add a group</span>
+            </a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <[groups_rows]>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.container-fluid -->

@@ -1,0 +1,112 @@
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2>Add Variant for "<[productName]>"</h2>
+    </div>
+  
+    <form method="post" action="admin.php?page=add-variants&product_id=<[productId]>">
+      <input type="hidden" name="step" value="1">
+  
+      <h5>Variants</h5>
+      <div id="variants-container">
+        <div class="variant-block mb-4" data-index="0">
+          <h6>Variant #1</h6>
+  
+          <div class="form-group">
+            <label for="variants[0][size_ml]">Size (ml)</label>
+            <input type="number"
+                   id="variants[0][size_ml]"
+                   name="variants[0][size_ml]"
+                   class="form-control"
+                   min="1">
+          </div>
+  
+          <div class="form-group">
+            <label for="variants[0][price]">Price</label>
+            <input type="number"
+                   step="0.01"
+                   id="variants[0][price]"
+                   name="variants[0][price]"
+                   class="form-control">
+          </div>
+  
+          <div class="form-group">
+            <label>Currency</label><br>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input"
+                     type="radio"
+                     name="variants[0][currency]"
+                     id="currency0EUR"
+                     value="EUR"
+                     checked>
+              <label class="form-check-label" for="currency0EUR">EUR</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input"
+                     type="radio"
+                     name="variants[0][currency]"
+                     id="currency0USD"
+                     value="USD">
+              <label class="form-check-label" for="currency0USD">USD</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input"
+                     type="radio"
+                     name="variants[0][currency]"
+                     id="currency0GBP"
+                     value="GBP">
+              <label class="form-check-label" for="currency0GBP">GBP</label>
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="variants[0][stock]">Stock</label>
+            <input type="number"
+                   id="variants[0][stock]"
+                   name="variants[0][stock]"
+                   class="form-control"
+                   min="0">
+          </div>
+        </div>
+      </div>
+  
+      <button type="button"
+              id="add-variant"
+              class="btn btn-secondary mb-3">
+        Add Variant
+      </button>
+  
+      <button type="submit" class="btn btn-primary">Create</button>
+      <a href="admin.php?page=edit-variants&product_id=<[productId]>"
+         class="btn btn-secondary">Cancel</a>
+    </form>
+  </div>
+  
+  <script>
+  document.getElementById('add-variant').addEventListener('click', function(){
+    const container = document.getElementById('variants-container');
+    const blocks    = container.querySelectorAll('.variant-block');
+    const idx       = blocks.length;
+    const proto     = blocks[0].cloneNode(true);
+  
+    proto.setAttribute('data-index', idx);
+    proto.querySelector('h6').textContent = 'Variant #' + (idx + 1);
+  
+    proto.querySelectorAll('input').forEach(inp => {
+      // aggiorna name e id sostituendo l'indice
+      const name = inp.getAttribute('name').replace(/\[\d+\]/, '['+idx+']');
+      inp.setAttribute('name', name);
+      const id = inp.getAttribute('id').replace(/\d+/, idx);
+      inp.setAttribute('id', id);
+  
+      // reset valori
+      if (inp.type === 'radio') {
+        inp.checked = false;
+      } else {
+        inp.value = '';
+      }
+    });
+  
+    container.appendChild(proto);
+  });
+  </script>
+  

@@ -1,0 +1,15 @@
+<div class="container-fluid">
+    <h1 class="h3 mb-4 text-gray-800">Delete Group</h1>
+  
+    <form method="post" action="admin.php?page=delete-group&id=<[id]>">
+      <input type="hidden" name="step" value="1">
+      <input type="hidden" name="id"   value="<[id]>">
+  
+      <p>Are you sure you want to delete the group "<strong><[name]></strong>"?</p>
+      <p>This will <strong>permanently</strong> remove the group and all its service associations.</p>
+  
+      <button type="submit" class="btn btn-danger">Delete</button>
+      <a href="admin.php?page=groups-list" class="btn btn-secondary">Cancel</a>
+    </form>
+  </div>
+  

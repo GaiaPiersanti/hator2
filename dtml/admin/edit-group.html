@@ -1,0 +1,32 @@
+<div class="container-fluid">
+    <h1 class="h3 mb-4 text-gray-800">Edit Group</h1>
+  
+    <form method="post" action="admin.php?page=edit-group&id=<[id]>">
+      <input type="hidden" name="step" value="1">
+      <input type="hidden" name="id"   value="<[id]>">
+  
+      <div class="form-group">
+        <label for="name">Group Name</label>
+        <input type="text"
+               id="name"
+               name="name"
+               class="form-control <[nameErrorClass]>"
+               placeholder="Enter group name"
+               value="<[name]>">
+        <div class="invalid-feedback">
+          <[nameError]>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label>Assign Services</label>
+        <div>
+          <[servicesCheckboxes]>
+        </div>
+      </div>
+  
+      <button type="submit" class="btn btn-primary">Save Changes</button>
+      <a href="admin.php?page=groups-list" class="btn btn-secondary">Cancel</a>
+    </form>
+  </div>
+  
