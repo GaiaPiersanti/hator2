@@ -45,15 +45,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             && !empty($_FILES['image_file'])
             && $_FILES['image_file']['error'] === UPLOAD_ERR_OK
         ) {
-            // genera nome univoco
-            $ext   = pathinfo($_FILES['image_file']['name'], PATHINFO_EXTENSION);
-            $name  = uniqid("prod{$productId}_slot{$slot}_") . ".$ext";
-            $dest  = $targetDir . $name;
+            // ottieni slug del prodotto
+            $slug = '';
+            $s = $conn->prepare("SELECT slug FROM products WHERE id = ?");
+            $s->bind_param("i", $productId);
+            $s->execute();
+            $s->bind_result($slug);
+            $s->fetch();
+            $s->close();
+
+            // estensione del file originale
+            $ext  = pathinfo($_FILES['image_file']['name'], PATHINFO_EXTENSION);
+            $name = "{$slug}_{$slot}.$ext";
+            $dest = $targetDir . $name;
 
             if (!move_uploaded_file($_FILES['image_file']['tmp_name'], $dest)) {
                 error_log("edit-images.php: upload fallito tmp={$_FILES['image_file']['tmp_name']} dest=$dest");
             } else {
-                // solo se il file è scritto, aggiorna DB
+                // aggiorna DB
                 $url = "assets/images/products/$name";
                 $u   = $conn->prepare("UPDATE products SET {$col} = ? WHERE id = ?");
                 $u->bind_param("si", $url, $productId);
@@ -84,6 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $s->execute();
                 $s->close();
             }
+        
         }
     }
 
