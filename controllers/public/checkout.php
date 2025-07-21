@@ -23,7 +23,7 @@ if(isset($_SESSION['dati_checkout']))
     }
     
     if(isset($_SESSION['dati_checkout']['ship-box']))
-    {//carico i campi del destinatario secondario
+    {//carico i campi del shipping to another address (tic)
         $body->setContent('first_name2', $_SESSION['dati_checkout']['first_name2'] ?? '');
         $body->setContent('last_name2', $_SESSION['dati_checkout']['last_name2'] ?? '');
         $body->setContent('address_street2', $_SESSION['dati_checkout']['address_street2'] ?? '');
@@ -35,7 +35,7 @@ if(isset($_SESSION['dati_checkout']))
         $body->setContent('address_dettail2', $_SESSION['dati_checkout']['address_dettail2'] ?? '');
         $body->setContent('checkout-mess', $_SESSION['dati_checkout']['checkout-mess'] ?? '');
     }else
-    {//carico i campi del destinatario primario
+    {//carico i campi del billing details
         $body->setContent("first_name", $_SESSION['dati_checkout']['first_name'] ?? '');
         $body->setContent("last_name", $_SESSION['dati_checkout']['last_name'] ?? '');
         $body->setContent("address_street", $_SESSION['dati_checkout']['address_street'] ?? '');
@@ -49,9 +49,9 @@ if(isset($_SESSION['dati_checkout']))
     unset($_SESSION['dati_checkout']);
 
 }else
-{//caso standard
+{//caso standard entri per la prima volta ti carica ciò che sappiamo di te
     $body->setContent("first_name", $_SESSION['user']['first_name'] ?? '');
-    $body->setContent("last_name", $_SESSION['user']['last_name'] ?? '');
+    $body->setContent("last_name", htmlspecialchars($_SESSION['user']['last_name'],   ENT_QUOTES) ?? '');
     $body->setContent("address_street", '');
     $body->setContent("town", '');
     $body->setContent("state", '');
@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$stop)
     
     //salvo (e controllo che) tutti i campi (obbligatori siano riempiti)
     if(!isset($_POST['ship-box']) && !empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST['address_street']) && !empty($_POST['town']) && !empty($_POST['state']) && !empty($_POST['postcode']) && !empty($_POST['email']) && !empty($_POST['phone']))
-    {
+    { //qui tutto è riempito e non è stato selezonato il tic no errore
         $ship_box = 0;
         $first_name = $_POST['first_name'];
         $last_name = $_POST['last_name'];
@@ -107,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$stop)
         $address_dettail = isset($_POST['address_dettail']) ? $_POST['address_dettail'] : '';
         $checkout_mess = '';
     }else if(isset($_POST['ship-box']) && !empty($_POST['first_name2']) && !empty($_POST['last_name2']) && !empty($_POST['address_street2']) && !empty($_POST['town2']) && !empty($_POST['state2']) && !empty($_POST['postcode2']) && !empty($_POST['email2']) && !empty($_POST['phone2']))
-    {
+    {//tic e tutti riempiti no errore
         $ship_box = $_POST['ship-box'];
         $first_name = $_POST['first_name2'];
         $last_name = $_POST['last_name2'];
@@ -120,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$stop)
         $phone = $_POST['phone2'];
         $address_dettail = isset($_POST['address_dettail2']) ? $_POST['address_dettail2'] : '';
         $checkout_mess = isset($_POST['checkout-mess']) ? $_POST['checkout-mess'] : '';
-    }else
+    }else 
     {
         $_SESSION['dati_checkout'] = $_POST;
         $_SESSION['dati_checkout']['error'] = "Please fill in all required fields.";

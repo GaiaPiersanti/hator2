@@ -46,16 +46,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'
 //error_log("DEBUG SESSION after login: " . print_r($_SESSION, true));
 
 
-      
+      //se ti slogghi e ti rilogghi nel frattempo la stock
     if (isset($_SESSION['cart'])) {
             // Se l'utente ha un carrello in sessione, lo sposto nel database
             $userId = $_SESSION['user']['user_id'];            
             foreach ($_SESSION['cart'] as $variantId => $quantity) {
-                $prod = ($conn->query("SELECT pv.stock, c.quantity FROM product_variants pv JOIN carts c ON pv.id = c.pruduct_id WHERE c.product_id = $variantId AND c.user_id = $userId"))->fetch_assoc();
-                if (($prod['stock'] - $prod['quantity']) < $quantity) {
-                    // Se la quantità richiesta è superiore allo stock, imposta la quantità massima disponibile
-                    $quantity = ($prod['stock'] - $prod['quantity']);
+                //controlla che nel carrello dell'utente ci sia un prodotto con l'id di cui andare a controllare lo stock, nel caso nel carrelo 
+                //ci sia già prende la qtity del carrello e fa la differenza con lo stock, se la quantità è minore ce la mette altrimenti ci mette il risultato della differenza (ovvero la differenza)
+                $res = ($conn->query("SELECT * FROM carts AS c  WHERE c.product_id = $variantId AND c.user_id = $userId"));
+                $num_righe_affette = $conn->affected_rows;
+
+                if($num_righe_affette > 0 ){
+                    error_log("res: " . print_r($res, true));
+                    //prende dei prodotti che stanno nel carrello per fare la differenza e controllare che non supera la stock
+                    $prod = ($conn->query("SELECT pv.stock, c.quantity FROM product_variants AS pv JOIN carts AS c ON pv.id = c.product_id WHERE c.product_id = $variantId AND c.user_id = $userId"))->fetch_assoc();
+                    if (($prod['stock'] - $prod['quantity']) < $quantity) {
+                        // Se la quantità richiesta è superiore allo stock, imposta la quantità massima disponibile
+                        $quantity = ($prod['stock'] - $prod['quantity']);
+                    }
                 }
+                //aggiorna il carrello caricando quello che sta in sessione nel carrello del db
                 $conn->query("INSERT INTO carts (user_id, product_id, quantity) 
                               VALUES ($userId, $variantId, $quantity)
                               ON DUPLICATE KEY UPDATE quantity = quantity + $quantity");

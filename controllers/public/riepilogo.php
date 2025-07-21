@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                         </div>
                                     </div>');
     }
-    } else {
+    } else { //paypal
         $body->setContent('remind', '<div class="section-title text-center">Grazie per il tuo ordine!</div>');
     }
 }

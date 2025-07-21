@@ -1,5 +1,5 @@
 <?php
-class headcon extends TagLibrary{
+class headcon extends TagLibrary {
     // metodo per creare e popolare il carrello rapido
     public function minicart($name = '', $data = '', $pars = [])
     {
@@ -51,7 +51,7 @@ class headcon extends TagLibrary{
             while ($row = $res->fetch_assoc()) {
                 $products[] = $row;
             }
-        }else{die("DB error: " . $conn->error);}
+        }else{die();}
         //conto il numero di prodotti nel carrello
         $count = 0;
         if(isset($_SESSION['user'])){

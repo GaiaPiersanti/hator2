@@ -49,7 +49,7 @@ if(isset($_GET)){
                                 VALUES ($userId, $variantId, $quantity)
                                 ON DUPLICATE KEY UPDATE quantity = quantity + $quantity");
             }            
-        }else if(isset($_SESSION['cart'])) {
+            }else if(isset($_SESSION['cart'])) {
             $prod = ($conn->query("SELECT stock FROM product_variants pv WHERE id = $variantId "))->fetch_assoc();
             if(($prod['stock'] - ($_SESSION['cart'][$variantId] ?? 0)) < $quantity) {
                 // Se la quantità richiesta è superiore allo stock, imposta la quantità massima disponibile
