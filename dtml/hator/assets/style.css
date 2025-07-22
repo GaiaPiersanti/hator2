@@ -12859,7 +12859,8 @@ a.shipping-calculator-button:hover {
   -moz-appearance: none;
   appearance: none;
   width: 100%;
-  padding: 0.5rem 2.5rem 0.5rem 0.75rem; /* spazio sulla destra per l’icona */
+  min-width: 5rem !important;
+  padding: 0.5rem 2.5rem 0.5rem 0.5rem; /* spazio sulla destra per l’icona */
   box-sizing: border-box;
 }
 
@@ -13193,3 +13194,12 @@ pro-cart.disabled { pointer-events: none; }
     padding-right: 0 !important;
     margin: 0 1% !important;              /* optional small horizontal gap */
 }
+
+/*select ml*/
+/* Allarga il select delle varianti e assicura che tutto il testo stia dentro */
+#page-variant-select.form-control {
+  width: auto !important;      /* lascia che la larghezza si adatti al contenuto */
+  min-width: 5rem !important;  /* imposta una larghezza minima (5 rem ≈ 80px) */
+  padding-right: 2rem;    /* spazio extra per la freccina */
+}
+
