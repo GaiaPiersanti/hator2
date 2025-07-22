@@ -98,6 +98,20 @@ console.log('Options now in DOM:', $sizeSel.html());
     $qtyWrap.html(
       `<input class="quantity form-control" id="quantity" type="number" min="1" max="${maxQty}" value="1">`
     );
+    // Disable or enable Add to Cart
+    if (v.stock > 0) {
+      $btn.prop('disabled', false).removeClass('disabled').css({
+        'background-color': '',
+        'opacity': '',
+        'cursor': ''
+      });
+    } else {
+      $btn.prop('disabled', true).addClass('disabled').css({
+        'background-color': '#ccc',
+        'opacity': '0.6',
+        'cursor': 'not-allowed'
+      });
+    }
   }
 
   // prima istanzia

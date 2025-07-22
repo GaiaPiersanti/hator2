@@ -13153,3 +13153,43 @@ td.product-thumbnail > a img {
 .pfolio-breadcrumb-list li.active > a {
     color: #c7b270 !important;
 }
+
+/*add to cart disabilitato se stock  0 pointer*/
+pro-cart.disabled { pointer-events: none; }
+
+/*centrare i related products*/
+/* Vertically center related products */
+.related-products .row {
+    display: flex;
+    align-items: center;   /* centers items vertically */
+    justify-content: center; /* optional: also centers horizontally */
+}
+
+/* Ensure each product card can shrink/grow evenly */
+.related-products .single-makal-product {
+    flex: 0 1 auto;
+}
+
+.related-products .row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+
+
+/* Related Products: center four cards in a single row */
+.border-hover-effect .row.gx-2.justify-content-center {
+    margin: 0 auto !important;            /* center container */
+    display: flex !important;
+    flex-wrap: nowrap !important;         /* prevent wrapping */
+    justify-content: center !important;
+}
+
+/* Remove Bootstrap gutters and force four equal columns */
+.border-hover-effect .row.gx-2.justify-content-center > [class*="col-"] {
+    flex: 0 0 23% !important;             /* four items at 23% width */
+    max-width: 23% !important;
+    padding-left: 0 !important;           /* remove inner padding */
+    padding-right: 0 !important;
+    margin: 0 1% !important;              /* optional small horizontal gap */
+}

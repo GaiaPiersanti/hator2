@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+  const $cartBtnSelector = '.pro-cart';
   const modalEl = document.getElementById('product-window');
 
   modalEl.addEventListener('show.bs.modal', function(e) {
@@ -96,6 +97,21 @@ document.addEventListener('DOMContentLoaded', function() {
       );
       const stock = v.stock || 2;
       $quantityInput.html('<input class="quantity form-control" id="quantity" type="number" min="1" max="'+ stock +'" value="1">');
+      // Disable/enable Add to Cart button based on stock
+      const $cartBtn = $modal.find($cartBtnSelector);
+      if (v.stock > 0) {
+        $cartBtn.prop('disabled', false).removeClass('disabled').css({
+          'background-color': '',
+          'opacity': '',
+          'cursor': ''
+        });
+      } else {
+        $cartBtn.prop('disabled', true).addClass('disabled').css({
+          'background-color': '#ccc',
+          'opacity': '0.6',
+          'cursor': 'not-allowed'
+        });
+      }
     }
 
     // riempi il menu size
