@@ -153,6 +153,7 @@ public function card($name, $data, $pars) {
     $html .= '
     <!-- Single Product Start Here -->
     <div class="single-makal-product">
+    
       <div class="pro-img2">
         <a href="'.$urlDetails.'">
           <img src="'.$imgUrl.'" alt="'.$title.'">
@@ -166,12 +167,9 @@ public function card($name, $data, $pars) {
         <br>
         <p><span class="price rating">€'.$priceFormatted.'</span></p>
         <p>'.htmlspecialchars($shortDesc, ENT_QUOTES).'</p>
-        <div class="pro-actions">
-          <div class="actions-primary">
-            
-          </div>
-        </div>
+        
       </div>
+      
     </div>
     <!-- Single Product End Here -->
     ';

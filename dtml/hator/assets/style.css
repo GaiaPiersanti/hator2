@@ -13088,3 +13088,68 @@ td.product-thumbnail > a img {
   #slider-range .ui-slider-range {
     pointer-events: none !important;
   }
+
+
+ /* List view: equal-height rows and full-width separator */
+#list-view .single-makal-product {
+    display: flex;
+    align-items: stretch;
+    height: 217px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+}
+#list-view .single-makal-product:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+/* Ensure image and content columns fill height */
+#list-view .single-makal-product .pro-img,
+#list-view .single-makal-product .pro-content {
+    display: flex;
+    flex-direction: column;
+}
+#list-view .single-makal-product .pro-content {
+    flex: 1;
+}
+
+/* Hide banner by default */
+.sidebar-banner {
+    display: none;
+}
+
+/* Show banner only when list view is active */
+.main-shop-page .container .row:has(#list-view.active) .sidebar-banner {
+    display: block;
+}
+
+
+/*bottoni netc e prev grigi*/
+/* Mantieni i pagination link disabilitati della stessa misura e grigi */
+
+/* Ensure disabled pagination items maintain same dimensions */
+/* Assicura font-size uniforme per tutte le pagine */
+.pfolio-breadcrumb-list li > a,
+.pfolio-breadcrumb-list li > span {
+    font-size: 14px !important;
+}
+
+/* Mantieni i disabled della stessa dimensione e grigi */
+.pfolio-breadcrumb-list li.disabled > a,
+.pfolio-breadcrumb-list li.disabled > span {
+    pointer-events: none;
+    color: #999 !important;
+    cursor: default;
+    display: inline-block;
+    
+    margin: 0 .5em;
+    line-height: 1.2em;
+    box-sizing: border-box;
+    /* forzatura del font-size */
+    font-size: 14px !important;
+}
+/* Pagination: active page number in gold */
+.pfolio-breadcrumb-list li.active > a {
+    color: #c7b270 !important;
+}

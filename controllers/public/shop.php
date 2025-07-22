@@ -27,6 +27,10 @@ $families = $familyRes->fetch_all(MYSQLI_ASSOC);
 $categoryRes = $conn->query("SELECT id,name FROM categories ORDER BY name");
 $categories  = $categoryRes->fetch_all(MYSQLI_ASSOC);
 
+// 1d) Carico tutti i brands
+$brandRes = $conn->query("SELECT id, name FROM brands ORDER BY name");
+$brands   = $brandRes->fetch_all(MYSQLI_ASSOC);
+
 // 2) Vengono passati in GET come types[]=1&types[]=3…
 $selectedTypes = $_GET['types'] ?? [];
 // 2b) families
@@ -36,6 +40,7 @@ $selectedFamilies = $_GET['families'] ?? [];
 $selectedCategories    = $_GET['categories']    ?? [];
 $selectedNewArrival    = isset($_GET['new_arrival']);
 $selectedBestSeller    = isset($_GET['best_seller']);
+$selectedBrands = $_GET['brands'] ?? [];
 
 // Price filter: global min/max and selected range
 $priceRes = $conn->query("
@@ -76,6 +81,7 @@ switch ($selectedSort) {
     default:
         $orderBySql = 'p.id ASC';
 }
+
 
 // 3) Funzione helper per montare l’HTML della lista dei types
 function buildTypesFilter(array $types, array $selectedTypes): string {
@@ -153,6 +159,24 @@ HTML;
     return $html;
 }
 
+// 3c) Funzione helper per montare l’HTML dei checkbox dei brands
+function buildBrandsFilter(array $brands, array $selectedBrands): string {
+    $html = '<ul class="sidbar-style">';
+    foreach ($brands as $b) {
+        $checked = in_array($b['id'], $selectedBrands) ? ' checked' : '';
+        $id      = 'brand-' . $b['id'];
+        $label   = htmlspecialchars($b['name'], ENT_QUOTES);
+        $html  .= <<<HTML
+<li class="form-check">
+  <input class="form-check-input" type="checkbox" name="brands[]" value="{$b['id']}" id="{$id}"{$checked}>
+  <label class="form-check-label" for="{$id}">{$label}</label>
+</li>
+HTML;
+    }
+    $html .= '</ul>';
+    return $html;
+}
+
 /////////////////////////gestione filtri fine
 
 // 1) Istanzio il frame principale
@@ -180,7 +204,30 @@ if ($selectedNewArrival) {
 if ($selectedBestSeller) {
     $where[] = "p.best_seller = 1";
 }
+if (!empty($selectedBrands)) {
+    $in = implode(',', array_map('intval', $selectedBrands));
+    $where[] = "p.brand_id IN ({$in})";
+}
 
+// 5) Pagination setup
+$perPage  = 12;
+$page_num = isset($_GET['page_num']) && is_numeric($_GET['page_num']) && $_GET['page_num'] > 0
+            ? intval($_GET['page_num']) : 1;
+$offset   = ($page_num - 1) * $perPage;
+
+// count total matching products
+$countSql = "
+  SELECT COUNT(DISTINCT p.id) AS cnt
+    FROM products p
+    JOIN product_variants pv
+      ON pv.product_id = p.id
+     AND pv.price BETWEEN {$selectedMin} AND {$selectedMax}
+   WHERE " . implode(' AND ', $where);
+$countRes     = $conn->query($countSql);
+$total_items  = (int)$countRes->fetch_assoc()['cnt'];
+
+
+// main query with LIMIT/OFFSET for pagination
 $sql = "
   SELECT 
     p.id               AS pid,
@@ -220,6 +267,7 @@ $sql = "
      )
       WHERE " . implode(' AND ', $where) . "
   ORDER BY {$orderBySql}
+  LIMIT {$perPage} OFFSET {$offset}
 ";
 /////filtri fine
 
@@ -263,6 +311,45 @@ while ($row = $res->fetch_assoc()) {
   ];
 }
 $products = array_values($products);
+
+// 6) Pagination item range
+$shownCount = count($products);
+$start_item = $offset + 1;
+$end_item   = $offset + $shownCount;
+if ($end_item > $total_items) {
+    $end_item = $total_items;
+}
+
+
+
+// build pagination links
+$total_pages = ceil($total_items / $perPage);
+$linksHtml = '';
+if ($total_pages > 1) {
+    // Previous link
+    if ($page_num > 1) {
+        $prev = $page_num - 1;
+        $qs = http_build_query(array_merge($_GET, ['page_num' => $prev]));
+        $linksHtml .= '<li class="float-left prev"><a href="?' . $qs . '"><i class="fa fa-angle-left" aria-hidden="true"></i> Previous</a></li>';
+    } else {
+        $linksHtml .= '<li class="float-left prev disabled"><span><i class="fa fa-angle-left" aria-hidden="true"></i> Previous</span></li>';
+    }
+    // Page number links
+    for ($i = 1; $i <= $total_pages; $i++) {
+        $active = ($i === $page_num) ? ' class="active"' : '';
+        $qs = http_build_query(array_merge($_GET, ['page_num' => $i]));
+        $linksHtml .= '<li' . $active . '><a href="?' . $qs . '">' . $i . '</a></li>';
+    }
+    // Next link
+    if ($page_num < $total_pages) {
+        $next = $page_num + 1;
+        $qs = http_build_query(array_merge($_GET, ['page_num' => $next]));
+        $linksHtml .= '<li class="float-right next"><a href="?' . $qs . '">Next <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>';
+    } else {
+        $linksHtml .= '<li class="float-right next disabled"><span>Next <i class="fa fa-angle-right" aria-hidden="true"></i></span></li>';
+    }
+}
+
 
 // fetch full list of variants for each product for the modal
 $allVariants = [];
@@ -315,8 +402,9 @@ $res = $conn->query("
         WHERE product_id = p.id
           AND price BETWEEN {$selectedMin} AND {$selectedMax}
      )
-      WHERE {$whereSql}
-      ORDER BY {$orderBySql}
+    WHERE {$whereSql}
+    ORDER BY {$orderBySql}
+    LIMIT {$perPage} OFFSET {$offset}
 ");
 while ($row = $res->fetch_assoc()) {
     $products2[] = $row;
@@ -348,6 +436,7 @@ $body = new Template("dtml/hator/shop");
 $body->setContent('types_filter', buildTypesFilter($types, $selectedTypes));
 //filtri famiglie
 $body->setContent('families_filter', buildFamiliesFilter($families, $selectedFamilies));
+$body->setContent('brands_filter', buildBrandsFilter($brands, $selectedBrands));
 //filtri tipi +new e best
 $body->setContent('categories_filter',
     buildCategoriesFilter($categories, $selectedCategories, $selectedNewArrival, $selectedBestSeller)
@@ -372,9 +461,8 @@ $body->setContent('sort_options', buildSortOptions($selectedSort));
 
 $body->setContent("product_cards",  $cardsHtml);
 $body->setContent("product_cards2", $cards2Html);
-// 3) Calcolo il numero di prodotti
-// 3) Calcolo il numero di prodotti
-$body->setContent("product_count",  count($products));
+// top product count = total matching items
+$body->setContent("product_count",  $total_items);
 // Pass price slider values to frame template
 $main->setContent("selected_min", number_format($selectedMin, 2, '.', ''));
 $main->setContent("selected_max", number_format($selectedMax, 2, '.', ''));
@@ -383,6 +471,16 @@ $main->setContent("global_max",   number_format($globalMax,   2, '.', ''));
 // pass min_price/max_price for slider JS
 $main->setContent("min_price", number_format($globalMin, 2, '.', ''));
 $main->setContent("max_price", number_format($globalMax, 2, '.', ''));
+
+//pagination
+$body->setContent('pagination_links', $linksHtml);
+// pass pagination data to view
+$body->setContent('start_item', $start_item);
+$body->setContent('end_item',   $end_item);
+$body->setContent('total_items',$total_items);
+$body->setContent('current_page',$page_num);
+$total_pages = ceil($total_items / $perPage);
+$body->setContent('total_pages', $total_pages);
 
 $main->setContent("productJson", $productJson);
 // 6) Inietto e chiudo

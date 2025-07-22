@@ -52,17 +52,32 @@
                     <h3 class="sidebar-title">Families</h3>
                     
                         <[families_filter]>
- <!--APPLY-->           <button type="submit" class="btn btn-sm apply-btn mt-20">Apply</button>
 <!--CHIUSURA FORM-->                    
                     </div> <!-- Sidebar Families end-->
 
-                    <!-- Sidebar Categorie Start -->
+                    <!-- Sidebar brands Start -->
+                    <div class="sidebar-brands mb-30">
+                    <h3 class="sidebar-title">Brands</h3>
+                    
+                        <[brands_filter]>
+ <!--APPLY-->           <button type="submit" class="btn btn-sm apply-btn mt-20">Apply</button>
+                    </div> <!-- Sidebar brands end-->
+
                 </div>
                 <!-- Single Banner Start -->
                 <div class="sidebar-banner mt-30">
-                    <a href="index.php?page=shop"><img class="ful" src="dtml/hator/assets/img/banner/others/1.webp"
+                    <a href="index.php?page=shop"><img class="ful" src="assets/images/banner_shop/banner_1.jpg"
                             alt="slider-banner"></a>
                 </div>
+                <div class="sidebar-banner mt-30">
+                    <a href="index.php?page=shop"><img class="ful" src="assets/images/banner_shop/banner_2.jpg"
+                            alt="slider-banner"></a>
+                </div>
+                <div class="sidebar-banner mt-30">
+                    <a href="index.php?page=shop"><img class="ful" src="assets/images/banner_shop/banner_3.jpg"
+                            alt="slider-banner"></a>
+                </div>
+                
             </div>
             <!-- Sidebar Shopping Option End -->
             <!-- Product Categorie List Start -->
@@ -117,19 +132,14 @@
 
                 <!-- navigatore pagine -->
                 <!-- Shop Breadcrumb Area Start -->
-                <div class="shop-breadcrumb-area border-default mt-30">
+                <div class="shop-breadcrumb-area border-default mt-30 mb-30">
                     <div class="row">
                         <div class="col-lg-4 col-md-4 col-sm-5">
-                            <span class="show-items">Showing 1-12 of 13 item(s) </span>
+                            <span class="show-items">Showing <[start_item]>–<[end_item]> of <[total_items]> item(s)</span>
                         </div>
                         <div class="col-lg-8 col-md-8 col-sm-7">
                             <ul class="pfolio-breadcrumb-list text-center">
-                                <li class="float-left prev"><a href="#"><i class="fa fa-angle-left"
-                                            aria-hidden="true"></i>Previous</a></li>
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li class="float-right next"><a href="#">Next<i class="fa fa-angle-right"
-                                            aria-hidden="true"></i></a></li>
+                                <[pagination_links]>
                             </ul>
                         </div>
                     </div>
