@@ -209,6 +209,18 @@ if (!empty($selectedBrands)) {
     $where[] = "p.brand_id IN ({$in})";
 }
 
+// 3d) Search filter by product name, brand, category, or type
+$search = trim($_GET['search'] ?? '');
+if ($search !== '') {
+    $esc = $conn->real_escape_string($search);
+    $where[] = "(
+        p.name      LIKE '%{$esc}%'
+     OR b.name      LIKE '%{$esc}%'
+     OR c.name      LIKE '%{$esc}%'
+     OR t.name      LIKE '%{$esc}%'
+    )";
+}
+
 // 5) Pagination setup
 $perPage  = 12;
 $page_num = isset($_GET['page_num']) && is_numeric($_GET['page_num']) && $_GET['page_num'] > 0
@@ -219,6 +231,9 @@ $offset   = ($page_num - 1) * $perPage;
 $countSql = "
   SELECT COUNT(DISTINCT p.id) AS cnt
     FROM products p
+    JOIN types      t ON t.id = p.type_id
+    JOIN categories c ON c.id = p.category_id
+    JOIN brands     b ON b.id = p.brand_id
     JOIN product_variants pv
       ON pv.product_id = p.id
      AND pv.price BETWEEN {$selectedMin} AND {$selectedMax}
@@ -394,6 +409,9 @@ $res = $conn->query("
       p.short_description,
       pv.id AS variant_id
     FROM products p
+    JOIN types      t ON t.id = p.type_id
+    JOIN categories c ON c.id = p.category_id
+    JOIN brands     b ON b.id = p.brand_id
     JOIN product_variants pv 
       ON pv.product_id = p.id
      AND pv.price = (
@@ -457,7 +475,11 @@ function buildSortOptions(string $selectedSort): string {
     }
     return $html;
 }
+
 $body->setContent('sort_options', buildSortOptions($selectedSort));
+
+// pass search term to template
+$body->setContent('search', htmlspecialchars($search, ENT_QUOTES));
 
 $body->setContent("product_cards",  $cardsHtml);
 $body->setContent("product_cards2", $cards2Html);

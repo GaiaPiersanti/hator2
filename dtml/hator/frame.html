@@ -174,17 +174,18 @@ Contiene:
                                     <ul>
                                         <!-- Search Box Start Here -->
                                         <li>
-                                            <a href="#">
+                                        <a href="#">
+                                            <span class="pe-7s-search"></span>
+                                        </a>
+                                        <div class="categorie-search-box ht-dropdown">
+                                            <form method="get" action="index.php?page=shop">
+                                            <input type="hidden" name="page" value="shop">
+                                            <input type="text" name="search" value="<[search]>" placeholder="Search our catalog">
+                                            <button type="submit">
                                                 <span class="pe-7s-search"></span>
-                                            </a>
-                                            <div class="categorie-search-box ht-dropdown">
-                                                <form action="#">
-                                                    <input type="text" name="search" placeholder="Search our catalog">
-                                                    <button>
-                                                        <span class="pe-7s-search"></span>
-                                                    </button>
-                                                </form>
-                                            </div>
+                                            </button>
+                                            </form>
+                                        </div>
                                         </li>
                                         <!-- Categorie Search Box End Here -->
                                         <[bag::minicart library="headcon"]>
