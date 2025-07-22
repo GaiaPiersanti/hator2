@@ -24,6 +24,7 @@ switch ($page) {
     case 'wishlist':       require __DIR__ . "/controllers/public/wishlist.php";       break;
     case 'pagamento':      require __DIR__ . "/controllers/public/pagamento.php";      break;
     case 'riepilogo':      require __DIR__ . "/controllers/public/riepilogo.php";      break;
+    case 'terms_conditions': require  __DIR__ . "/controllers/public/terms_conditions.php";      break;
     case '404':            require __DIR__ . "/controllers/public/404.php";            break;
     default:               require __DIR__ . "/controllers/public/home.php";           break;
 

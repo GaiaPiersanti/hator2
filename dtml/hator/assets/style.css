@@ -13009,51 +13009,6 @@ td.product-thumbnail > a img {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .apply-btn{
     background: #333 none repeat scroll 0 0;
     border: none;
@@ -13203,3 +13158,37 @@ pro-cart.disabled { pointer-events: none; }
   padding-right: 2rem;    /* spazio extra per la freccina */
 }
 
+/*mycss footer*/
+/* Footer: colonne uguali e allineate */
+/* Footer: equal-height columns and reduced spacing */
+.footer-middle .row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start; /* top-align all columns */
+  margin-bottom: 0;
+}
+
+.footer-middle .single-footer {
+  flex: 1 0 0;            /* equal width and full height */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin-bottom: 0;
+}
+
+.footer-middle {
+  padding-top: 2rem;
+  padding-bottom: 1rem;   /* reduce bottom whitespace */
+}
+
+.footer-bottom {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem; /* tighten bottom section */
+}
+
+/* Ensure footer container has no extra bottom margin */
+footer {
+  margin-bottom: 0;
+}
