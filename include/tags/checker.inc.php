@@ -14,13 +14,13 @@ class checker extends TagLibrary
             WHERE c.user_id = $userId
             ");
         if (!$res) {
-            die("DB error: " . $conn->error);
+           // die("DB error: " . $conn->error);
         }
 
         $html =    '<table>
                         <thead>
                             <tr>
-                                <th class="product-name">Product</th>
+                                <th class="product-name" style="text-align: left;">Product</th>
                                 <th class="product-size">Size</th>
                                 <th class="product-total">Total</th>
                             </tr>
@@ -39,8 +39,8 @@ class checker extends TagLibrary
             $title = htmlspecialchars($row['name'], ENT_QUOTES);
 
             $html.=        '<tr class="cart_item">
-                                <td class="product-name">
-                                    ' . $title . ' <span class="product-quantity"> × ' . $row['quantity'] . '</span>
+                                <td class="product-name" style="text-align:left;">
+                                    ' . $title . '<span class="product-quantity ms-2"><strong>×' . $row['quantity'] . '</strong></span>
                                 </td>
                                 <td class="product-total">
                                     <span class="size">' . $row['size_ml'] . 'ML</span>
@@ -64,16 +64,19 @@ class checker extends TagLibrary
                         </tbody>
                     </table>';
 
-        $html.= '<table>
+        $html .= '<table>
                     <tfoot>
                         <tr class="cart-subtotal">
-                            <th>Cart Subtotal</th>
+                            <th style="font-weight: 700;">Cart Subtotal</th>
                             <td><span class="amount">€' . $subtotale . '</span></td>
                         </tr>
+                        <tr class="shipping">
+                            <th>Shipping</th>
+                            <td><span class="amount">€10.00</span></td>
+                        </tr>
                         <tr class="order-total">
-                            <th>Order Total</th>
-                            <td><span class=" total amount">€' . $totale . '</span>
-                            </td>
+                            <th style="font-weight: 800;">Order Total</th>
+                            <td><span class="total amount">€' . $totale . '</span></td>
                         </tr>
                     </tfoot>
                 </table>';
@@ -82,17 +85,23 @@ class checker extends TagLibrary
     }
 
     public function tendine(){
-        return '<div id="accordion">
+        return '<style>
+  /* Accordion header hover color */
+  #accordion .card-header .btn-link:hover,
+  #accordion .card-header .btn-link.collapsed:hover {
+    color: #c7b270 !important;
+  }
+</style>
+<div id="accordion">
                                         <div class="card">
                                             <div class="card-header" id="headingone">
                                                 <h5 class="mb-0">
-                                                    <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                    <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                                                         Direct Bank Transfer
                                                     </button>
                                                 </h5>
                                             </div>
-
-                                            <div id="collapseOne" class="collapse show" aria-labelledby="headingone" data-bs-parent="#accordion">
+                                            <div id="collapseOne" class="collapse" aria-labelledby="headingone" data-bs-parent="#accordion">
                                                 <div class="card-body">
                                                     <p>Make your payment directly into our bank account. Please use your
                                                         Order ID as the payment reference. Your order won’t be shipped until

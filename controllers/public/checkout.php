@@ -18,6 +18,18 @@ if(isset($_SESSION['back']))
 // carico i dati nei campi
 if(isset($_SESSION['dati_checkout']))
 {//in caso ci sia stato un errore
+
+    // Always repopulate billing fields
+    $body->setContent("first_name",     $_SESSION['dati_checkout']['first_name']     ?? '');
+    $body->setContent("last_name",      $_SESSION['dati_checkout']['last_name']      ?? '');
+    $body->setContent("address_street", $_SESSION['dati_checkout']['address_street'] ?? '');
+    $body->setContent("town",           $_SESSION['dati_checkout']['town']           ?? '');
+    $body->setContent("state",          $_SESSION['dati_checkout']['state']          ?? '');
+    $body->setContent("postcode",       $_SESSION['dati_checkout']['postcode']       ?? '');
+    $body->setContent("email",          $_SESSION['dati_checkout']['email']          ?? '');
+    $body->setContent("phone",          $_SESSION['dati_checkout']['phone']          ?? '');
+    $body->setContent("address_detail",$_SESSION['dati_checkout']['address_detail']?? '');
+
     if(isset($_SESSION['dati_checkout']['error'])){
         $body->setContent("check_error", $_SESSION['dati_checkout']['error'] ?? '');
     }
@@ -32,19 +44,12 @@ if(isset($_SESSION['dati_checkout']))
         $body->setContent('postcode2', $_SESSION['dati_checkout']['postcode2'] ?? '');
         $body->setContent('email2', $_SESSION['dati_checkout']['email2'] ?? '');
         $body->setContent('phone2', $_SESSION['dati_checkout']['phone2'] ?? '');
-        $body->setContent('address_dettail2', $_SESSION['dati_checkout']['address_dettail2'] ?? '');
+        $body->setContent('address_detail2', $_SESSION['dati_checkout']['address_detail2'] ?? '');
         $body->setContent('checkout-mess', $_SESSION['dati_checkout']['checkout-mess'] ?? '');
+        $body->setContent('ship_box_checked', 'checked');
     }else
     {//carico i campi del billing details
-        $body->setContent("first_name", $_SESSION['dati_checkout']['first_name'] ?? '');
-        $body->setContent("last_name", $_SESSION['dati_checkout']['last_name'] ?? '');
-        $body->setContent("address_street", $_SESSION['dati_checkout']['address_street'] ?? '');
-        $body->setContent("town", $_SESSION['dati_checkout']['town'] ?? '');
-        $body->setContent("state", $_SESSION['dati_checkout']['state'] ?? '');
-        $body->setContent("postcode", $_SESSION['dati_checkout']['postcode'] ?? '');
-        $body->setContent("email", $_SESSION['dati_checkout']['email'] ?? '');
-        $body->setContent("phone", $_SESSION['dati_checkout']['phone'] ?? '');
-        $body->setContent("address_dettail", $_SESSION['dati_checkout']['address_dettail'] ?? '');
+        $body->setContent('ship_box_checked', '');
     }
     unset($_SESSION['dati_checkout']);
 
@@ -58,7 +63,7 @@ if(isset($_SESSION['dati_checkout']))
     $body->setContent("postcode", '');
     $body->setContent("email", $_SESSION['user']['email'] ?? '');
     $body->setContent("phone", '');
-    $body->setContent("address_dettail", '');
+    $body->setContent("address_detail", '');
 }
 
 $userId = $_SESSION['user']['user_id'] ?? 0;
@@ -90,6 +95,17 @@ $userId = $_SESSION['user']['user_id'] ?? 0;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$stop)
 {
+    // Preserve original billing fields
+    $b_first_name     = $_POST['first_name']        ?? '';
+    $b_last_name      = $_POST['last_name']         ?? '';
+    $b_address_street = $_POST['address_street']    ?? '';
+    $b_address_detail = $_POST['address_detail']    ?? '';
+    $b_town           = $_POST['town']              ?? '';
+    $b_country        = $_POST['country']           ?? '';
+    $b_state          = $_POST['state']             ?? '';
+    $b_postcode       = $_POST['postcode']          ?? '';
+    $b_email          = $_POST['email']             ?? '';
+    $b_phone          = $_POST['phone']             ?? '';
     
     //salvo (e controllo che) tutti i campi (obbligatori siano riempiti)
     if(!isset($_POST['ship-box']) && !empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST['address_street']) && !empty($_POST['town']) && !empty($_POST['state']) && !empty($_POST['postcode']) && !empty($_POST['email']) && !empty($_POST['phone']))
@@ -106,9 +122,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$stop)
         $email = $_POST['email'];
         $phone = $_POST['phone'];
         
-        $address_dettail = isset($_POST['address_dettail']) ? $_POST['address_dettail'] : '';
+        $address_detail = isset($_POST['address_detail']) ? $_POST['address_detail'] : '';
         $checkout_mess = '';
-    }else if(isset($_POST['ship-box']) && !empty($_POST['first_name2']) && !empty($_POST['last_name2']) && !empty($_POST['address_street2']) && !empty($_POST['town2']) && !empty($_POST['state2']) && !empty($_POST['postcode2']) && !empty($_POST['email2']) && !empty($_POST['phone2']))
+    }else if (
+        isset($_POST['ship-box'])
+        && !empty($_POST['first_name']) && !empty($_POST['last_name'])
+        && !empty($_POST['address_street']) && !empty($_POST['town'])
+        && !empty($_POST['state']) && !empty($_POST['postcode'])
+        && !empty($_POST['email']) && !empty($_POST['phone'])
+        && !empty($_POST['first_name2']) && !empty($_POST['last_name2'])
+        && !empty($_POST['address_street2']) && !empty($_POST['town2'])
+        && !empty($_POST['state2']) && !empty($_POST['postcode2'])
+        && !empty($_POST['email2']) && !empty($_POST['phone2'])
+    )
     {//tic e tutti riempiti no errore
         $ship_box = $_POST['ship-box'];
         $first_name = $_POST['first_name2'];
@@ -120,7 +146,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$stop)
         $postcode = $_POST['postcode2'];
         $email = $_POST['email2'];
         $phone = $_POST['phone2'];
-        $address_dettail = isset($_POST['address_dettail2']) ? $_POST['address_dettail2'] : '';
+        $address_detail = isset($_POST['address_detail2']) ? $_POST['address_detail2'] : '';
         $checkout_mess = isset($_POST['checkout-mess']) ? $_POST['checkout-mess'] : '';
     }else 
     {
@@ -199,7 +225,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$stop)
             INSERT INTO shipments 
               (user_id, package_id, method_of_payment, total,
                country, state, town, postcode,
-               street, address_dettail,
+               street, address_detail,
                first_name, last_name, email, phone,
                message, processed, date_request)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, NOW())
@@ -215,7 +241,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$stop)
             $town,
             $postcode,
             $address_street,
-            $address_dettail,
+            $address_detail,
             $first_name,
             $last_name,
             $email,
@@ -224,6 +250,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$stop)
         );
         $stmt->execute();
         $res = $stmt->insert_id;
+
+        // Insert billing details from the first form
+        $billingStmt = $conn->prepare("
+            INSERT INTO billing_details
+              (shipment_id, user_id, first_name, last_name,
+               address_street, address_detail, town, state,
+               postcode, country, email, phone)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ");
+        $billingStmt->bind_param(
+            'iissssssssss',
+            $res,               // shipment_id
+            $userId,            // user_id
+            $b_first_name,      // original billing first name
+            $b_last_name,       // original billing last name
+            $b_address_street,  // original billing street
+            $b_address_detail,  // original billing detail
+            $b_town,            // original billing town
+            $b_state,           // original billing state
+            $b_postcode,        // original billing postcode
+            $b_country,         // original billing country
+            $b_email,           // original billing email
+            $b_phone            // original billing phone
+        );
+        $billingStmt->execute();
         
         
     }
