@@ -1,6 +1,6 @@
 <!-- Il file frame.html è il template “contenitore”, cioè il layout di base comune a tutte le pagine.
 Contiene:
-	•	<head> con tutti i CSS e JS
+	•	head con tutti i CSS e JS
 	•	header (logo, utente…)
 	•	sidebar (menu)
 	•	footer
@@ -29,6 +29,18 @@ Contiene:
     <link rel="shortcut icon" href="dtml/hator/assets/img/logo.png">
     <!-- Fontawesome css -->
     <link rel="stylesheet" href="dtml/hator/assets/css/font-awesome.min.css">
+    <!-- Font Awesome 5 for new icons 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-dTfgeT7C+5pX5U5uS1kKtpgknn5bSULfHL8XoV5lZ1kpo0RbdfrEniXUe5Oq5B0E4U9V+x7VTOdL2MZct3sZbw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    -->
+    <!-- Font Awesome 6 for latest icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-pVb0I1ZJAJWXp+T3tniwtliCn2UA3bb3S+JkkGLdXcwM6CqXWZkFgUyI/GAZG13P+wZKPZccMChcz+QVnY0Bkg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
     <!-- Animate css -->
     <link rel="stylesheet" href="dtml/hator/assets/css/animate.css">
     <!-- 7-stroke fonts css -->
@@ -297,7 +309,7 @@ Contiene:
                                         <div class="footer-content subscribe-form">
                                         <div class="subscribe-box">
                                             
-                                                <input id="subscribe_email" type="email" placeholder="Your email address" required>
+                                                <input id="subscribe_email" type="email" placeholder="Your email address">
                                                 <button id="subscribe-btn" type="button" class="pe-7s-mail-open" disabled></button>
                                         </div>
                                         <p class="mt-10">Get E-mail updates about our latest products and special offers.
@@ -533,15 +545,16 @@ Contiene:
 
 <script>
   $(function() {
-    // Enable subscribe button only when input is non-empty and valid
-    $('#subscribe_email').on('input', function() {
-      var email = $(this).val().trim();
-      $('#subscribe-btn').prop('disabled', !email);
-    });
-    // Show thank-you modal on click
-    $('#subscribe-btn').on('click', function() {
-      $('#subscribeModal').modal('show');
-    });
+    // Only bind subscribe handlers if footer input is present
+    if ($('#subscribe_email').length) {
+      $('#subscribe_email').on('input', function() {
+        var email = $(this).val().trim();
+        $('#subscribe-btn').prop('disabled', !email);
+      });
+      $('#subscribe-btn').on('click', function() {
+        $('#subscribeModal').modal('show');
+      });
+    }
   });
 </script>
 </body>

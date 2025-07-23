@@ -1,4 +1,3 @@
-
         <!-- Breadcrumb Area Start Here -->
         <div class="breadcrumb-area">
             <div class="container">
@@ -10,138 +9,160 @@
         </div>
         <!-- Breadcrumb Area End Here -->
         <!-- About Us Area Start -->
-        <div class="skill-area white-bg ptb-90">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="about-content mb-all-40">
-                            <!-- Section Title Start -->
-                            <div class="about-title">
-                                <h3>about our mission</h3>
-                            </div>
-                            <!-- Section Title End -->
-                            <p class="mb-15">Rian must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure</p>
-                            <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia sequuntur magni dolores eos qui ratione em </p>
-                            <a class="login-btn" href="#">Read more</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="skill-content">
-                            <div class="skill">
-                                <div class="progress">
-                                    <div class="lead">UI & UX DESIGN</div>
-                                    <div data-wow-delay="1.2s" data-wow-duration="1.5s" style="width: 85%; visibility: visible; animation-duration: 1.5s; animation-delay: 1.2s; animation-name: fadeInLeft;" data-progress="90%" class="progress-bar wow fadeInLeft animated"><span>85%</span></div>
-                                </div>
-                                <div class="progress">
-                                    <div class="lead">WEB DESIGN</div>
-                                    <div data-wow-delay="1.2s" data-wow-duration="1.5s" style="width: 90%; visibility: visible; animation-duration: 1.5s; animation-delay: 1.2s; animation-name: fadeInLeft;" data-progress="70%" class="progress-bar wow fadeInLeft animated"><span>90%</span></div>
-                                </div>
-                                <div class="progress">
-                                    <div class="lead">APPS DESIGN</div>
-                                    <div data-wow-delay="1.2s" data-wow-duration="1.5s" style="width: 75%; visibility: visible; animation-duration: 1.5s; animation-delay: 1.2s; animation-name: fadeInLeft;" data-progress="60%" class="progress-bar wow fadeInLeft animated"><span>75%</span></div>
-                                </div>
-                                <div class="progress">
-                                    <div class="lead">SKETCH DESIGN</div>
-                                    <div data-wow-delay="1.2s" data-wow-duration="1.5s" style="width: 68%; visibility: visible; animation-duration: 1.5s; animation-delay: 1.2s; animation-name: fadeInLeft;" data-progress="80%" class="progress-bar wow fadeInLeft animated"><span>68%</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="about-area white-bg ptb-90">
+          <div class="container">
+            <!-- 1) Story Title -->
+            <div class="section-title text-center mb-4">
+              <h2>Our Scent Story</h2>
+              <p class="subtitle">Born from passion, crafted with care.</p>
             </div>
+            <!-- 2) Narrative Story -->
+            <div class="row mb-5">
+              <div class="col-md-4 text-center">               
+                <i class="fa fa-lightbulb-o fa-2x mb-3" aria-hidden="true" style="color:#c7b270;"></i>
+                <h5>Our Beginning</h5>
+                <p>Founded in 2025 by two perfume enthusiasts, Hator Perfumes began as a quest to rediscover classic scents with a modern twist.</p>
+              </div>
+              <div class="col-md-4 text-center">
+                <i class="fa fa-star fa-2x mb-3" style="color:#c7b270;"></i>
+                <h5>Our Approach</h5>
+                <p>We hand-select the finest essences and blend them in small batches, ensuring each fragrance tells its own unique story.</p>
+              </div>
+              <div class="col-md-4 text-center">
+                <i class="fa fa-heart fa-2x mb-3" style="color:#c7b270;"></i>
+                <h5>Our Promise</h5>
+                <p>Committed to sustainability and cruelty-free methods, we promise quality and transparency in every bottle.</p>
+              </div>
+            </div>
+            <!-- 3) Core Values -->
+            <div class="core-values row text-center mb-5">
+              <div class="col-md-4 mb-3">
+                <i class="fa fa-certificate fa-2x mb-2" style="color:#c7b270;"></i>
+                <h6>Quality First</h6>
+                <p>Only top-grade ingredients in every blend.</p>
+              </div>
+              <div class="col-md-4 mb-3">
+                <i class="fa fa-recycle fa-2x mb-2" style="color:#c7b270;"></i>
+                <h6>Eco-Friendly</h6>
+                <p>100% recyclable packaging and ethically sourced.</p>
+              </div>
+              <div class="col-md-4 mb-3">
+                <i class="fa fa-headphones fa-2x mb-2" style="color:#c7b270;"></i>
+                <h6>Customer Care</h6>
+                <p>Dedicated support to guide you to your signature scent.</p>
+              </div>
+            </div>
+          </div>
         </div>
         <!-- About Us Area End -->
         <!-- Our Team Star Here -->
+        <style>
+          /* Equal-height team cards */
+          .our-team .row.text-center {
+            display: flex;
+            flex-wrap: wrap;
+          }
+          .our-team .row.text-center > .col-md-4 {
+            display: flex;
+          }
+          .our-team .single-team {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+          }
+          /* Force uniform icon container and centering */
+          .our-team .single-team i.fa {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            width: 48px !important;
+            height: 48px !important;
+            font-size: 48px !important;        /* adjust glyph size */
+            margin-bottom: 0.75rem !important;
+          }
+          /* Add consistent bottom padding to each team card */
+          .our-team .single-team {
+            padding-bottom: 1.5rem; /* same white space as top margin */
+          }
+        </style>
         <div class="our-team dark-white-bg ptb-90">
             <div class="container">
                 <div class="about-title team-title">
                     <h3>our team</h3>
                 </div>
                 <div class="row text-center">
-                    <!-- Single Team Start Here -->
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-6">
-                        <div class="single-team mb-all-30">
-                            <div class="team-img sidebar-img sidebar-banner">
-                                <a href="#"><img src="dtml/hator/assets/img/team/2.webp" alt="team-image"></a>
-                                <div class="team-link">
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="team-info">
-                                <h4>Marcos Alonso</h4>
-                                <p>web designer</p>
-                            </div>
-                        </div>
+                  <div class="col-md-4 mb-4">
+                    <div class="single-team pb-10">
+                      <i class="fa fa-diamond mb-3" style="color:#c7b270;"></i>
+                      <h5>Marco Calabrese</h5>
+                      <p>Master Perfumer</p>
                     </div>
-                    <!-- Single Team End Here -->
-                    <!-- Single Team Start Here -->
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-6">
-                        <div class="single-team mb-all-30">
-                            <div class="team-img sidebar-img sidebar-banner">
-                                <a href="#"><img src="dtml/hator/assets/img/team/1.webp" alt="team-image"></a>
-                                <div class="team-link">
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="team-info">
-                                <h4>Luis Aragones</h4>
-                                <p>web developer</p>
-                            </div>
-                        </div>
+                  </div>
+                  <div class="col-md-4 mb-4">
+                    <div class="single-team pb-10">
+                      <i class="fa fa-star-o mb-3" style="color:#c7b270;"></i>
+                      <h5>Gaia Piersanti</h5>
+                      <p>Creative Director</p>
                     </div>
-                    <!-- Single Team End Here -->
-                    <!-- Single Team Start Here -->
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-6">
-                        <div class="single-team mb-xxs-30">
-                            <div class="team-img sidebar-img sidebar-banner">
-                                <a href="#"><img src="dtml/hator/assets/img/team/3.webp" alt="team-image"></a>
-                                <div class="team-link">
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="team-info">
-                                <h4>Maria Alessis</h4>
-                                <p>Graphic Designer</p>
-                            </div>
-                        </div>
+                  </div>
+                  <div class="col-md-4 mb-4">
+                    <div class="single-team pb-10">
+                      <i class="fa fa-flask mb-3" style="color:#c7b270;"></i>
+                      <h5>Armando Molino</h5>
+                      <p>Head Chemist</p>
                     </div>
-                    <!-- Single Team End Here -->
-                    <!-- Single Team Start Here -->
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-6">
-                        <div class="single-team">
-                            <div class="team-img sidebar-img sidebar-banner">
-                                <a href="#"><img src="dtml/hator/assets/img/team/4.webp" alt="team-image"></a>
-                                <div class="team-link">
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="team-info">
-                                <h4>John Doe</h4>
-                                <p>php developer</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single Team End Here -->
+                  </div>
                 </div>
             </div>
         </div>
+        <!-- Call To Action -->
+        <style>
+          .cta-area h4 {
+            font-weight: 700;
+            text-transform: none;
+          }
+          .cta-area .btn-gold {
+            font-weight: 700;
+            color: #c7b270;
+            background: transparent;
+            border: 2px solid #c7b270;
+            padding: 0.5rem 1.5rem;
+            transition: all 0.5s ease-in-out;
+          }
+          .cta-area .btn-gold:hover {
+            background: linear-gradient(90deg, #c7b270 0%, #000000 100%);
+            color: #ffffff;
+            border-color: #c7b270;
+          }
+        </style>
+        <div class="cta-area text-center py-5" style="background:#f8f8f8;">
+          <h4>Ready to discover your signature scent?</h4>
+          <a href="index.php?page=shop" class="btn btn-gold mt-3">Shop Our Collections</a>
+        </div>
         <!-- Our Team End Here -->
+        <!-- Who Is Hator? Start -->
+        <div class="who-is-hator white-bg ptb-90">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-md-6 text-center mb-4 mb-md-0">
+                <!-- Placeholder for logo/image -->
+                <img src="dtml/hator/assets/img/logo.png" alt="Hator Logo" class="img-fluid" style="max-width:200px;">
+              </div>
+              <div class="col-md-6">
+                <h3>Who Is Hator?</h3>
+                <br>
+                <p>
+                  The name “Hator” is inspired by Hathor, the ancient Egyptian goddess of beauty, love, music, and joy.
+                  Revered as the patron of perfumers and artists, Hathor embodied elegance and sensory delight.
+                  At Hator Perfumes, we honor her legacy by crafting fragrances that celebrate beauty, passion, and creativity.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Who Is Hator? End -->
         <!-- Brand Area Start Here -->
         <div class="brand-area white-bg ptb-90">
             <div class="container">
@@ -173,4 +194,3 @@
             </div>
         </div>
         <!-- Brand Area End Here -->
-       
