@@ -11280,7 +11280,7 @@ p.checkout-coupon input[type="submit"] {
 .cart_totals h2 {
     border-bottom: 2px solid #222;
     display: inline-block;
-    font-size: 28px;
+    font-size: 30px;
     margin: 0 0 35px;
     text-transform: uppercase;
     font-weight: 600;
@@ -11367,7 +11367,7 @@ a.shipping-calculator-button:hover {
     height: 45px;
     line-height: 46px;
     margin-top: 20px;
-    padding: 0 20px;
+    padding: 0 24px;
     text-transform: uppercase;
 }
 
@@ -13191,4 +13191,30 @@ pro-cart.disabled { pointer-events: none; }
 /* Ensure footer container has no extra bottom margin */
 footer {
   margin-bottom: 0;
+}
+
+/*error message checkout*/
+.error-message-checkout{
+    
+  color: #c00;
+  background-color: #fdd;
+  border: 1px solid #c00;
+  padding: 0.5em;
+  margin: 0.5em auto;   /* margini top/bottom 0.5em, left/right auto */
+            /* il box farà il 50% della larghezza del genitore */
+  max-width: 1000px;     /* facoltativo: l'ho messo per non superare i px del register */
+  text-align: center;   /* centra il testo dentro il box */
+  margin-top:20px;
+  margin-bottom:50px;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+.error-message-checkout:empty {
+  display: none;
+}
+
+.payment{
+    border: none;
+    height: 40px;
 }

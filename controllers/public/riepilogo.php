@@ -9,52 +9,109 @@ $main->setContent("page_title", $page_title);
 $body = new Template("dtml/hator/riepilogo");
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $body->setContent('ordine', htmlspecialchars($_GET['id'], ENT_QUOTES));
-    if(isset($_GET['metodo'])){
-    if($_GET['metodo'] === 'bank_transfer') {
-        $body->setContent('remind','<div class="section-title text-center">
-                                        <h3>Ricordati:</h3>
-                                        <div class="card">
-                                            <div class="card-header" id="headingone">
-                                                <h5 class="mb-0">
-                                                    <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                        Direct Bank Transfer
-                                                    </button>
-                                                </h5>
-                                            </div>
+    // Set order number placeholder
+    $body->setContent('ordine', htmlspecialchars($_GET['id'] ?? '', ENT_QUOTES));
 
-                                            <div id="collapseOne" class="collapse show" aria-labelledby="headingone" data-bs-parent="#accordion">
-                                                <div class="card-body">
-                                                    <p>Make your payment directly into our bank account. Please use your
-                                                        Order ID as the payment reference. Your order won’t be shipped until
-                                                        the funds have cleared in our account.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>');
-    } elseif($_GET['metodo'] === 'cheque') {
-        $body->setContent('remind','<div class="section-title text-center">
-                                        <h3>Ricordati:</h3>
-                                        <div class="card">
-                                            <div class="card-header" id="headingtwo">
-                                                <h5 class="mb-0">
-                                                    <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                        Cheque Payment
-                                                    </button>
-                                                </h5>
-                                            </div>
-                                            <div id="collapseTwo" class="collapse" aria-labelledby="headingtwo" data-bs-parent="#accordion">
-                                                <div class="card-body">
-                                                    <p>Please send your cheque to Univaq, Via Vetoio, 1, 67100 Coppito AQ, Italy. Please remember to
-                                                        include your Order ID in the notes section of the cheque.Your order won’t be shipped until the cheque has been confirmed</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>');
+    // Determine content based on payment method
+    $method = $_GET['metodo'] ?? '';
+    switch ($method) {
+        case 'bank_transfer':
+            $remindHtml = <<<HTML
+<div class="card mb-4">
+  <div class="card-header" id="headingone">
+    <h5 class="mb-0">
+      <button class="btn btn-link" data-bs-toggle="collapse"
+              data-bs-target="#collapseOne" aria-expanded="true"
+              aria-controls="collapseOne">
+        Direct Bank Transfer
+      </button>
+    </h5>
+  </div>
+  <div id="collapseOne" class="collapse show"
+       aria-labelledby="headingone" data-bs-parent="#accordion">
+    <div class="card-body">
+      <p>Please transfer the total amount using your <strong>Order ID</strong> as the payment reference. Funds must be received before shipping.</p>
+      <ul class="list-unstyled mb-3">
+        <br>
+        <li><strong>Bank Name:</strong> UniCredit S.p.A.</li>
+        <li><strong>Account Holder:</strong> Hator Perfumes S.r.l.</li>
+        <li><strong>IBAN:</strong> IT60 X054 2811 1010 0000 0123 456</li>
+        <li><strong>BIC/SWIFT:</strong> UNCRITMMXXX</li>
+        <li><strong>Bank Address:</strong> Piazza Gae Aulenti 10, 20154 Milano MI, Italy</li>
+      </ul>
+      <p><em>Note:</em> International transfers may take 3–5 business days. Please include all bank charges on your side.</p>
+    </div>
+  </div>
+</div>
+<!-- Actions -->
+<div class="order-actions text-center mb-5">
+  <div class="buttons-cart d-inline-block mx-2">
+    <a href="index.php?page=shop">Continue Shopping</a>
+  </div>
+  <div class="buttons-cart d-inline-block mx-2">
+    <a href="index.php?page=orders&order=<[ordine]>">View Your Order</a>
+  </div>
+</div>
+HTML;
+            break;
+
+        case 'cheque':
+            $remindHtml = <<<HTML
+<div class="card mb-4">
+  <div class="card-header" id="headingtwo">
+    <h5 class="mb-0">
+      <button class="btn btn-link" data-bs-toggle="collapse"
+              data-bs-target="#collapseTwo" aria-expanded="true"
+              aria-controls="collapseTwo">
+        Cheque Payment
+      </button>
+    </h5>
+  </div>
+  <div id="collapseTwo" class="collapse show"
+       aria-labelledby="headingtwo" data-bs-parent="#accordion">
+    <div class="card-body">
+      <p>Please prepare a cheque payable to <strong>Hator Perfumes S.r.l.</strong> for the total order amount. Mail it to the following address, quoting your <strong>Order ID</strong> on the back of the cheque:</p>
+      <ul class="list-unstyled mb-3">
+        <br>
+        <li><strong>Recipient:</strong> Hator Perfumes S.r.l.</li>
+        <li><strong>Address:</strong> Via Vetoio 1, 67100 Coppito AQ, Italy</li>
+      </ul>
+      <p><em>Note:</em> Allow 5–7 business days for cheque clearing. We will dispatch your order once the payment has been fully processed.</p>
+    </div>
+  </div>
+</div>
+<!-- Actions -->
+<div class="order-actions text-center mb-5">
+  <div class="buttons-cart d-inline-block mx-2">
+    <a href="index.php?page=shop">Continue Shopping</a>
+  </div>
+  <div class="buttons-cart d-inline-block mx-2">
+    <a href="index.php?page=orders&order=<[ordine]>">View Your Order</a>
+  </div>
+</div>
+HTML;
+            break;
+
+        default: // PayPal or no method
+            $remindHtml = <<<HTML
+<div class="text-center py-4">
+  <p>Your payment has been received. We’re preparing your items and will notify you when they ship.</p>
+</div>
+<!-- Actions -->
+<div class="order-actions text-center mb-5">
+  <div class="buttons-cart d-inline-block mx-2">
+    <a href="index.php?page=shop">Continue Shopping</a>
+  </div>
+  <div class="buttons-cart d-inline-block mx-2">
+    <a href="index.php?page=account">View Your Order</a>
+  </div>
+</div>
+HTML;
+            break;
     }
-    } else { //paypal
-        $body->setContent('remind', '<div class="section-title text-center">Grazie per il tuo ordine!</div>');
-    }
+
+    // Inject the reminder HTML
+    $body->setContent('remind', $remindHtml);
 }
 
 $main->setContent("body", $body->get());

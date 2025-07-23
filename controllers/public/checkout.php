@@ -62,13 +62,15 @@ if(isset($_SESSION['dati_checkout']))
 }
 
 $userId = $_SESSION['user']['user_id'] ?? 0;
-    $res = $conn->query("
+    $stmt = $conn->prepare("
         SELECT pv.price, c.quantity
         FROM carts c
         JOIN product_variants pv ON c.product_id = pv.id
-        JOIN products p ON pv.product_id = p.id
-        WHERE c.user_id = $userId
-        ");
+        WHERE c.user_id = ?
+    ");
+    $stmt->bind_param('i', $userId);
+    $stmt->execute();
+    $res = $stmt->get_result();
     $totale = 0;
     while($prod = $res->fetch_assoc())
     {
@@ -153,58 +155,75 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$stop)
         $metodo_pagamento = $_POST['metodo_pagamento'];       
 
         //creo l'id del pacco a partire dal id di dimensione massima
-        $res = $conn->query("SELECT max(id) as id FROM packages");
-        if (!$res) {
-            die("DB error: " . $conection->error);
-        }else {
-            $package = $res->fetch_assoc()['id'] + 1; // Increment the package ID by 1
-        }
+        $stmt = $conn->prepare("SELECT MAX(id) AS id FROM packages");
+        $stmt->execute();
+        $pidRes = $stmt->get_result()->fetch_assoc();
+        $package = $pidRes['id'] + 1;
 
         //creo ed inserisco il pacco nel db e riduco lo stock
-        $res = $conn->query("SELECT c.product_id, c.quantity, pv.stock FROM carts c JOIN product_variants pv ON c.product_id = pv.id  WHERE c.user_id = $userId");
-        if (!$res) {
-            die("DB error: " . $conection->error);
-        } else {
-                $querya = "";
-                $queryu = "";
-            while($prod = $res->fetch_assoc()) {
-                $red = $prod['stock'] - $prod['quantity'];
-                $querya .= "INSERT INTO packages (id, product_id, quantity) VALUES ('" . $package . "', '" . $prod['product_id'] . "', '" . $prod['quantity'] . "'); ";
-                $queryu .= "UPDATE product_variants SET stock = " . $red . " WHERE id = " . $prod['product_id'] . ";" ;
-            }
-            //creazione pacco
-            if($res = $conn->multi_query($querya))
-            {
-                $del = 1;
-            } else {
-                $del = 0;
-                die("DB error: " . $conn->error);
-            }
-            while ($conn->next_result()) {;}
-            
+        $stmt = $conn->prepare("
+            SELECT c.product_id, c.quantity, pv.stock
+            FROM carts c
+            JOIN product_variants pv ON c.product_id = pv.id
+            WHERE c.user_id = ?
+        ");
+        $stmt->bind_param('i', $userId);
+        $stmt->execute();
+        $res = $stmt->get_result();
 
-            //riduzione stock
-            if($res = $conn->multi_query($queryu))
-            {
+        // Prepare insert into packages
+        $insertPkg = $conn->prepare("
+            INSERT INTO packages (id, product_id, quantity)
+            VALUES (?, ?, ?)
+        ");
+        // Prepare update of stock
+        $updateStock = $conn->prepare("
+            UPDATE product_variants SET stock = ? WHERE id = ?
+        ");
 
-            } else {
-
-                die("DB error: " . $conn->error);
-            }
-            while ($conn->next_result()) {;}
-
-            // Elimina il carrello dell'utente dopo aver creato il pacco
-            if($del) {
-            $res = $conn->query("DELETE FROM carts WHERE `carts`.`user_id` = $userId");
-            } else {
-                die("DB error: " . $conn->error);
-            }
-            
+        while ($prod = $res->fetch_assoc()) {
+            $newStock = $prod['stock'] - $prod['quantity'];
+            $insertPkg->bind_param('iii', $package, $prod['product_id'], $prod['quantity']);
+            $insertPkg->execute();
+            $updateStock->bind_param('ii', $newStock, $prod['product_id']);
+            $updateStock->execute();
         }
+
+        // Elimina il carrello dell'utente dopo aver creato il pacco
+        $stmt = $conn->prepare("DELETE FROM carts WHERE user_id = ?");
+        $stmt->bind_param('i', $userId);
+        $stmt->execute();
+
         //aggiungo l'ordine
-        $conn->query("INSERT INTO shipments (user_id, package_id, method_of_payment, total, country, state, town, postcode, street, address_dettail, first_name, last_name, email, phone, message, processed, date_request) 
-                                    VALUES ($userId, $package, '$metodo_pagamento', $totale, '$country', '$state', '$town', '$postcode', '$address_street', '$address_dettail', '$first_name', '$last_name', '$email', '$phone', '$checkout_mess', 0, NOW())");
-        $res = $conn->insert_id;
+        $stmt = $conn->prepare("
+            INSERT INTO shipments 
+              (user_id, package_id, method_of_payment, total,
+               country, state, town, postcode,
+               street, address_dettail,
+               first_name, last_name, email, phone,
+               message, processed, date_request)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, NOW())
+        ");
+        $stmt->bind_param(
+            'iisdsssssssssss',
+            $userId,
+            $package,
+            $metodo_pagamento,
+            $totale,
+            $country,
+            $state,
+            $town,
+            $postcode,
+            $address_street,
+            $address_dettail,
+            $first_name,
+            $last_name,
+            $email,
+            $phone,
+            $checkout_mess
+        );
+        $stmt->execute();
+        $res = $stmt->insert_id;
         
         
     }

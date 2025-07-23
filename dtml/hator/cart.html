@@ -1,4 +1,3 @@
-
         <!-- Breadcrumb Area Start Here -->
         <div class="breadcrumb-area">
             <div class="container">
@@ -36,21 +35,44 @@
                                 </table>
                             </div>
                             <!-- Table Content Start -->
-                            <div class="row">
+                            <div class="row align-items-end">
                                 <!-- Cart Button Start -->
                                 <div class="col-md-8 col-sm-12">
-                                    <div class="buttons-cart">
+                                    <div class="buttons-cart mb-0">
                                         
                                         <a href="index.php?page=shop">Continue Shopping</a>
                                     </div>
                                 </div>
                                 <!-- Cart Button Start -->
                                 <!-- Cart Totals Start -->
-                                <div class="col-md-4 col-sm-12">
-                                    <div class="cart_totals float-md-right text-md-right">
+                                <div class="col-md-4 col-sm-12 pr-0 d-flex justify-content-center">
+                                    <div class="cart_totals mx-auto pl-90" style="max-width:300px;">
                                         <h2>Cart Totals</h2>
                                         <br />
-                                        <table class="float-md-right">
+                                        <style>
+                                        /* Align labels and values in Cart Totals table */
+                                        .cart_totals table {
+                                          width: 100%;
+                                          border-collapse: collapse;
+                                          table-layout: fixed; /* enforce equal column widths */
+                                        }
+                                        .cart_totals table th,
+                                        .cart_totals table td {
+                                          padding: 0.25rem 0;
+                                          margin: 0;
+                                        }
+                                        .cart_totals table th {
+                                          text-align: left !important;
+                                          vertical-align: middle;
+                                          width: 50%;
+                                        }
+                                        .cart_totals table td {
+                                          text-align: right !important;
+                                          vertical-align: middle;
+                                          width: 50%;
+                                        }
+                                        </style>
+                                        <table>
                                             <tbody>
                                                 <[totali]>
                                             </tbody>
