@@ -11990,31 +11990,23 @@ a.shipping-calculator-button:hover {
 }
 /*mycss start*/
 .error-message-login {
-  color: #c00;
-  background-color: #fdd;
-  border: 1px solid #c00;
-  padding: 0.5em;
-  margin: 0.5em auto;   /* margini top/bottom 0.5em, left/right auto */
-  width: 50%;           /* il box farà il 50% della larghezza del genitore */
-  max-width: 610px;     /* facoltativo: l'ho messo per non superare i px del login */
-  text-align: center;   /* centra il testo dentro il box */
-  margin-top:20px;
-  border-radius: 3px;
-  font-size: 0.9em;
+display: block;
+width: 100%;
+background-color: #fdd;
+color: #c00;
+padding: 0.5em 0;
+text-align: center;
+margin: 20px 0;
 }
 
 .error-message-register {
-  color: #c00;
-  background-color: #fdd;
-  border: 1px solid #c00;
-  padding: 0.5em;
-  margin: 0.5em auto;   /* margini top/bottom 0.5em, left/right auto */
-  width: 50%;           /* il box farà il 50% della larghezza del genitore */
-  max-width: 690px;     /* facoltativo: l'ho messo per non superare i px del register */
-  text-align: center;   /* centra il testo dentro il box */
-  margin-top:20px;
-  border-radius: 3px;
-  font-size: 0.9em;
+display: block;
+width: 100%;
+background-color: #fdd;
+color: #c00;
+padding: 0.5em 0;
+text-align: center;
+margin: 20px 0;
 }
 
 .error-message-register:empty {
@@ -13194,21 +13186,16 @@ footer {
 }
 
 /*error message checkout*/
-.error-message-checkout{
-    
-  color: #c00;
-  background-color: #fdd;
-  border: 1px solid #c00;
-  padding: 0.5em;
-  margin: 0.5em auto;   /* margini top/bottom 0.5em, left/right auto */
-            /* il box farà il 50% della larghezza del genitore */
-  max-width: 1000px;     /* facoltativo: l'ho messo per non superare i px del register */
-  text-align: center;   /* centra il testo dentro il box */
-  margin-top:20px;
-  margin-bottom:50px;
-  border-radius: 3px;
-  font-size: 0.9em;
+.error-message-checkout {
+display: block;
+width: 100%;
+background-color: #fdd;
+color: #c00;
+padding: 0.5em 0;
+text-align: center;
+margin: 20px 0;
 }
+
 
 .error-message-checkout:empty {
   display: none;
