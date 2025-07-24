@@ -142,6 +142,19 @@ switch ($page) {
          case 'delete-user':
            require __DIR__ . '/controllers/admin/delete-user.php';
            break;
+           //group
+       case 'groups-list':
+        require __DIR__ . '/controllers/admin/groups-list.php';
+         break;
+         case 'add-group':
+           require __DIR__ . '/controllers/admin/add-group.php';
+           break;
+         case 'edit-group':
+           require __DIR__ . '/controllers/admin/edit-group.php';
+           break;
+         case 'delete-group':
+           require __DIR__ . '/controllers/admin/delete-group.php';
+           break;
         
     
   case '404':

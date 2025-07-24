@@ -1,5 +1,5 @@
 <?php
-// controllers/admin/edit-user.php
+
 
 
 
@@ -16,7 +16,7 @@ $stmt->close();
 // 4) Determina user ID
 $userId = intval($_GET['id'] ?? $_POST['id'] ?? 0);
 if ($userId <= 0) {
-    header("Location: admin.php?page=user-list");
+    header("Location: admin.php?page=users-list");
     exit;
 }
 
@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute();
         $stmt->close();
 
-        header("Location: admin.php?page=user-list");
+        header("Location: admin.php?page=users-list");
         exit;
     }
 
