@@ -46,11 +46,11 @@
                             <ul class="nav flex-column dashboard-list" role="tablist">
                                 <li><a class="nav-link active" data-bs-toggle="tab" href="#dashboard">Dashboard</a></li>
                                 <li> <a class="nav-link" data-bs-toggle="tab" href="#orders">Orders</a></li>
-                                <li><a class="nav-link" data-bs-toggle="tab" href="#downloads">Downloads</a></li>
+                                <li><a class="nav-link" data-bs-toggle="tab" href="#forgot">Forgot Password</a></li>
                                 <li><a class="nav-link" data-bs-toggle="tab" href="#address">Addresses</a></li>
                                 <li><a class="nav-link" data-bs-toggle="tab" href="#account-details">Account details</a>
                                 </li>
-                                <li><a class="nav-link" href="login.html">logout</a></li>
+                                <li><a class="nav-link" data-bs-toggle="tab" href="#logout">logout</a></li>
                             </ul>
                         </div>
                         <div class="col-lg-10">
@@ -94,35 +94,18 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div id="downloads" class="tab-pane fade">
-                                    <h3>Downloads</h3>
-                                    <div class="table-responsive">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th>Product</th>
-                                                    <th>Downloads</th>
-                                                    <th>Expires</th>
-                                                    <th>Download</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Makali- ecommerce bootstrap template</td>
-                                                    <td>Aug 10, 2022</td>
-                                                    <td>never</td>
-                                                    <td><a class="view" href="#">Download File</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>gatcomart - ecommerce html template</td>
-                                                    <td>Sep 11, 2022</td>
-                                                    <td>never</td>
-                                                    <td><a class="view" href="#">Download File</a></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+
+                                <!--forgot-->
+                                <div id="forgot" class="tab-pane">
+                                    <p>If you forgot your password, click 
+                                        <a href="index.php?page=forgot-password">here</a>
+                                        to reset your password and get a new one.
+                                    </p>
                                 </div>
+
+                   
+                                
+
                                 <div id="address" class="tab-pane">
                                     <p>The following addresses will be used on the checkout page by default.</p>
                                     <h4 class="billing-address">Billing address</h4>
@@ -213,6 +196,19 @@
                                             </div>
                                         </form>
                                     </div>
+                                </div>
+                                             <!--logout-->
+                                 <div id="logout" class="tab-pane">
+                                    <p>If you want to log out, click 
+                                        <a href="index.php?page=logout">here.</a>
+                                    </p>
+                                    <p> See you soon! </p>
+                                                <div class="mt-20 mb-10">
+                                                <div class="buttons-cart mb-0">
+                                                    
+                                                    <a href="index.php?page=logout">Log out</a>
+                                                </div>
+                                            </div>
                                 </div>
                             </div>
                         </div>
