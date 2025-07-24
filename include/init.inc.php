@@ -12,7 +12,7 @@ require_once __DIR__ . '/dbms.inc.php';
 require_once __DIR__ . '/template2.inc.php';
 require_once __DIR__ . '/tags/product.inc.php';
 require_once __DIR__ . '/slugify.php'; 
-
+require_once __DIR__ . '/tags/banners.inc.php';
 
 
 // 4) determina lo slug di pagina
