@@ -13205,3 +13205,15 @@ margin: 20px 0;
     border: none;
     height: 40px;
 }
+
+/* Limita l'altezza del logo in header */
+header.header-style-five .logo img {
+  max-height: 60px;
+  width: auto;
+}
+
+/* Limita l'altezza del logo in footer */
+footer .footer-logo img {
+  max-height: 50px;
+  width: auto;
+}
