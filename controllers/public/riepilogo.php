@@ -9,6 +9,8 @@ $main->setContent("page_title", $page_title);
 $body = new Template("dtml/hator/riepilogo");
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    // Determine current order ID
+    $orderId = intval($_GET['id'] ?? 0);
     // Set order number placeholder
     $body->setContent('ordine', htmlspecialchars($_GET['id'] ?? '', ENT_QUOTES));
 
@@ -49,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     <a href="index.php?page=shop">Continue Shopping</a>
   </div>
   <div class="buttons-cart d-inline-block mx-2">
-    <a href="index.php?page=account#orders">View Your Order</a>
+    <a href="index.php?page=order-details&id=$orderId">View Your Order</a>
   </div>
 </div>
 HTML;
@@ -86,7 +88,7 @@ HTML;
     <a href="index.php?page=shop">Continue Shopping</a>
   </div>
   <div class="buttons-cart d-inline-block mx-2">
-    <a href="index.php?page=account#orders">View Your Order</a>
+    <a href="index.php?page=order-details&id=$orderId">View Your Order</a>
   </div>
 </div>
 HTML;
@@ -103,7 +105,7 @@ HTML;
     <a href="index.php?page=shop">Continue Shopping</a>
   </div>
   <div class="buttons-cart d-inline-block mx-2">
-    <a href="index.php?page=account#orders">View Your Order</a>
+    <a href="index.php?page=order-details&id=$orderId">View Your Order</a>
   </div>
 </div>
 HTML;
