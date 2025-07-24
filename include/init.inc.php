@@ -97,7 +97,7 @@ $page_title = $niceTitle . ' | ' . $websiteName;
 
 // 7) definisci quali slug sono pubblici e quali protetti
 
-$publicPages    = ['home', 'login', 'shop', 'about', 'contact', 'productdetails', '404' , 'terms_conditions', 'logout', 'add-user', 'cart', 'orders', 'forgot-password'];
+$publicPages    = ['home', 'login', 'shop', 'about', 'contact', 'productdetails', '404' , 'terms_conditions', 'logout', 'add-user', 'cart', 'orders', 'forgot-password', 'testmail', 'phpinfo'];
 $protectedPages = ['checkout'];
 
 

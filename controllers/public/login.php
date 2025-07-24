@@ -9,9 +9,16 @@ if(isset($_SESSION['loggedin']) && isset($_SESSION['user'])&& $_SESSION['user'][
 }
 
 $login_error = "";
+// Handle forgot-password success/error messages
+$forgotSuccess = "";
+$forgotError = "";
 if (isset($_SESSION['ForgottenP'])) {
-    $login_error = $_SESSION['ForgottenP'];
+    $forgotSuccess = $_SESSION['ForgottenP'];
     unset($_SESSION['ForgottenP']);
+}
+if (isset($_SESSION['ForgottenError'])) {
+    $forgotError = $_SESSION['ForgottenError'];
+    unset($_SESSION['ForgottenError']);
 }
 // Se arrivo in POST, processa il login
 if ($_SERVER['REQUEST_METHOD'] === 'POST' 
@@ -93,6 +100,9 @@ $main->setContent("page_title", $page_title);
 $body = new Template("dtml/hator/login");
 // Se c'è un errore di login, lo passo al template
 $body->setContent("login_error", $login_error);
+// Pass forgot-password flash messages to template
+$body->setContent("forgotSuccess", $forgotSuccess);
+$body->setContent("forgotError", $forgotError);
 // Se c'è un'email vecchia da ripopolare, la passo al template
 if (isset($old_email)) {
         $body->setContent("email", $old_email);
