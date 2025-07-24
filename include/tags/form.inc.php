@@ -13,86 +13,86 @@ class form extends TagLibrary
         return "debug: form tag library loaded!";
     }
 
-    public function text($name, $data, $pars)
-    {
+//     public function text($name, $data, $pars)
+//     {
 
-        if (isset($pars['disabled'])) {
-            preg_match("~({$pars['disabled']})~", basename($_SERVER['SCRIPT_NAME']), $matches);
-            $placeholder  = isset($pars['placeholder'])  ? $pars['placeholder']  : '';
-            $errorClass   = isset($pars['errorClass'])   ? $pars['errorClass']   : '';
-            $errorMessage = isset($pars['errorMessage']) ? $pars['errorMessage'] : '';
-            $label        = isset($pars['label'])        ? $pars['label']        : '';
+//         if (isset($pars['disabled'])) {
+//             preg_match("~({$pars['disabled']})~", basename($_SERVER['SCRIPT_NAME']), $matches);
+//             $placeholder  = isset($pars['placeholder'])  ? $pars['placeholder']  : '';
+//             $errorClass   = isset($pars['errorClass'])   ? $pars['errorClass']   : '';
+//             $errorMessage = isset($pars['errorMessage']) ? $pars['errorMessage'] : '';
+//             $label        = isset($pars['label'])        ? $pars['label']        : '';
 
 
-            if ($matches[1] == $pars['disabled']) {
-                return"<div class=\"form-group row mb-20\">
-                    <label for=\"{$name}\" class=\"col-sm-3 col-form-label\">
-                        {$label}<span class=\"required\" style=\"color:red\">*</span>
-                    </label>
-                    <div class=\"col-sm-7\">
-                        <input
-                        type=\"text\"
-                        id=\"{$name}\"
-                        name=\"{$name}\"
-                        class=\"form-control {$errorClass}\"
-                        placeholder=\"{$placeholder}\"
-                        value=\"{$data}\"
-                        disabled
-                        >
-                        <div class=\"invalid-feedback\">
-                        {$errorMessage}
-                        </div>
-                    </div>
-                    </div>
-                    ";
-            } else {
-                return "<div class=\"form-group row mb-20\">
-                    <label for=\"{$name}\" class=\"col-sm-3 col-form-label\">
-                        {$label}<span class=\"required\" style=\"color:red\">*</span>
-                    </label>
-                    <div class=\"col-sm-7\">
-                        <input
-                        type=\"text\"
-                        id=\"{$name}\"
-                        name=\"{$name}\"
-                        class=\"form-control {$errorClass}\"
-                        placeholder=\"{$placeholder}\"
-                        value=\"{$data}\"
-                        >
-                        <div class=\"invalid-feedback\">
-                        {$errorMessage}
-                        </div>
-                    </div>
-                    </div>
-                    ";
-            }
-        } else {
-                $placeholder  = isset($pars['placeholder'])  ? $pars['placeholder']  : '';
-                $errorClass   = isset($pars['errorClass'])   ? $pars['errorClass']   : '';
-                $errorMessage = isset($pars['errorMessage']) ? $pars['errorMessage'] : '';
-                $label        = isset($pars['label'])        ? $pars['label']        : '';
-    return "
-                    <div class=\"form-group row mb-20\">
-                    <label for=\"{$name}\" class=\"col-sm-3 col-form-label\">
-                        {$label}<span class=\"required\" style=\"color:red\">*</span>
-                    </label>
-                    <div class=\"col-sm-7\">
-                        <input
-                        type=\"text\"
-                        id=\"{$name}\"
-                        name=\"{$name}\"
-                        class=\"form-control {$errorClass}\"
-                        placeholder=\"{$placeholder}\"
-                        value=\"{$data}\"
-                        >
-                        <div class=\"invalid-feedback\">
-                        {$errorMessage}
-                        </div>
-                    </div>
-                    </div>
-                    ";
-    }
-}
+//             if ($matches[1] == $pars['disabled']) {
+//                 return"<div class=\"form-group row mb-20\">
+//                     <label for=\"{$name}\" class=\"col-sm-3 col-form-label\">
+//                         {$label}<span class=\"required\" style=\"color:red\">*</span>
+//                     </label>
+//                     <div class=\"col-sm-7\">
+//                         <input
+//                         type=\"text\"
+//                         id=\"{$name}\"
+//                         name=\"{$name}\"
+//                         class=\"form-control {$errorClass}\"
+//                         placeholder=\"{$placeholder}\"
+//                         value=\"{$data}\"
+//                         disabled
+//                         >
+//                         <div class=\"invalid-feedback\">
+//                         {$errorMessage}
+//                         </div>
+//                     </div>
+//                     </div>
+//                     ";
+//             } else {
+//                 return "<div class=\"form-group row mb-20\">
+//                     <label for=\"{$name}\" class=\"col-sm-3 col-form-label\">
+//                         {$label}<span class=\"required\" style=\"color:red\">*</span>
+//                     </label>
+//                     <div class=\"col-sm-7\">
+//                         <input
+//                         type=\"text\"
+//                         id=\"{$name}\"
+//                         name=\"{$name}\"
+//                         class=\"form-control {$errorClass}\"
+//                         placeholder=\"{$placeholder}\"
+//                         value=\"{$data}\"
+//                         >
+//                         <div class=\"invalid-feedback\">
+//                         {$errorMessage}
+//                         </div>
+//                     </div>
+//                     </div>
+//                     ";
+//             }
+//         } else {
+//                 $placeholder  = isset($pars['placeholder'])  ? $pars['placeholder']  : '';
+//                 $errorClass   = isset($pars['errorClass'])   ? $pars['errorClass']   : '';
+//                 $errorMessage = isset($pars['errorMessage']) ? $pars['errorMessage'] : '';
+//                 $label        = isset($pars['label'])        ? $pars['label']        : '';
+//     return "
+//                     <div class=\"form-group row mb-20\">
+//                     <label for=\"{$name}\" class=\"col-sm-3 col-form-label\">
+//                         {$label}<span class=\"required\" style=\"color:red\">*</span>
+//                     </label>
+//                     <div class=\"col-sm-7\">
+//                         <input
+//                         type=\"text\"
+//                         id=\"{$name}\"
+//                         name=\"{$name}\"
+//                         class=\"form-control {$errorClass}\"
+//                         placeholder=\"{$placeholder}\"
+//                         value=\"{$data}\"
+//                         >
+//                         <div class=\"invalid-feedback\">
+//                         {$errorMessage}
+//                         </div>
+//                     </div>
+//                     </div>
+//                     ";
+//     }
+// }
 
 
     public function hidden($name, $data, $pars)
@@ -136,14 +136,87 @@ class form extends TagLibrary
             ";
     }
 
+    public function text($name, $data, $pars)
+{
+    $isDisabled = array_key_exists('disabled', $pars);
+    $placeholder = isset($pars['placeholder']) ? $pars['placeholder'] : '';
+    $errorClass = isset($pars['errorClass']) ? $pars['errorClass'] : '';
+    $errorMessage = isset($pars['errorMessage']) ? $pars['errorMessage'] : '';
+    $label = isset($pars['label']) ? $pars['label'] : ucfirst($name);
+        if ($isDisabled) {
+        return "<div class=\"form-group row mb-20\">
+            <label for=\"{$name}\" class=\"col-sm-3 col-form-label\">
+                {$label}<span class=\"required\" style=\"color:red\">*</span>
+            </label>
+            <div class=\"col-sm-7\">
+                <input
+                    type=\"text\"
+                    id=\"{$name}\"
+                    name=\"{$name}\"
+                    class=\"form-control {$errorClass}\"
+                    placeholder=\"{$placeholder}\"
+                    value=\"{$data}\"
+                    disabled
+                >
+                <div class=\"invalid-feedback\">
+                    {$errorMessage}
+                </div>
+                </div>
+                        </div>";
+    }
+
+    // Existing enabled input return block remains unchanged
+    return "<div class=\"form-group row mb-20\">
+        <label for=\"{$name}\" class=\"col-sm-3 col-form-label\">
+            {$label}<span class=\"required\" style=\"color:red\">*</span>
+        </label>
+        <div class=\"col-sm-7\">
+            <input
+                type=\"text\"
+                id=\"{$name}\"
+                name=\"{$name}\"
+                class=\"form-control {$errorClass}\"
+                placeholder=\"{$placeholder}\"
+                value=\"{$data}\"
+            >
+            <div class=\"invalid-feedback\">
+                {$errorMessage}
+            </div>
+            </div>
+                </div>";
+}
+
 
     public function email($name, $data, $pars)
     {
-        error_log("form::email called with name=$name, data=$data, pars=" . print_r($pars, true));
-        $errorClass   = $pars['errorClass']   ?? '';
-        $errorMessage = $pars['errorMessage'] ?? '';
-        $label        = $pars['label']        ?? '';
-        $placeholder  = $pars['placeholder']  ?? '';
+        $isDisabled   = array_key_exists('disabled', $pars);
+        $errorClass   = isset($pars['errorClass'])   ? $pars['errorClass']   : '';
+        $errorMessage = isset($pars['errorMessage']) ? $pars['errorMessage'] : '';
+        $label        = isset($pars['label'])        ? $pars['label']        : '';
+        $placeholder  = isset($pars['placeholder'])  ? $pars['placeholder']  : '';
+
+        if ($isDisabled) {
+            return "
+            <div class=\"form-group row mb-20\">
+              <label for=\"{$name}\" class=\"col-sm-3 col-form-label\">
+                {$label}<span class=\"required\" style=\"color:red\">*</span>
+              </label>
+              <div class=\"col-sm-7\">
+                <input
+                  type=\"email\"
+                  id=\"{$name}\"
+                  name=\"{$name}\"
+                  class=\"form-control {$errorClass}\"
+                  placeholder=\"{$placeholder}\"
+                  value=\"{$data}\"
+                  disabled
+                >
+                <div class=\"invalid-feedback\">
+                  {$errorMessage}
+                </div>
+              </div>
+            </div>";
+        }
 
         return "
         <div class=\"form-group row mb-20\">

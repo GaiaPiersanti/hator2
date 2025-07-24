@@ -1,4 +1,3 @@
-
         <!-- Breadcrumb Area Start Here -->
         <div class="breadcrumb-area">
             <div class="container">
@@ -48,7 +47,7 @@
                                 <li> <a class="nav-link" data-bs-toggle="tab" href="#orders">Orders</a></li>
                                 <li><a class="nav-link" data-bs-toggle="tab" href="#forgot">Forgot Password</a></li>
                                 <li><a class="nav-link" data-bs-toggle="tab" href="#address">Addresses</a></li>
-                                <li><a class="nav-link" data-bs-toggle="tab" href="#account-details">Account details</a>
+                                <li><a class="nav-link" data-bs-toggle="tab" href="#reset-password">Reset Password</a>
                                 </li>
                                 <li><a class="nav-link" data-bs-toggle="tab" href="#logout">logout</a></li>
                             </ul>
@@ -113,96 +112,65 @@
                                     <p>Bayazid Hasan</p>
                                     <p>Bangladesh</p>
                                 </div>
-                                <div id="account-details" class="tab-pane fade">
-                                    <h3>Account details </h3>
-                                    <div class="register-form login-form clearfix">
-                                        <form action="#">
-                                            <div class="form-group row align-items-center">
-                                                <label class="col-lg-3 col-md-4 col-form-label">Social title</label>
-                                                <div class="col-lg-6 col-md-8">
-                                                    <span class="custom-radio"><input name="id_gender" value="1" min="1"
-                                                            type="radio"> Mr.</span>
-                                                    <span class="custom-radio"><input name="id_gender" value="1" min="1"
-                                                            type="radio"> Mrs.</span>
+                                <!--account details-->
+                                <div id="reset-password" class="tab-pane fade">
+                                    <h3>Reset Password </h3>
+                                    <!-- Reset pw Start Here -->
+
+                                    <div class="error-message-register"><[passwordError]></div>
+                                    <div class="error-message-register"><[password2Error]></div>
+                                    <div class="error-message-register"><[password0Error]></div>
+                                    <div class="success-message"><[successMessage]></div>
+                                        
+                                        
+                                    
+                                    <div class="register-area">
+                                    
+                                        <div class="container">
+                                            <p class="login-header text-lg-center">By submitting this form, your password will be resetted and replaced with the new one </p>
+                                            <div class="row">
+                                                <div class="offset-xl-1 col-xl-10">
+                                                    <div class="register-form login-form clearfix">
+                                                        <form method="POST" action="index.php?page=account#reset-password">
+                                                           
+                                                            <div class="form-group row align-items-center">
+                                                            
+                                                                <input type="hidden" name="step" value="1">
+                                                                
+                                                                <[key::hidden library="form"]>
+                                                                <[first_name::text label="First name" placeholder="e.g. Jhon" disabled="true" library="form"]>
+                                                                
+                                                                <[last_name::text label="Last name" placeholder="e.g. Smith" disabled="true" library="form"]>
+                                                                
+                                                                <[email::email label="Email" placeholder="e.g. example@company.com" disabled="true" library="form"]>
+                                                                
+                                                                <[password0::password label="Current Password" library="form"]>
+
+                                                                <[password::password label="New Password" library="form"]>
+                                                                
+                                                                <[password2::password label="Confirm Password" library="form"]>
+                                                                
+                                                            
+
+                                                            </div>
+                                                            <div class="register-box mt-40">
+                                                                <button type="submit" class="login-btn float-right">Reset Password</button>
+                                                            </div> 
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
-                                                <label for="f-name" class="col-lg-3 col-md-4 col-form-label">First
-                                                    Name</label>
-                                                <div class="col-lg-6 col-md-8">
-                                                    <input type="text" class="form-control" id="f-name">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="l-name" class="col-lg-3 col-md-4 col-form-label">Last
-                                                    Name</label>
-                                                <div class="col-lg-6 col-md-8">
-                                                    <input type="text" class="form-control" id="l-name">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="email" class="col-lg-3 col-md-4 col-form-label">Email
-                                                    address</label>
-                                                <div class="col-lg-6 col-md-8">
-                                                    <input type="text" class="form-control" id="email">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="inputpassword" class="col-lg-3 col-md-4 col-form-label">Current password</label>
-                                                <div class="col-lg-6 col-md-8">
-                                                    <input type="password" class="form-control" id="inputpassword">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="newpassword" class="col-lg-3 col-md-4 col-form-label">New
-                                                    password</label>
-                                                <div class="col-lg-6 col-md-8">
-                                                    <input type="password" class="form-control" id="newpassword">
-                                                    <button class="btn show-btn" type="button">Show</button>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="c-password" class="col-lg-3 col-md-4 col-form-label">Confirm
-                                                    password</label>
-                                                <div class="col-lg-6 col-md-8">
-                                                    <input type="password" class="form-control" id="c-password">
-                                                    <button class="btn show-btn" type="button">Show</button>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="birth" class="col-lg-3 col-md-4 col-form-label">Birthdate</label>
-                                                <div class="col-lg-6 col-md-8">
-                                                    <input type="text" class="form-control" id="birth" placeholder="MM/DD/YYYY">
-                                                </div>
-                                            </div>
-                                            <div class="form-check row p-0 mt-20">
-                                                <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-4">
-                                                    <input class="form-check-input" value="#" id="offer" type="checkbox">
-                                                    <label class="form-check-label" for="offer">Receive offers from our
-                                                        partners</label>
-                                                </div>
-                                            </div>
-                                            <div class="form-check row p-0 mt-20">
-                                                <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-4">
-                                                    <input class="form-check-input" value="#" id="subscribe" type="checkbox">
-                                                    <label class="form-check-label" for="subscribe">Sign up for our
-                                                        newsletter<br>Subscribe to our newsletters now and stay
-                                                        up-to-date with new collections, the latest lookbooks and
-                                                        exclusive offers..</label>
-                                                </div>
-                                            </div>
-                                            <div class="register-box mt-40">
-                                                <button type="submit" class="return-customer-btn float-right">Save</button>
-                                            </div>
-                                        </form>
+                                        </div>
                                     </div>
+                                    <!-- Reset Pw End Here -->
                                 </div>
+                            
                                              <!--logout-->
                                  <div id="logout" class="tab-pane">
                                     <p>If you want to log out, click 
                                         <a href="index.php?page=logout">here.</a>
                                     </p>
-                                    <p> See you soon! </p>
+                                   
                                                 <div class="mt-20 mb-10">
                                                 <div class="buttons-cart mb-0">
                                                     
