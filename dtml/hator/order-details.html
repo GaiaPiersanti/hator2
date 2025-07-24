@@ -1,0 +1,44 @@
+        <!-- Breadcrumb Area Start Here -->
+        <div class="breadcrumb-area mb-0">
+            <div class="container">
+                <ol class="breadcrumb breadcrumb-list">
+                    <li class="breadcrumb-item"><a href="index.php?page=home">Home</a></li>
+                    <li class="breadcrumb-item"><a href="index.php?page=account">My Account</a></li>
+                    <li class="breadcrumb-item active">Order Detail</li>
+                </ol>
+            </div>
+        </div>
+        <!-- Breadcrumb Area End Here -->
+
+<div class="order-details-page ptb-60">
+  <div class="container">
+    <h2 style="text-transform: none; font-weight: bold; margin-bottom: 10px;">Order Details</h2>
+    <div class="order-info">
+      <p><strong>Order ID:</strong> <[order_id]></p>
+      <p><strong>Date:</strong> <[order_date]></p>
+      <p><strong>Status:</strong> <[order_status]></p>
+      <p><strong>Total:</strong> €<[order_total]></p>
+    </div>
+    <div class="order-items mt-30">
+      <h3 style="text-transform: none; font-weight: 300; font-size: 22px; margin-bottom: 10px">Items in this order:</h3>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Size</th>
+              <th>Quantity</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <[orderItems]>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="order-actions mt-30 mb-30">
+      <a href="index.php?page=account#orders" class="login-btn">Back to Orders</a>
+    </div>
+  </div>
+</div>

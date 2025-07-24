@@ -38,6 +38,7 @@ $pageTitles = [
     'pagamento'      => 'Payment',
     'riepilogo'      => 'Order Summary',
     'terms_conditions' => 'Terms & Conditions',
+    'order-details' => 'Order Details',
     // Admin pages -----------------------
     'tab-crud'      => 'Products table',
     'buttons'       => 'Buttons',
@@ -97,7 +98,7 @@ $page_title = $niceTitle . ' | ' . $websiteName;
 
 // 7) definisci quali slug sono pubblici e quali protetti
 
-$publicPages    = ['home', 'login', 'shop', 'about', 'contact', 'productdetails', '404' , 'terms_conditions', 'logout', 'add-user', 'cart', 'orders', 'forgot-password', 'testmail', 'phpinfo'];
+$publicPages    = ['home', 'login', 'shop', 'about', 'contact', 'productdetails', '404' , 'terms_conditions', 'logout', 'add-user', 'cart', 'orders', 'forgot-password'];
 $protectedPages = ['checkout'];
 
 

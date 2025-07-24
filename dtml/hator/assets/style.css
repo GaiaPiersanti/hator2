@@ -13234,3 +13234,49 @@ margin: 20px 0;
 .success-message:empty {
   display: none;
 }
+
+
+/* Tables for billing and shipping in My Account */
+.billingtable, .shippingtable {
+    margin-bottom: 20px;
+}
+.billingtable table, .shippingtable table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+.billingtable table th, .shippingtable table th,
+.billingtable table td, .shippingtable table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+.billingtable table thead th, .shippingtable table thead th {
+    background-color: #f5f5f5;
+    text-align: left;
+    font-weight: bold;
+}
+.billingtable table tbody tr:nth-child(even),
+.shippingtable table tbody tr:nth-child(even) {
+    background-color: #fafafa;
+}
+.billingtable table tbody tr:hover,
+.shippingtable table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+.billingtable h4, .shippingtable h4 {
+    margin-bottom: 10px;
+    font-weight: 400;
+    text-align: left;
+}
+
+
+/* Squared dashboard cards with bottom-aligned buttons */
+.dashboard-content .card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 0 !important;
+}
+.dashboard-content .card .login-btn {
+    margin-top: auto;
+    border-radius: 0 !important;
+}

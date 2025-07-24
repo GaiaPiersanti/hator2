@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     <a href="index.php?page=shop">Continue Shopping</a>
   </div>
   <div class="buttons-cart d-inline-block mx-2">
-    <a href="index.php?page=orders&order=<[ordine]>">View Your Order</a>
+    <a href="index.php?page=account#orders">View Your Order</a>
   </div>
 </div>
 HTML;
@@ -86,7 +86,7 @@ HTML;
     <a href="index.php?page=shop">Continue Shopping</a>
   </div>
   <div class="buttons-cart d-inline-block mx-2">
-    <a href="index.php?page=orders&order=<[ordine]>">View Your Order</a>
+    <a href="index.php?page=account#orders">View Your Order</a>
   </div>
 </div>
 HTML;
@@ -103,7 +103,7 @@ HTML;
     <a href="index.php?page=shop">Continue Shopping</a>
   </div>
   <div class="buttons-cart d-inline-block mx-2">
-    <a href="index.php?page=account">View Your Order</a>
+    <a href="index.php?page=account#orders">View Your Order</a>
   </div>
 </div>
 HTML;

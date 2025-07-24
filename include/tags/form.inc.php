@@ -115,7 +115,7 @@ class form extends TagLibrary
         return "
             <div class=\"form-group row mb-20\">
                 <label for=\"{$name}\" class=\"col-sm-3 col-form-label\">
-                    {$pars['label']}<span class=\"required\" style=\"color:red\">*</span>
+                    {$pars['label']} <span class=\"required\" style=\"color:red\">*</span>
                 </label>
                 <div class=\"col-sm-7 position-relative\">
                     <input
@@ -146,7 +146,7 @@ class form extends TagLibrary
         if ($isDisabled) {
         return "<div class=\"form-group row mb-20\">
             <label for=\"{$name}\" class=\"col-sm-3 col-form-label\">
-                {$label}<span class=\"required\" style=\"color:red\">*</span>
+                {$label} <span class=\"required\" style=\"color:red\">*</span>
             </label>
             <div class=\"col-sm-7\">
                 <input
@@ -168,7 +168,7 @@ class form extends TagLibrary
     // Existing enabled input return block remains unchanged
     return "<div class=\"form-group row mb-20\">
         <label for=\"{$name}\" class=\"col-sm-3 col-form-label\">
-            {$label}<span class=\"required\" style=\"color:red\">*</span>
+            {$label} <span class=\"required\" style=\"color:red\">*</span>
         </label>
         <div class=\"col-sm-7\">
             <input
@@ -199,7 +199,7 @@ class form extends TagLibrary
             return "
             <div class=\"form-group row mb-20\">
               <label for=\"{$name}\" class=\"col-sm-3 col-form-label\">
-                {$label}<span class=\"required\" style=\"color:red\">*</span>
+                {$label} <span class=\"required\" style=\"color:red\">*</span>
               </label>
               <div class=\"col-sm-7\">
                 <input
@@ -220,8 +220,8 @@ class form extends TagLibrary
 
         return "
         <div class=\"form-group row mb-20\">
-        <label for=\"{$name}\" class=\"col-sm-3 col-form-label\">
-            {$label}<span class=\"required\" style=\"color:red\">*</span>
+        <label for=\"{$name}\" class=\"col-sm-3 col-form-label\"> 
+            {$label} <span class=\"required\" style=\"color:red\">*</span>
         </label>
         <div class=\"col-sm-7\">
             <input

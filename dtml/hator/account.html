@@ -9,93 +9,88 @@
         </div>
         <!-- Breadcrumb Area End Here -->
         <!-- My Account Page Start Here -->
-        <div class="my-account white-bg ptb-90">
+        <div class="my-account white-bg ptb-60">
             <div class="container">
                 <div class="account-dashboard">
                     <div class="dashboard-upper-info">
-                        <div class="row align-items-center no-gutters">
-                            <div class="col-xl-3 col-lg-3 col-md-6">
-                                <div class="d-single-info">
-                                    <p class="user-name">Hello <span>yourmail@info</span></p>
-                                    <p>(not yourmail@info? <a class="log-out" href="index.php?page=logout">Log Out</a>)</p>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-4 col-md-6">
-                                <div class="d-single-info">
-                                    <p>Need Assistance? Customer service at.</p>
-                                    <p>admin@example.com.</p>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-3 col-md-6">
-                                <div class="d-single-info">
-                                    <p>E-mail them at </p>
-                                    <p>support@example.com</p>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-2 col-md-6">
-                                <div class="d-single-info text-lg-center">
-                                    <a class="view-cart" href="cart.html">view cart</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+  <div class="row">
+    <div class="col-12">
+      <p style="font-size: 24px; font-weight: bold;">Hello <span><[first_name]> <[last_name]></span>,</p>
+      <br>
+      <p style="font-size: 16px;">Didn't find what you were looking for? You can find our customer service contacts <a href="index.php?page=contact" style="color: #c7b270; font-weight: bold; font-size: 16px;">here</a>.</p>
+    </div>
+  </div>
+</div>
                     <div class="row">
                         <div class="col-lg-2">
                             <!-- Nav tabs -->
                             <ul class="nav flex-column dashboard-list" role="tablist">
                                 <li><a class="nav-link active" data-bs-toggle="tab" href="#dashboard">Dashboard</a></li>
                                 <li> <a class="nav-link" data-bs-toggle="tab" href="#orders">Orders</a></li>
-                                <li><a class="nav-link" data-bs-toggle="tab" href="#forgot">Forgot Password</a></li>
                                 <li><a class="nav-link" data-bs-toggle="tab" href="#address">Addresses</a></li>
-                                <li><a class="nav-link" data-bs-toggle="tab" href="#reset-password">Reset Password</a>
-                                </li>
+                                <li><a class="nav-link" data-bs-toggle="tab" href="#reset-password">Change Password</a></li>
+                                <li><a class="nav-link" data-bs-toggle="tab" href="#forgot">Forgot Password</a></li>
                                 <li><a class="nav-link" data-bs-toggle="tab" href="#logout">logout</a></li>
                             </ul>
                         </div>
                         <div class="col-lg-10">
                             <!-- Tab panes -->
                             <div class="tab-content dashboard-content mt-all-40">
-                                <div id="dashboard" class="tab-pane fade show active">
-                                    <h3>Dashboard </h3>
-                                    <p>From your account dashboard. you can easily check & view your <a href="#">recent
-                                            orders</a>, manage your <a href="#">shipping and billing addresses</a> and
-                                        <a href="#">edit your password and account details.</a></p>
-                                </div>
-                                <div id="orders" class="tab-pane fade">
-                                    <h3>Orders</h3>
-                                    <div class="table-responsive">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th>Order</th>
-                                                    <th>Date</th>
-                                                    <th>Status</th>
-                                                    <th>Total</th>
-                                                    <th>Actions</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>sep 10, 2022</td>
-                                                    <td>Processing</td>
-                                                    <td>$25.00 for 1 item </td>
-                                                    <td><a class="view" href="cart.html">view</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>sep 10, 2022</td>
-                                                    <td>Processing</td>
-                                                    <td>$17.00 for 1 item </td>
-                                                    <td><a class="view" href="cart.html">view</a></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+                               <!--dashboard-->
+                               <div id="dashboard" class="tab-pane fade show active">
+                                 <h3 style="text-transform:none; font-weight:bold;">Dashboard</h3>
+                                 <div class="row mt-4">
+                                   <div class="col-md-6 col-lg-4 mb-4">
+                                     <div class="card h-100 p-3 text-center">
+                                       <h5 class="card-title" style="text-transform:none; font-weight:bold;">Orders</h5>
+                                       <p class="card-text">View the status and details of your orders</p>
+                                       <a class="btn login-btn nav-link" data-bs-toggle="tab" href="#orders">Go to Orders</a>
+                                     </div>
+                                   </div>
+                                   <div class="col-md-6 col-lg-4 mb-4">
+                                     <div class="card h-100 p-3 text-center">
+                                       <h5 class="card-title" style="text-transform:none; font-weight:bold;">Addresses</h5>
+                                       <p class="card-text">View your billing and shipping addresses</p>
+                                       <a class="btn login-btn nav-link" data-bs-toggle="tab" href="#address">View Addresses</a>
+                                     </div>
+                                   </div>
+                                   <div class="col-md-6 col-lg-4 mb-4">
+                                     <div class="card h-100 p-3 text-center">
+                                       <h5 class="card-title" style="text-transform:none; font-weight:bold;">Change Password</h5>
+                                       <p class="card-text">Update your account password</p>
+                                       <a class="btn login-btn nav-link" data-bs-toggle="tab" href="#reset-password">Change Password</a>
+                                     </div>
+                                   </div>
+                                   <div class="col-md-6 col-lg-4 mb-4">
+                                     <div class="card h-100 p-3 text-center">
+                                       <h5 class="card-title" style="text-transform:none; font-weight:bold;">Forgot Password</h5>
+                                       <p class="card-text">Reset a forgotten password</p>
+                                       <a class="btn login-btn nav-link" data-bs-toggle="tab" href="#forgot">Forgot Password</a>
+                                     </div>
+                                   </div>
+                                   <div class="col-md-6 col-lg-4 mb-4">
+                                     <div class="card h-100 p-3 text-center">
+                                       <h5 class="card-title" style="text-transform:none; font-weight:bold;">Log Out</h5>
+                                       <p class="card-text">Sign out of your account</p>
+                                       <a class="btn login-btn nav-link" data-bs-toggle="tab" href="#logout">Log Out</a>
+                                     </div>
+                                   </div>
+                                   <div class="col-md-6 col-lg-4 mb-4">
+                                     <div class="card h-100 p-3 text-center">
+                                       <h5 class="card-title" style="text-transform:none; font-weight:bold;">Cart</h5>
+                                       <p class="card-text">View your shopping cart</p>
+                                       <a href="index.php?page=cart" class="btn login-btn">Go to Cart</a>
+                                     </div>
+                                   </div>
+                                 </div>
+                               </div>
+                               <!--dashboard end-->
+
+                                <[ordersTable]>
 
                                 <!--forgot-->
                                 <div id="forgot" class="tab-pane">
+                                    <h3>Forgot Password</h3>
                                     <p>If you forgot your password, click 
                                         <a href="index.php?page=forgot-password">here</a>
                                         to reset your password and get a new one.
@@ -109,17 +104,27 @@
                                 </div>
 
                    
-                                
-                                    
-                                <div id="address" class="tab-pane">
-                                    
-                                    <h4 class="billing-address">Billing addresses</h4>
-                                    <h4 class="billing-address">Shipping addresses</h4>
-                                    
-                                </div>
+                                <!--address-->
+
+                                       <!--address-->
+                                    <div id="address" class="tab-pane">
+                                        <h3>Your Addresses</h3>
+                                    <div class="container">
+                                        <div class="billingtable mb-20">
+                                        <[billingTable]>
+                                        </div>
+                                        <div class="shippingtable mb-20">
+                                        <[shippingTable]>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <!--address end-->
+
+                                <!--address end-->
+
                                 <!--reset password-->
                                 <div id="reset-password" class="tab-pane fade">
-                                    <h3>Reset Password </h3>
+                                    <h3>Change Password </h3>
                                     <!-- Reset pw Start Here -->
 
                                     <div class="error-message-register"><[passwordError]></div>
@@ -132,7 +137,7 @@
                                     <div class="register-area">
                                     
                                         <div class="container">
-                                            <p class="login-header text-lg-center">By submitting this form, your password will be resetted and replaced with the new one </p>
+                                            <p class="login-header text-lg-center">By submitting this form, your password will be replaced with the new one you choose.</p>
                                             <div class="row">
                                                 <div class="offset-xl-1 col-xl-10">
                                                     <div class="register-form login-form clearfix">
@@ -171,7 +176,9 @@
                                 </div>
                             
                                              <!--logout-->
+
                                  <div id="logout" class="tab-pane">
+                                    <h3>Log Out</h3>
                                     <p>If you want to log out, click 
                                         <a href="index.php?page=logout">here.</a>
                                     </p>
@@ -190,3 +197,35 @@
             </div>
         </div>
         <!-- My Account Page End Here -->
+<!-- <script>
+document.addEventListener("DOMContentLoaded", function() {
+  function activateTab(hash) {
+    if (!hash) return;
+    var navEl = document.querySelector('.dashboard-list a[href="' + hash + '"]');
+    if (navEl) {
+      new bootstrap.Tab(navEl).show();
+      // update URL hash without jumping
+      history.replaceState(null, null, hash);
+    }
+  }
+
+  // Activate on initial load
+  activateTab(window.location.hash);
+
+  // Activate on hash change (if user manually changes URL)
+  window.addEventListener('hashchange', function() {
+    activateTab(window.location.hash);
+  });
+
+  // Add click handlers to dashboard card buttons
+  document.querySelectorAll('.dashboard-content a.btn.login-btn').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      var target = btn.getAttribute('href');
+      if (target && target.startsWith('#')) {
+        e.preventDefault();
+        activateTab(target);
+      }
+    });
+  });
+});
+</script> -->
