@@ -220,21 +220,7 @@ class headcon extends TagLibrary {
     public function settings($name = '', $data = '', $pars = [])
     {
         $settings = '<li>
-                                        <a href="#">Settings
-                                            <i class="fa fa-angle-down"></i>
-                                        </a>
-                                        <!-- Dropdown Start -->
-                                        <ul class="ht-dropdown">
-                                             <li>
-                                                <a href="index.php?page=account">my account</a>
-                                            </li>
-                                            <li>
-                                                <a href="index.php?page=wishlist">my wishlist</a>
-                                            </li>
-                                            
-                                     
-
-                                        </ul>
+                                        <a href="index.php?page=account">My Account</a>
                                         <!-- Dropdown End -->
                                     </li>';
         return isset($_SESSION['user']) ? $settings : "";
