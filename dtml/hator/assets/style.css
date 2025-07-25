@@ -13377,3 +13377,299 @@ height: max-content;
   object-fit: cover;
   display: block;
 }
+
+
+/* Overlay Add To Cart inside the image container */
+.single-makal-product .pro-img {
+    position: relative; /* make .pro-img the positioning context */
+    overflow: hidden;
+}
+.single-makal-product .pro-img .add-to-cart.overlay-add {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 8px 16px;
+    z-index: 10;
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+}
+.single-makal-product .pro-img:hover .add-to-cart.overlay-add {
+    display: inline-block;
+}
+
+
+
+/* Best Seller: hide price on hover and show button without wrap */
+     #best-carousel .single-makal-product .related-price {
+       transition: opacity 0.2s ease;
+     }
+     #best-carousel .single-makal-product:hover .related-price {
+       opacity: 0;
+     }
+     #best-carousel .single-makal-product .add-to-cart.overlay-add {
+       position: absolute;
+       bottom: 10px;
+       right: 10px;
+       display: none;
+       white-space: nowrap; /* prevent wrapping */
+     }
+     #best-carousel .single-makal-product:hover .add-to-cart.overlay-add {
+       display: inline-block;
+     }
+
+
+ 
+.single-makal-product .add-to-cart {
+  white-space: nowrap;
+  display: inline-block; /* garantisce che il padding e border si comportino correttamente */
+}
+
+/* Horizontal scroll for Best Sellers */
+.best-sellers-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding: 1rem 0;
+  scroll-behavior: smooth;
+}
+.best-sellers-scroll .col-lg-4 {
+  flex: 0 0 calc(25% - 1rem);
+  max-width: calc(25% - 1rem);
+}
+@media (max-width: 1200px) {
+  .best-sellers-scroll .col-lg-4 {
+    flex: 0 0 calc(33.333% - 1rem);
+    max-width: calc(33.333% - 1rem);
+  }
+}
+@media (max-width: 992px) {
+  .best-sellers-scroll .col-lg-4 {
+    flex: 0 0 calc(50% - 1rem);
+    max-width: calc(50% - 1rem);
+  }
+}
+@media (max-width: 768px) {
+  .best-sellers-scroll .col-lg-4 {
+    flex: 0 0 calc(100% - 1rem);
+    max-width: calc(100% - 1rem);
+  }
+}
+
+ /* Wrapper and scroll buttons for Best Sellers */
+     .best-sellers-wrapper {
+       position: relative;
+     }
+    .best-sellers-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding: 1rem 0;            /* niente padding orizzontale */
+  padding-left: 3rem;
+  scroll-behavior: smooth;
+}
+
+.best-sellers-scroll .col-lg-4 {
+  flex: 0 0 calc((100% - 3rem) / 4);
+  max-width: calc((100% - 3rem) / 4);
+}
+     .best-scroll-btn {
+       position: absolute;
+       top: 50%;
+       transform: translateY(-50%);
+       background: rgba(0,0,0,0.5);
+       color: #fff;
+       border: none;
+       padding: 0.5rem;
+       cursor: pointer;
+       z-index: 10;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+     }
+     .scroll-prev { left: 0; }
+     .scroll-next { right: 0; }
+     /* Optional: styled scrollbar */
+     .best-sellers-scroll::-webkit-scrollbar {
+       height: 8px;
+     }
+     .best-sellers-scroll::-webkit-scrollbar-track {
+       background: #f1f1f1;
+     }
+     .best-sellers-scroll::-webkit-scrollbar-thumb {
+       background: #c7b270;
+       border-radius: 4px;
+     }
+
+     
+/* Horizontal scroll for Best Sellers */
+.new-arrivals-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding: 1rem 0;
+  scroll-behavior: smooth;
+}
+.new-arrivals-scroll .col-lg-4 {
+  flex: 0 0 calc(25% - 1rem);
+  max-width: calc(25% - 1rem);
+}
+@media (max-width: 1200px) {
+  .new-arrivals-scroll .col-lg-4 {
+    flex: 0 0 calc(33.333% - 1rem);
+    max-width: calc(33.333% - 1rem);
+  }
+}
+@media (max-width: 992px) {
+  .new-arrivals-scroll .col-lg-4 {
+    flex: 0 0 calc(50% - 1rem);
+    max-width: calc(50% - 1rem);
+  }
+}
+@media (max-width: 768px) {
+  .new-arrivals-scroll .col-lg-4 {
+    flex: 0 0 calc(100% - 1rem);
+    max-width: calc(100% - 1rem);
+  }
+}
+
+ /* Wrapper and scroll buttons for Best Sellers */
+     .new-arrivals-wrapper {
+       position: relative;
+     }
+    .new-arrivals-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding: 1rem 0;            /* niente padding orizzontale */
+  padding-left: 3rem;
+  scroll-behavior: smooth;
+}
+
+.new-arrivals-scroll .col-lg-4 {
+  flex: 0 0 calc((100% - 3rem) / 4);
+  max-width: calc((100% - 3rem) / 4);
+}
+     .best-scroll-btn {
+       position: absolute;
+       top: 50%;
+       transform: translateY(-50%);
+       background: rgba(0,0,0,0.5);
+       color: #fff;
+       border: none;
+       padding: 0.5rem;
+       cursor: pointer;
+       z-index: 10;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+     }
+     .scroll-prev { left: 0; }
+     .scroll-next { right: 0; }
+     /* Optional: styled scrollbar */
+     .new-arrivals-scroll::-webkit-scrollbar {
+       height: 8px;
+     }
+     .new-arrivals-scroll::-webkit-scrollbar-track {
+       background: #f1f1f1;
+     }
+     .new-arrivals-scroll::-webkit-scrollbar-thumb {
+       background: #c7b270;
+       border-radius: 4px;
+     }
+
+
+
+
+
+
+     /* Types Slider Scroll */
+
+.single-categorie .cat-img {
+  position: relative;       /* per posizionare l’overlay */
+  padding-left: 6rem;
+}
+
+.single-categorie .cat-img img {
+  display: block;
+  width: 60%;
+  height: auto;             /* evita distorsioni */
+}
+
+/* .single-categorie .cat-content {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  transform: translateY(-50%);
+  text-align: center;
+  z-index: 2;
+} */
+
+
+
+.single-categorie .cat-content a:hover {
+  background: rgba(176, 126, 43, 1);    /* darker gold */
+  color: #ffffff;
+}
+
+.single-categorie .cat-img {
+  position: relative; /* make this the positioning context */
+}
+
+.single-categorie .cat-img img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.single-categorie .cat-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* center on X and Y */
+  z-index: 10; /* bring in front of image */
+  width: auto; /* shrink to content */
+  white-space: nowrap;
+  text-align: center;
+}
+
+.single-categorie .cat-content a {
+  display: inline-block;
+  background: rgba(199, 178, 112, 0.8);
+  padding: 0.75rem 1.5rem;
+  color: #ffffff;
+  transition: background 0.3s ease, color 0.3s ease;
+  pointer-events: auto;
+}
+
+/* Center category button over the image, ignoring cat-img padding */
+.single-categorie .cat-img {
+    position: relative;
+}
+
+.single-categorie .cat-img .cat-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Optional: adjust padding for the button background */
+    padding: 10px 20px;
+    margin: 0;
+    box-sizing: content-box;
+}
+
+div.cat-img{
+    padding-right: 96px;
+   
+}
+
+/* mycss: category button full-width */
+.single-categorie .cat-content a {
+    display: block;
+    width: 100%;
+    text-align: center;
+}

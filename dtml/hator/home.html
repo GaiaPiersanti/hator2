@@ -1,5 +1,41 @@
 <!--BODY START |||||||||||||||||||||||||||||||||||||||||||||||||||||\\\\\|||||||||||||||||||||||||||\\\\\|||||||||||||||||||||||-->
 
+<style>
+  .single-banner {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .single-banner img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+  }
+  .banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  .single-banner:hover .banner-overlay {
+    opacity: 1;
+  }
+  .banner-overlay span {
+    color: #fff;
+    font-size: 2em;
+    text-transform: uppercase;
+  }
+</style>
+
 
 
 
@@ -10,18 +46,18 @@
             <!-- Slider Area Start Here -->
             <div class="slider-activation owl-carousel">
                 <!-- Start Single Slide -->
-                <div class="slide align-center-left fullscreen animation-style-01 bg-image-9">
+                <div class="slide align-center-left fullscreen animation-style-01" style="background-image: url('dtml/hator/assets/img/carosello/carosello_1.jpg'); background-size: cover; background-position: center;">
                     <div class="slider-progress"></div>
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="slider-content">
-                                    <h1>New Artist Eye Shadow</h1>
-                                    <h2>Palette 2022</h2>
-                                    <p>Discover our 5 new limited-edition highlighter shades inspired by the luster and
-                                        brilliance of pearls found in the depths of the ocean.</p>
+                                     
+                                    <h1>Black Opium Over Red</h1>
+                                    <h2>Eau de Parfum by Yves Saint Laurent </h2>
+                                    <p>Immerse yourself in a whirlwind of passion and experience a night full of wild sensory sensations.</p>
                                     <div class="slide-btn white-color">
-                                        <a href="index.php?page=shop">Shop Now</a>
+                                        <a href="index.php?page=productdetails&slug=black-opium-over-red">View Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -30,18 +66,17 @@
                 </div>
                 <!-- End Single Slide -->
                 <!-- Start Single Slide -->
-                <div class="slide align-center-left fullscreen animation-style-02 bg-image-10">
+                <div class="slide align-center-left fullscreen animation-style-02" style="background-image: url('dtml/hator/assets/img/carosello/carosello_2.jpg'); background-size: cover; background-position: center;">
                     <div class="slider-progress"></div>
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="slider-content">
-                                    <h1>Collagen Renewal For</h1>
-                                    <h2>Ageless Skin</h2>
-                                    <p>Anti-Agring Wrinkle Cream With SYN-Coll, Clinically Proven to Reduce Wrinkles by
-                                        up to 354%. Skin Looks Thicker, Firmers.</p>
+                                    <h1>A New Era</h1>
+                                    <h2>Of Parfumes</h2>
+                                    <p>Ready to rock? Rabanne Phantom Elixir Parfum Intense is the most intense and daring masculine fragrance by Rabanne. </p>
                                     <div class="slide-btn white-color">
-                                        <a href="index.php?page=shop">Shop Now</a>
+                                        <a href="index.php?page=productdetails&slug=phantom-elixir">Shop Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -53,76 +88,18 @@
             <!-- Slider Area End Here -->
         </div>
         <!-- Slider Area End -->
-        <!-- Categorie Slider Area Start Here -->
-        <div class="categories-of-pro pt-20">
+        <!-- Types Slider Area Start Here -->
+            <div class="categories-of-pro pt-20 mt-30">
             <div class="container-fluid">
                 <!-- Categorie Product Activation Start Here -->
                 <div class="categorie-pro-active owl-carousel">
-                    <!-- Single Cat Pro Start -->
-                    <div class="single-categorie">
-                        <div class="cat-img">
-                            <a href="#">
-                                <img src="dtml/hator/assets/img/categoires-pro/c5.webp" alt="cat-pro">
-                            </a>
-                            <div class="cat-content">
-                                <a href="#">Earrings</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single Cat Pro End -->
-                    <!-- Single Cat Pro Start -->
-                    <div class="single-categorie">
-                        <div class="cat-img">
-                            <a href="#">
-                                <img src="dtml/hator/assets/img/categoires-pro/c1.webp" alt="cat-pro">
-                            </a>
-                            <div class="cat-content">
-                                <a href="#">Necklaces</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single Cat Pro End -->
-                    <!-- Single Cat Pro Start -->
-                    <div class="single-categorie">
-                        <div class="cat-img">
-                            <a href="#">
-                                <img src="dtml/hator/assets/img/categoires-pro/c2.webp" alt="cat-pro">
-                            </a>
-                            <div class="cat-content">
-                                <a href="#">Bracelets</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single Cat Pro End -->
-                    <!-- Single Cat Pro Start -->
-                    <div class="single-categorie">
-                        <div class="cat-img">
-                            <a href="#">
-                                <img src="dtml/hator/assets/img/categoires-pro/c3.webp" alt="cat-pro">
-                            </a>
-                            <div class="cat-content">
-                                <a href="#">Portfolio</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single Cat Pro End -->
-                    <!-- Single Cat Pro Start -->
-                    <div class="single-categorie">
-                        <div class="cat-img">
-                            <a href="#">
-                                <img src="dtml/hator/assets/img/categoires-pro/c4.webp" alt="cat-pro">
-                            </a>
-                            <div class="cat-content">
-                                <a href="#">Necklaces</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single Cat Pro End -->
+                <[typeSlider]>
                 </div>
                 <!-- Categorie Product Activation End Here -->
             </div>
-        </div>
-        <!-- Categorie Slider Area End Here -->
+            </div>
+            <!-- Categorie Slider Area End Here -->
+
         <!-- New Arrival Products Start Here -->
         <div class="new-arrival no-border-style ptb-90">
             <div class="container">
@@ -132,178 +109,16 @@
                     <p>Add our new arrivals to your weekly lineup</p>
                 </div>
                 <!-- Section Title End -->
-                <div class="our-pro-active owl-carousel">
-                    <!-- Single Product Start Here -->
-                    <div class="single-makal-product">
-                        <div class="pro-img">
-                            <a href="product-details.html">
-                                <img src="dtml/hator/assets/img/products/cosmetic/1.webp" alt="product-img">
-                            </a>
-                            <span class="sticker-new">new</span>
-                            <div class="quick-view-pro">
-                                <a data-bs-toggle="modal" data-bs-target="#product-window" class="quick-view" href="#"></a>
-                            </div>
-                        </div>
-                        <div class="pro-content">
-                            <h4 class="pro-title">
-                                <a href="product-details.html">Modern Eye Brush</a>
-                            </h4>
-                            <p>
-                                <span  class="price">$45.50</span>
-                            </p>
-                            <div class="pro-actions">
-                                <div class="actions-primary">
-                                    <a href="cart.html" class="add-to-cart" data-toggle="tooltip" data-original-title="Add to Cart">Add To Cart</a>
-                                </div>
-                                
-                            </div>
-                        </div>
+                <div class="new-arrivals-wrapper">
+                    <button id="new-scroll-prev" class="best-scroll-btn scroll-prev">
+                        <i class="fa fa-chevron-left"></i>
+                    </button>
+                    <div class="new-arrivals-scroll">
+                        <[newArrivals]>
                     </div>
-                    <!-- Single Product End Here -->
-                    <!-- Single Product Start Here -->
-                    <div class="single-makal-product">
-                        <div class="pro-img">
-                            <a href="product-details.html">
-                                <img src="dtml/hator/assets/img/products/cosmetic/4.webp" alt="product-img">
-                            </a>
-                            <span class="sticker-new">new</span>
-                            <span class="sticker-sale">-5%</span>
-                            <div class="quick-view-pro">
-                                <a data-bs-toggle="modal" data-bs-target="#product-window" class="quick-view" href="#"></a>
-                            </div>
-                        </div>
-                        <div class="pro-content">
-                            <h4 class="pro-title">
-                                <a href="product-details.html">Fusion facial cream</a>
-                            </h4>
-                            <p>
-                                <span class="price">$72.50</span>
-                            </p>
-                            <div class="pro-actions">
-                                <div class="actions-primary">
-                                    <a href="cart.html" class="add-to-cart" data-toggle="tooltip" data-original-title="Add to Cart">Add To Cart</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single Product End Here -->
-                    <!-- Single Product Start Here -->
-                    <div class="single-makal-product">
-                        <div class="pro-img">
-                            <a href="product-details.html">
-                                <img src="dtml/hator/assets/img/products/cosmetic/6.webp" alt="product-img">
-                            </a>
-                            <span class="sticker-new">new</span>
-                            <span class="sticker-sale">-5%</span>
-                            <div class="quick-view-pro">
-                                <a data-bs-toggle="modal" data-bs-target="#product-window" class="quick-view" href="#"></a>
-                            </div>
-                        </div>
-                        <div class="pro-content">
-                            <h4 class="pro-title">
-                                <a href="product-details.html">Field Messenger</a>
-                            </h4>
-                            <p>
-                                <span class="price">$55.50</span>
-                                <span class="prev-price">$59.50</span>
-                            </p>
-                            <div class="pro-actions">
-                                <div class="actions-primary">
-                                    <a href="cart.html" class="add-to-cart" data-toggle="tooltip" data-original-title="Add to Cart">Add To Cart</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single Product End Here -->
-                    <!-- Single Product Start Here -->
-                    <div class="single-makal-product">
-                        <div class="pro-img">
-                            <a href="product-details.html">
-                                <img src="dtml/hator/assets/img/products/cosmetic/10.webp" alt="product-img">
-                            </a>
-                            <span class="sticker-new">new</span>
-                            <span class="sticker-sale">-5%</span>
-                            <div class="quick-view-pro">
-                                <a data-bs-toggle="modal" data-bs-target="#product-window" class="quick-view" href="#"></a>
-                            </div>
-                        </div>
-                        <div class="pro-content">
-                            <h4 class="pro-title">
-                                <a href="product-details.html">Field Messenger</a>
-                            </h4>
-                            <p>
-                                <span class="price">$55.50</span>
-                                <span class="prev-price">$59.50</span>
-                            </p>
-                            <div class="pro-actions">
-                                <div class="actions-primary">
-                                    <a href="cart.html" class="add-to-cart" data-toggle="tooltip" data-original-title="Add to Cart">Add To Cart</a>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single Product End Here -->
-                    <!-- Single Product Start Here -->
-                    <div class="single-makal-product">
-                        <div class="pro-img">
-                            <a href="product-details.html">
-                                <img src="dtml/hator/assets/img/products/cosmetic/11.webp" alt="product-img">
-                            </a>
-                            <span class="sticker-new">new</span>
-                            <span class="sticker-sale">-5%</span>
-                            <div class="quick-view-pro">
-                                <a data-bs-toggle="modal" data-bs-target="#product-window" class="quick-view" href="#"></a>
-                            </div>
-                        </div>
-                        <div class="pro-content">
-                            <h4 class="pro-title">
-                                <a href="product-details.html">Field Messenger</a>
-                            </h4>
-                            <p>
-                                <span class="price">$55.50</span>
-                                <span class="prev-price">$59.50</span>
-                            </p>
-                            <div class="pro-actions">
-                                <div class="actions-primary">
-                                    <a href="cart.html" class="add-to-cart" data-toggle="tooltip" data-original-title="Add to Cart">Add To Cart</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single Product End Here -->
-                    <!-- Single Product Start Here -->
-                    <div class="single-makal-product">
-                        <div class="pro-img">
-                            <a href="product-details.html">
-                                <img src="dtml/hator/assets/img/products/cosmetic/9.webp" alt="product-img">
-                            </a>
-                            <span class="sticker-new">new</span>
-                            <span class="sticker-sale">-5%</span>
-                            <div class="quick-view-pro">
-                                <a data-bs-toggle="modal" data-bs-target="#product-window" class="quick-view" href="#"></a>
-                            </div>
-                        </div>
-                        <div class="pro-content">
-                            <h4 class="pro-title">
-                                <a href="product-details.html">Field Messenger</a>
-                            </h4>
-                            <p>
-                                <span class="price">$55.50</span>
-                                <span class="prev-price">$59.50</span>
-                            </p>
-                            <div class="pro-actions">
-                                <div class="actions-primary">
-                                    <a href="cart.html" class="add-to-cart" data-toggle="tooltip" data-original-title="Add to Cart">Add To Cart</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single Product End Here -->
+                    <button id="new-scroll-next" class="best-scroll-btn scroll-next">
+                        <i class="fa fa-chevron-right"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -319,200 +134,40 @@
                 <!-- Section Title Start -->
                 <div class="section-title text-center">
                     <h2>Our Best Sellers</h2>
-                    <p>Add our bestsellers to your weekly lineup </p>
+                    <p>Add our bestsellers to your collection </p>
                 </div>
                 <!-- Section Title End -->
-                <div class="our-pro-active owl-carousel">
-                    <!-- Single Product Start Here -->
-                    <div class="single-makal-product">
-                        <div class="pro-img">
-                            <a href="product-details.html">
-                                <img src="dtml/hator/assets/img/products/cosmetic/12.webp" alt="product-img">
-                            </a>
-                            <span class="sticker-new">new</span>
-                            <div class="quick-view-pro">
-                                <a data-bs-toggle="modal" data-bs-target="#product-window" class="quick-view" href="#"></a>
-                            </div>
-                        </div>
-                        <div class="pro-content">
-                            <h4 class="pro-title">
-                                <a href="product-details.html">Modern Eye Brush</a>
-                            </h4>
-                            <p>
-                                <span class="price">$45.50</span>
-                            </p>
-                            <div class="pro-actions">
-                                <div class="actions-primary">
-                                    <a href="cart.html" class="add-to-cart" data-toggle="tooltip" data-original-title="Add to Cart">Add To Cart</a>
-                                </div>
-                                
-                            </div>
-                        </div>
+                <div class="best-sellers-wrapper">
+                    <button id="best-scroll-prev" class="best-scroll-btn scroll-prev">
+                        <i class="fa fa-chevron-left"></i>
+                    </button>
+                    <div class="best-sellers-scroll">
+                        <[bestSellers]>
                     </div>
-                    <!-- Single Product End Here -->
-                    <!-- Single Product Start Here -->
-                    <div class="single-makal-product">
-                        <div class="pro-img">
-                            <a href="product-details.html">
-                                <img src="dtml/hator/assets/img/products/cosmetic/11.webp" alt="product-img">
-                            </a>
-                            <span class="sticker-new">new</span>
-                            <span class="sticker-sale">-5%</span>
-                            <div class="quick-view-pro">
-                                <a data-bs-toggle="modal" data-bs-target="#product-window" class="quick-view" href="#"></a>
-                            </div>
-                        </div>
-                        <div class="pro-content">
-                            <h4 class="pro-title">
-                                <a href="product-details.html">Fusion facial cream</a>
-                            </h4>
-                            <p>
-                                <span class="price">$72.50</span>
-                            </p>
-                            <div class="pro-actions">
-                                <div class="actions-primary">
-                                    <a href="cart.html" class="add-to-cart" data-toggle="tooltip" data-original-title="Add to Cart">Add To Cart</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single Product End Here -->
-                    <!-- Single Product Start Here -->
-                    <div class="single-makal-product">
-                        <div class="pro-img">
-                            <a href="product-details.html">
-                                <img src="dtml/hator/assets/img/products/cosmetic/10.webp" alt="product-img">
-                            </a>
-                            <span class="sticker-new">new</span>
-                            <span class="sticker-sale">-5%</span>
-                            <div class="quick-view-pro">
-                                <a data-bs-toggle="modal" data-bs-target="#product-window" class="quick-view" href="#"></a>
-                            </div>
-                        </div>
-                        <div class="pro-content">
-                            <h4 class="pro-title">
-                                <a href="product-details.html">Field Messenger</a>
-                            </h4>
-                            <p>
-                                <span class="price">$55.50</span>
-                                <span class="prev-price">$59.50</span>
-                            </p>
-                            <div class="pro-actions">
-                                <div class="actions-primary">
-                                    <a href="cart.html" class="add-to-cart" data-toggle="tooltip" data-original-title="Add to Cart">Add To Cart</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single Product End Here -->
-                    <!-- Single Product Start Here -->
-                    <div class="single-makal-product">
-                        <div class="pro-img">
-                            <a href="product-details.html">
-                                <img src="dtml/hator/assets/img/products/cosmetic/6.webp" alt="product-img">
-                            </a>
-                            <span class="sticker-new">new</span>
-                            <span class="sticker-sale">-5%</span>
-                            <div class="quick-view-pro">
-                                <a data-bs-toggle="modal" data-bs-target="#product-window" class="quick-view" href="#"></a>
-                            </div>
-                        </div>
-                        <div class="pro-content">
-                            <h4 class="pro-title">
-                                <a href="product-details.html">Field Messenger</a>
-                            </h4>
-                            <p>
-                                <span class="price">$55.50</span>
-                                <span class="prev-price">$59.50</span>
-                            </p>
-                            <div class="pro-actions">
-                                <div class="actions-primary">
-                                    <a href="cart.html" class="add-to-cart" data-toggle="tooltip" data-original-title="Add to Cart">Add To Cart</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single Product End Here -->
-                    <!-- Single Product Start Here -->
-                    <div class="single-makal-product">
-                        <div class="pro-img">
-                            <a href="product-details.html">
-                                <img src="dtml/hator/assets/img/products/cosmetic/4.webp" alt="product-img">
-                            </a>
-                            <span class="sticker-new">new</span>
-                            <span class="sticker-sale">-5%</span>
-                            <div class="quick-view-pro">
-                                <a data-bs-toggle="modal" data-bs-target="#product-window" class="quick-view" href="#"></a>
-                            </div>
-                        </div>
-                        <div class="pro-content">
-                            <h4 class="pro-title">
-                                <a href="product-details.html">Field Messenger</a>
-                            </h4>
-                            <p>
-                                <span class="price">$55.50</span>
-                                <span class="prev-price">$59.50</span>
-                            </p>
-                            <div class="pro-actions">
-                                <div class="actions-primary">
-                                    <a href="cart.html" class="add-to-cart" data-toggle="tooltip" data-original-title="Add to Cart">Add To Cart</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single Product End Here -->
-                    <!-- Single Product Start Here -->
-                    <div class="single-makal-product">
-                        <div class="pro-img">
-                            <a href="product-details.html">
-                                <img src="dtml/hator/assets/img/products/cosmetic/3.webp" alt="product-img">
-                            </a>
-                            <span class="sticker-new">new</span>
-                            <span class="sticker-sale">-5%</span>
-                            <div class="quick-view-pro">
-                                <a data-bs-toggle="modal" data-bs-target="#product-window" class="quick-view" href="#"></a>
-                            </div>
-                        </div>
-                        <div class="pro-content">
-                            <h4 class="pro-title">
-                                <a href="index.php?page=productdetails">Field Messenger</a>
-                            </h4>
-                            <p>
-                                <span class="price">$55.50</span>
-                                <span class="prev-price">$59.50</span>
-                            </p>
-                            <div class="pro-actions">
-                                <div class="actions-primary">
-                                    <a href="index.php?page=cart" class="add-to-cart" data-toggle="tooltip" data-original-title="Add to Cart">Add To Cart</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single Product End Here -->
+                    <button id="best-scroll-next" class="best-scroll-btn scroll-next">
+                        <i class="fa fa-chevron-right"></i>
+                    </button>
                 </div>
             </div>
         </div>
         <!-- Best Seller Products End Here -->
         <!-- New Product Banner Start Here -->
-        <div class="product-banner pro-border-style">
+        <div class="product-banner pro-border-style mb-30">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-6 mb-sm-30">
                         <div class="single-banner">
-                            <a href="index.php?page=shop">
-                                <img src="dtml/hator/assets/img/banner/cosmetic/1-4.webp" alt="banner-img">
+                            <a href="index.php?page=shop&categories[]=<[menCatId]>">
+                                <img src="dtml/hator/assets/img/men-women/men.jpg" alt="banner-img">
+                                <div class="banner-overlay"><span>Men</span></div>
                             </a>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="single-banner">
-                            <a href="index.php?page=shop">
-                                <img src="dtml/hator/assets/img/banner/cosmetic/1-5.webp" alt="banner-img">
+                            <a href="index.php?page=shop&categories[]=<[womenCatId]>">
+                                <img src="dtml/hator/assets/img/men-women/women.jpg" alt="banner-img">
+                                <div class="banner-overlay"><span>Women</span></div>
                             </a>
                         </div>
                     </div>

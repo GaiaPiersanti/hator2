@@ -116,7 +116,7 @@ NOTE: main.js, All custom script and plugin activation script in this file.
         loop: true,
         nav: true,
         dots: false,
-        smartSpeed: 1500,
+        smartSpeed: 700,
         navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
         margin: 20,
         responsive: {
@@ -180,25 +180,14 @@ NOTE: main.js, All custom script and plugin activation script in this file.
         navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
         margin: 20,
         responsive: {
-            0: {
-                items: 1,
-                autoplay: true,
-                smartSpeed: 500
-            },
-            480: {
-                items: 2
-            },
-            768: {
-                items: 2
-            },
-            992: {
-                items: 2
-            },
-            1200: {
-                items: 2
-            }
+  0:   { items: 1, autoplay: true, smartSpeed: 500 },
+  480: { items: 2 },
+  768: { items: 3 },
+  992: { items: 4 },
+  1200:{ items: 4 }
+}
         }
-    })
+    )
 
     /*----------------------------------------------------
     09. Best Seller Activation Two
@@ -1113,5 +1102,30 @@ NOTE: main.js, All custom script and plugin activation script in this file.
                 items: 2
             }
         }
+
+        
     });
+
+    // Horizontal scroll controls for Best Sellers
+     $(document).ready(function() {
+       var $container = $('.best-sellers-scroll');
+           $('#best-scroll-next').on('click', function() {
+       $container.animate({ scrollLeft: '+=' + $container.width() }, 400);
+     });
+     $('#best-scroll-prev').on('click', function() {
+       $container.animate({ scrollLeft: '-=' + $container.width() }, 400);
+     });
+     });
+
+         // Horizontal scroll controls for New arrivals
+     $(document).ready(function() {
+       var $container = $('.new-arrivals-scroll');
+           $('#new-scroll-next').on('click', function() {
+       $container.animate({ scrollLeft: '+=' + $container.width() }, 400);
+     });
+     $('#new-scroll-prev').on('click', function() {
+       $container.animate({ scrollLeft: '-=' + $container.width() }, 400);
+     });
+
+     });
 })(jQuery);

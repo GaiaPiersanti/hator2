@@ -208,7 +208,7 @@ unset($prod);
 $prodLib   = new product();
 $cardsHtml = '';
 foreach ($related as $prod) {
-    $cardsHtml .= $prodLib->card_related('card', $prod, []);
+    $cardsHtml .= $prodLib->card_best('card', $prod, []);
 }
 
 // 6) Inject into the template and close
