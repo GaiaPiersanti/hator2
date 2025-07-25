@@ -117,7 +117,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
 }
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-    if ($_SESSION['user']['group_id'] === '2' || $_SESSION['user']['group_id'] === '3') {
+    if ($_SESSION['user']['group_id'] === '2' || $_SESSION['user']['group_id'] === '3' || $_SESSION['user']['group_id'] === '4') {
         if (!in_array($page, $publicPages, true) && !in_array($page, $protectedPages, true)) {
             header('Location: admin.php?page=404');
             exit;
