@@ -13281,3 +13281,99 @@ margin: 20px 0;
     border-radius: 0 !important;
 }
 
+
+/* Hero Banner Aspect-Ratio Wrappers */
+.hero-banner-area .single-banner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Large banner: ratio 910×978 (≈107.47%) */
+/* .hero-banner-area .banner-large .single-banner::before {
+  content: "";
+  display: block;
+  padding-top: 107.47%;
+}
+
+/* Small banners: ratio 445×550 (≈123.60%) 
+.hero-banner-area .banner-small .single-banner::before {
+  content: "";
+  display: block;
+  padding-top: 123.60%;
+}
+
+/* Wide banner: ratio 910×408 (≈44.84%) 
+.hero-banner-area .banner-wide .single-banner::before {
+  content: "";
+  display: block;
+  padding-top: 44.84%;
+} 
+*/
+/* Hero Banner Fixed Aspect Ratios using aspect-ratio 
+.hero-banner-area .banner-large .single-banner {
+  aspect-ratio: 910 / 978; /* Large banner 
+} 
+
+.hero-banner-area .banner-small .single-banner {
+  aspect-ratio: 445 / 550; /* Small banners 
+} */
+
+/* Ensure wide banner fills its column 
+.hero-banner-area .banner-inner-bottom.banner-wide {
+  width: 100%;
+}
+.hero-banner-area .banner-inner-bottom.banner-wide .single-banner {
+  aspect-ratio: 910 / 408; /* Wide banner ratio 
+  width: 100%;
+  height: auto;
+} */
+
+/* Images cover the wrapper */
+.hero-banner-area .single-banner img {
+
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+ 
+}
+
+
+
+  /* Ensure wide banner has correct height based on intrinsic ratio */
+  .hero-banner-area .banner-wide .single-banner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+    .hero-banner-area .banner-large .single-banner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+.banner-large .single-banner{
+height: max-content;
+}
+
+
+.banner-large {
+  padding: 0; /* remove default padding if any */
+}
+.banner-large .single-banner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.banner-large .single-banner img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
