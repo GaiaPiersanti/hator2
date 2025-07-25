@@ -1,7 +1,13 @@
+
+<div class="container-fluid">
 <h2>Manage Banners</h2>
+<p>In this section you can update the static banners, so choose a photo first, and then select the brand of the product in the menu down below.
+   It will automatically generate the link to the brand page that you selected.
+   <br>
+  When a custumer will click on the photo you choose it will be redirected to the brand page.</p>
 
 <!-- Selezione banner -->
-<form method="get" action="admin.php" class="mb-4">
+<form method="get" action="admin.php" class="mb-10">
   <input type="hidden" name="page" value="edit-banners">
   <label for="banner_id" class="me-2">Banner:</label>
   <select id="banner_id" name="banner_id" onchange="this.form.submit()">
@@ -23,7 +29,7 @@
     Save Brand
   </button>
 </form>
-
+</div>
 <script>
 // Drag & Drop sullo slot immagine
 const slot = document.getElementById('imgSlot');

@@ -163,5 +163,13 @@ switch ($page) {
   case '404':
   require __DIR__ .  "/controllers/admin/404.php";  
     break;
+    case 'access-denied':
+  require __DIR__ .  "/controllers/admin/access-denied.php";  
+    break;
+
+    case 'logout':
+  require __DIR__ .  "/controllers/admin/logout.php";  
+    break;
+    
 }
 

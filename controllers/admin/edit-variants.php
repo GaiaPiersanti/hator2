@@ -52,8 +52,12 @@ foreach ($variants as $v) {
     $rowsHtml .= "  <td>" . htmlspecialchars($v['currency'], ENT_QUOTES) . "</td>\n";
     $rowsHtml .= "  <td>" . htmlspecialchars($v['stock'], ENT_QUOTES) . "</td>\n";
     $rowsHtml .= "  <td class=\"text-end\">\n";
-    $rowsHtml .= "    <a href=\"admin.php?page=modify-variants&variant_id={$v['id']}\" class=\"btn btn-sm btn-primary me-1\">Edit</a>\n";
-    $rowsHtml .= "    <a href=\"admin.php?page=delete-variants&variant_id={$v['id']}\" class=\"btn btn-sm btn-danger\">Delete</a>\n";
+    $rowsHtml .= "    <a href=\"admin.php?page=modify-variants&variant_id={$v['id']}\" class=\"btn btn-sm btn-warning btn-icon-split me-1\"><span class=\"icon text-white-50\">
+            <i class=\"fas fa-exclamation-triangle fa-fw\"></i>
+          </span><span class=\"text\">Edit Variant</span></a>\n";
+    $rowsHtml .= "    <a href=\"admin.php?page=delete-variants&variant_id={$v['id']}\" class=\"btn btn-sm btn-danger btn-icon-split\"><span class=\"icon text-white-50\">
+            <i class=\"fas fa-trash fa-fw\"></i>
+          </span><span class=\"text\">Delete</span></a>\n";
     $rowsHtml .= "  </td>\n";
     $rowsHtml .= "</tr>\n";
 }

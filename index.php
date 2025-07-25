@@ -27,7 +27,8 @@ switch ($page) {
     case 'phpinfo':      require __DIR__ . "/controllers/public/phpinfo.php";      break;
     case 'order-details': require __DIR__ . "/controllers/public/order-details.php";      break;
     case 'terms_conditions': require  __DIR__ . "/controllers/public/terms_conditions.php";      break;
-        case 'testmail':      require __DIR__ . "/controllers/public/testmail.php";      break;
+    case 'testmail':      require __DIR__ . "/controllers/public/testmail.php";      break;
+           
 
     case '404':            require __DIR__ . "/controllers/public/404.php";            break;
     default:               require __DIR__ . "/controllers/public/home.php";           break;

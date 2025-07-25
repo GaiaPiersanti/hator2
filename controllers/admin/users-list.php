@@ -1,5 +1,5 @@
 <?php
-// controllers/admin/user-list.php
+// controllers/admin/users-list.php
 
 
 
@@ -44,8 +44,12 @@ foreach ($rows as $u) {
     $userRows .= "  <td>" . htmlspecialchars($u['last_name'], ENT_QUOTES) . "</td>\n";
     $userRows .= "  <td>" . htmlspecialchars($u['email'], ENT_QUOTES) . "</td>\n";
     $userRows .= "  <td class=\"text-end\">\n";
-    $userRows .= "    <a href=\"admin.php?page=edit-user&id={$u['id']}\" class=\"btn btn-sm btn-primary me-1\">Edit</a>\n";
-    $userRows .= "    <a href=\"admin.php?page=delete-user&id={$u['id']}\" class=\"btn btn-sm btn-danger\">Delete</a>\n";
+    $userRows .= "    <a href=\"admin.php?page=edit-user&id={$u['id']}\" class=\"btn btn-sm btn-warning btn-icon-split me-1\"><span class=\"icon text-white-50\">
+            <i class=\"fas fa-exclamation-triangle fa-fw\"></i>
+          </span><span class=\"text\">Edit User</span></a>\n";
+    $userRows .= "    <a href=\"admin.php?page=delete-user&id={$u['id']}\" class=\"btn btn-sm btn-danger btn-icon-split\"><span class=\"icon text-white-50\">
+            <i class=\"fas fa-trash fa-fw\"></i>
+          </span><span class=\"text\">Delete</span></a>\n";
     $userRows .= "  </td>\n";
     $userRows .= "</tr>\n";
 }

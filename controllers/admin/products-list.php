@@ -44,11 +44,18 @@ foreach ($rows as $r) {
   $tr .= "  <td>" . htmlspecialchars($r['type'],         ENT_QUOTES) . "</td>\n";
   $tr .= "  <td>" . htmlspecialchars($r['brand'],        ENT_QUOTES) . "</td>\n";
   $tr .= "  <td class=\"text-end\">\n";
-  $tr .= "    <a href=\"admin.php?page=edit-product&id={$r['id']}\" class=\"btn btn-sm btn-primary me-1\">Edit</a>\n";
-  $tr .= "    <a href=\"admin.php?page=edit-variants&product_id={$r['id']}\" class=\"btn btn-sm btn-secondary me-1\">Edit Variants</a>\n";
-  $tr .= "    <a href=\"admin.php?page=edit-images&product_id={$r['id']}\" class=\"btn btn-sm btn-secondary me-1\">Edit Images</a>\n";
-  $tr .= "    <a href=\"admin.php?page=delete-product&id={$r['id']}\" class=\"btn btn-sm btn-danger\">Delete</a>\n";
-  $tr .= "  </td>\n";
+  $tr .= "    <a href=\"admin.php?page=edit-product&id={$r['id']}\" class=\"btn btn-sm btn-warning btn-icon-split me-1\"><span class=\"icon text-white-50\">
+            <i class=\"fas fa-exclamation-triangle fa-fw\"></i>
+          </span><span class=\"text\">Edit Product</span></a>\n";
+  $tr .= "    <a href=\"admin.php?page=edit-variants&product_id={$r['id']}\" class=\"btn btn-sm btn-warning btn-icon-split me-1\"><span class=\"icon text-white-50\">
+            <i class=\"fas fa-exclamation-triangle fa-fw\"></i>
+          </span><span class=\"text\">Edit Variants</span></a>\n";
+  $tr .= "    <a href=\"admin.php?page=edit-images&product_id={$r['id']}\" class=\"btn btn-sm btn-warning btn-icon-split me-1\"><span class=\"icon text-white-50\">
+            <i class=\"fas fa-exclamation-triangle fa-fw\"></i>
+          </span><span class=\"text\">Edit Images</span></a>\n";
+  $tr .= "    <a href=\"admin.php?page=delete-product&id={$r['id']}\" class=\"btn btn-sm btn-danger btn-icon-split\"><span class=\"icon text-white-50\">
+            <i class=\"fas fa-trash fa-fw\"></i>
+          </span><span class=\"text\">Delete</span></a>\n";
   $tr .= "</tr>\n";
 }
 

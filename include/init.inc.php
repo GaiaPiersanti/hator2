@@ -92,6 +92,8 @@ $pageTitles = [
      'add-group'     => 'Add Group',
      'edit-group'    => 'Edit Group',
      'delete-group'  => 'Delete Group',
+
+     'access-denied' => 'Access Denied',
     
 
     
@@ -105,7 +107,7 @@ $page_title = $niceTitle . ' | ' . $websiteName;
 
 // 7) definisci quali slug sono pubblici e quali protetti
 
-$publicPages    = ['home', 'login', 'shop', 'about', 'contact', 'productdetails', '404' , 'terms_conditions', 'logout', 'add-user', 'cart', 'orders', 'forgot-password'];
+$publicPages    = ['home', 'login', 'shop', 'about', 'contact', 'productdetails', '404' , 'terms_conditions', 'logout', 'add-user', 'cart', 'orders', 'forgot-password', 'access-denied'];
 $protectedPages = ['checkout'];
 
 
@@ -114,10 +116,25 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     while ($next = $res->fetch_assoc()) {
         $protectedPages[] = $next['name'];
     }
+    // Fetch all admin-protected pages (services) for cross-group access control
+    $allAdminPages = [];
+    $allRes = $conn->query("
+      SELECT DISTINCT services.name
+        FROM groups_has_services
+        JOIN services ON groups_has_services.service_id = services.ID
+    ");
+    while ($row = $allRes->fetch_assoc()) {
+        $allAdminPages[] = $row['name'];
+    }
 }
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     if ($_SESSION['user']['group_id'] === '2' || $_SESSION['user']['group_id'] === '3' || $_SESSION['user']['group_id'] === '4') {
+        // If the page is protected by admins generally but not by this user’s group, deny access
+        if (isset($allAdminPages) && in_array($page, $allAdminPages, true) && !in_array($page, $protectedPages, true)) {
+            header('Location: admin.php?page=access-denied');
+            exit;
+        }
         if (!in_array($page, $publicPages, true) && !in_array($page, $protectedPages, true)) {
             header('Location: admin.php?page=404');
             exit;
