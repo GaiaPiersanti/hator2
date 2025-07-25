@@ -129,6 +129,9 @@ switch ($page) {
            case 'edit-images':
             require __DIR__ . '/controllers/admin/edit-images.php';
             break;
+            case 'edit-banners':
+              require __DIR__ . '/controllers/admin/edit-banners.php';
+              break;
              //users crud
        case 'users-list':
         require __DIR__ . '/controllers/admin/users-list.php';

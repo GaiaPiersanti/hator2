@@ -1,0 +1,58 @@
+<h2>Manage Banners</h2>
+
+<!-- Selezione banner -->
+<form method="get" action="admin.php" class="mb-4">
+  <input type="hidden" name="page" value="edit-banners">
+  <label for="banner_id" class="me-2">Banner:</label>
+  <select id="banner_id" name="banner_id" onchange="this.form.submit()">
+    <[bannersOptions]>
+  </select>
+</form>
+
+<!-- Slot immagine + upload/delete -->
+<[slotHtml]>
+
+<!-- Selezione marca & salva slug -->
+<form method="post" action="admin.php?page=edit-banners" class="mt-4">
+  <input type="hidden" name="banner_id" value="<[selectedBanner]>">
+  <fieldset>
+    <legend>Brand</legend>
+    <[brandRadios]>
+  </fieldset>
+  <button type="submit" name="action" value="save_brand" class="btn btn-primary mt-2">
+    Save Brand
+  </button>
+</form>
+
+<script>
+// Drag & Drop sullo slot immagine
+const slot = document.getElementById('imgSlot');
+const form = document.getElementById('imageForm');
+const fileInput = document.getElementById('fileInput');
+const selectedBanner = "<[selectedBanner]>";
+
+slot.addEventListener('dragover', e => e.preventDefault());
+slot.addEventListener('drop', e => {
+  e.preventDefault();
+  const files = e.dataTransfer.files;
+  if (!files || !files.length) return;
+  const fd = new FormData(form);
+  fd.set('action', 'upload');
+  fd.set('banner_id', selectedBanner);
+  fd.delete('image_file');
+  fd.append('image_file', files[0]);
+  fetch('admin.php?page=edit-banners', { method: 'POST', body: fd })
+    .then(() => window.location.reload());
+});
+
+fileInput.addEventListener('change', () => {
+  // Submits the upload form with action=upload
+  const btn = document.createElement('button');
+  btn.type = 'submit';
+  btn.name = 'action';
+  btn.value = 'upload';
+  btn.style.display = 'none';
+  form.appendChild(btn);
+  btn.click();
+});
+</script>

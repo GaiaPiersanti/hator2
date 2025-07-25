@@ -85,6 +85,8 @@ $pageTitles = [
      'delete-user'  => 'Delete User',
     //img
     'edit-images'  => 'Edit Images',
+     //banners
+     'edit-banners'  => 'Edit Banners',
     //group
      'groups-list' => 'Groups list',
      'add-group'     => 'Add Group',
